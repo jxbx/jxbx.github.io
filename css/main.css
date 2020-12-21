@@ -1,0 +1,18 @@
+body { margin: 60px auto; width: 70%; background-color: #FF7F50;
+font-family: 'Nunito', sans-serif;}
+
+a { text-decoration: none; color: white; }
+a:hover { text-decoration: underline; }
+
+
+h1{  font-size: 22px; color: white; }
+p { font-size: 16px; line-height: 1.4em; color: #333; }
+
+nav ul, footer ul { font-size: 14px; padding: 0px; list-style: none;  }
+nav ul li, footer ul li { display: inline; margin-right: 15px; }
+
+nav {border-top: 1px solid black;
+border-bottom: 1px solid black;
+margin-top: 15px}
+
+footer { border-top: 1px solid black;}
