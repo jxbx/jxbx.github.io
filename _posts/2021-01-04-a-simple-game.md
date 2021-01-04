@@ -11,9 +11,9 @@ I started off by creating an HTML file and adding <div> elements for the player,
 
 The initial <div> elements are linked into the Javascript from the HTML, but the enemy element is actually defined within the program body:
 
-  const enemyElement = document.createElement("div");
-  enemyElement.id = "enemy";
-  document.getElementById("playArea").appendChild(enemyElement);
+    const enemyElement = document.createElement("div");
+    enemyElement.id = "enemy";
+    document.getElementById("playArea").appendChild(enemyElement);
 
 While working on this I realised that allowing the program to generate new elements is much more dynamic than hardcoding them directly into the HTML, although for a game this simple either method works. 
 
@@ -27,42 +27,42 @@ Using an expression like `yPlayer <= {width of play area}` to add this condition
 
 `Math.min` is a great option here as a simple method to enforce limits. 
 
-  let yPlayer = 550;
-  let xPlayer = 190;
+    let yPlayer = 550;
+    let xPlayer = 190;
 
-  function moveUp() {
-    yPlayer = Math.max(0, yPlayer - 5);
-    playerElement.style.top = `${yPlayer}px`;
-  }
+    function moveUp() {
+        yPlayer = Math.max(0, yPlayer - 5);
+        playerElement.style.top = `${yPlayer}px`;
+        }
 
-  function moveDown() {
-   yPlayer = Math.min(580, yPlayer + 5);
-   playerElement.style.top = `${yPlayer}px`;
-    }
-  function moveLeft() {
-    xPlayer = Math.max(0, xPlayer - 5);
-    playerElement.style.left = `${xPlayer}px`;
-  }
+    function moveDown() {
+        yPlayer = Math.min(580, yPlayer + 5);
+        playerElement.style.top = `${yPlayer}px`;
+        }
+        
+    function moveLeft() {
+        xPlayer = Math.max(0, xPlayer - 5);
+        playerElement.style.left = `${xPlayer}px`;
+        }
 
-  function moveRight() {
-  xPlayer = Math.min(380, xPlayer + 5);
-  playerElement.style.left = `${xPlayer}px`;
-}
+    function moveRight() {
+        xPlayer = Math.min(380, xPlayer + 5);
+        playerElement.style.left = `${xPlayer}px`;
+        }
 
 Collisions and respawning and scoring
 
 The static enemy has its own position variables, which are generated using the Math.random method. The respawnEmemy() function allows us to update these variables with new random variables on call. 
 
-
-  let yEnemy = Math.random() * 580;
-  let xEnemy = Math.random() * 380;
-
-  function respawnEnemy(){
-   yEnemy = Math.random() * 580;
-   xEnemy = Math.random() * 380;
-   enemyElement.style.top = `${yEnemy}px`;
-   enemyElement.style.left = `${xEnemy}px`;  
-   }
+    let yEnemy = Math.random() * 580;
+    let xEnemy = Math.random() * 380;
+    
+    function respawnEnemy(){
+    yEnemy = Math.random() * 580;
+    xEnemy = Math.random() * 380;
+    enemyElement.style.top = `${yEnemy}px`;
+    enemyElement.style.left = `${xEnemy}px`;  
+    }
 
 The `updateScore()` function accesses a scoreTracker variable (initially set to 0), increment it, and returns the new value into an HTML element called "score". 
 
@@ -84,27 +84,26 @@ To override this behaviour we need to detach our move functions from direct cont
 
 The controller object below records boolean values against our arrow inputs. By default it records false, but it can be altered by two functions: updateKeydown() flips the value to true as soon as a keydown event is detected on the relevant key. The value stays true until the equivalent keyup event is detected on the same key by the updateKeyup() function, which flips it to false again. Any or all of the states in this array can read true or false separately or simultaneously. 
 
-  const controller = {
-    ArrowLeft: { pressed: false},
-    ArrowUp: { pressed: false},
-    ArrowRight: { pressed: false},
-    ArrowDown: { pressed: false}
-  };
+    const controller = {
+        ArrowLeft: { pressed: false},
+        ArrowUp: { pressed: false},
+        ArrowRight: { pressed: false},
+        ArrowDown: { pressed: false}
+      };
+  
+      function updateKeydown(event) {
+          if (controller[event.key]) {
+          controller[event.key].pressed = true;
+          event.preventDefault();
+        }
+      }
 
-
-  function updateKeydown(event) {
-    if (controller[event.key]) {
-      controller[event.key].pressed = true;
-      event.preventDefault();
-    }
-  }
-
-  function updateKeyup(event) {
-    if (controller[event.key]) {
-     controller[event.key].pressed = false;
-     event.preventDefault();
-    }
-  }
-
-This is great: instead of using key inputs to directly move the playerElement we are using them to update the controller object. The controller records all of our input states continuously,  and passes these values into our move functions, which now interpolate smoothly when triggered. 
+      function updateKeyup(event) {
+        if (controller[event.key]) {
+         controller[event.key].pressed = false;
+         event.preventDefault();
+        }
+      }
+  
+ This is great: instead of using key inputs to directly move the playerElement we are using them to update the controller object. The controller records all of our input states continuously,  and passes these values into our move functions, which now interpolate smoothly when triggered. 
 
