@@ -8,13 +8,12 @@ a:hover { text-decoration: underline; }
 h1{  font-size: 22px; color: white; }
 p { font-size: 16px; line-height: 1.4em; color: #333; }
 
-blockquote {
-color: white;
-font-size: 15px;
-border-top: 1px dashed white;
+pre{
+  font-size: 15px;
+  color: white;
+  border-top: 1px dashed white;
 border-bottom: 1px dashed white;
-padding: 15px 0 15px 0;
-margin: 0;
+padding: 15px 0 0 0;
 }
 
 nav ul, footer ul { font-size: 14px; padding: 0px; list-style: none;  }
