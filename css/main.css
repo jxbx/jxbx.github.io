@@ -2,8 +2,7 @@ body { margin: 60px auto; width: 60%; background-color: #FF7F50;
 font-family: 'Nunito', sans-serif;
 }
 
-a { text-decoration: none; color: white; }
-a:hover { text-decoration: underline; }
+a { color: white; }
 
 h1{  font-size: 22px; color: white; }
 p { font-size: 16px; line-height: 1.4em; color: #333; }
