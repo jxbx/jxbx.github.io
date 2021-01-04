@@ -21,7 +21,7 @@ nav ul li, footer ul li { display: inline; margin-right: 15px; }
 
 nav {border-top: 1px solid black;
 border-bottom: 1px solid black;
-margin-top: 15px
+margin-top: 15px;
 }
 
 footer { border-top: 1px solid black;}
