@@ -2,6 +2,34 @@ My friend Lucie pointed out earlier this week that 2021 is a rare year whose val
 
 In the code below the function `checkPrime(n)` generates an array of prime numbers up to some maximum value. The `primeMultiples()` function works through this array and logging every possible value for n * (n+1). 
 
+let primes = [];
+
+function findPrimes(n) {
+  for (let i = 2; i <= n; i++) {
+    let isPrime = true;
+    for (let j = 2; j < i; j++) {
+      if (i % j === 0) {
+        isPrime = false;
+        continue;
+      }
+    }
+    if (isPrime) {
+      primes.push(i);
+    }
+  }
+  console.log(primes);
+}
+
+findPrimes(100);
+
+function primeMultiples() {
+  for (let n = 0; n < primes.length - 1; n++) {
+    console.log(primes[n] * primes[n + 1]);
+  }
+}
+
+primeMultiples();
+
 Comparing against this output we can see that Lucie's initial dates were correct! Not a hugely difficult problem to solve, but it got me thinking about methods for generating primes. In my function I used trial division, a pretty naive approach where every number in the list of numbers [2,3,4,...n] is checked against every number below it to see if it will factorise. For each number, a variable `isPrime` is generated; this starts off `true`, and flips to `false` if a factor is discovered. If a number survives every check against possible factors, it stays `true` and gets logged to the console. 
 
 This method is rigourous but slow, so I had a go at making an alternative prime generator based on the "sieve of Eratosthenes" algorithm, which takes a more efficient approach. 
