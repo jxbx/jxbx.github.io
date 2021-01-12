@@ -7,7 +7,7 @@ body {
 
 @media only screen and (max-width: 600px) {
   body {
-    width:95%;
+    width:90%;
   }
 }
 
@@ -72,4 +72,5 @@ pre {
   border-top: 0.05em dashed white;
   border-bottom: 0.05em dashed white;
   padding: 1em 0 1em 0;
+  overflow: auto;
 }
