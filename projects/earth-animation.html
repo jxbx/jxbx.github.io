@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background-color: black;
+}
+
+p.caption { 
+  font-family: arial, sans-serif;
+  color: white;
+  font-size: 1em;
+  line-height: 1.4em;
+  flex-basis: 15em;
+  max-width: 25em;
+  flex-grow: 1;
+  padding: 1em 0 1em 0;
+  margin: 0 2em 0em 0;
+  border-top: 0.1em solid white;
+  border-bottom: 0.1em solid white;
+}
+
+.ball {
+    border-radius: 50%;
+    width: 10em;
+    height: 10em;
+  position: relative;
+  
+  }
+
+.triangle{
+  position: relative;
+  width: 0; 
+  height: 0; 
+  border-top: 1em solid transparent;
+  border-bottom: 1em solid transparent;
+  border-left: 1em solid red;
+  
+}
+
+
+#big {
+   width: 100%;
+  padding: 2em;
+  background-color: #1c1c1c;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#small {
+  margin: 2em 0 2em 0;
+  flex-basis: 30em;
+  height: 14em; 
+  left: 2em;
+}
+
+#earth {
+   background: linear-gradient(90deg, #6b67b3, #21d590, #71d2e6);
+    
+  
+}
+
+
+
+#sun {
+  background-color: yellow;
+  top: -12em;
+  left: 20em;
+    z-index: 1;
+  
+}
+
+#sunlight {
+  position: relative;
+  height: 10em;
+  width: 20em;
+  background-color: yellow;
+  top: -22em;
+  left: 5em;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+
+
+#pointer{
+  top: 4em;
+  left: 0em;
+  animation-name: around;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+
+}
+
+
+
+#axis-line {
+  position: relative;
+  height: 14em;
+  width: 0.3em;
+  background-color: white;
+  opacity: 1;
+ top: -10em;
+  left: 6.85em;
+  
+}
+.small-line{
+position: relative;
+height: 0.4em;
+width: 7em;
+background-color: red;
+  opacity: 0.7;
+}
+
+#small-line1{
+    top: -10em;
+  left: 1.5em;
+ 
+}
+
+#small-line2{
+    top: -0.8em;
+    left: 1.5em;
+}
+
+#earth-mask{
+  height: 10em;
+  width: 10em;
+  
+  position: relative;
+  border-radius: 50%;
+overflow: hidden;
+  left: 2em;
+  top: 2em;
+
+}
+
+#earth-container {
+  position: relative;
+  left: -2em;
+  height: 14em;
+  width: 14em;
+  animation-name: angle;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes angle {
+  0% {
+    transform: rotate(23.5deg);
+  } 
+  10% {
+    transform: rotate(23.5deg);
+  }
+  50% {
+    transform: rotate(-23.5deg);
+  }
+  60% {
+    transform: rotate(-23.5deg);
+  }
+  100% {
+    transform: rotate(23.5deg);
+  }
+}
+
+@keyframes around{
+  0%{left: 0; 
+    opacity: 1;
+    
+  }
+  50%{left: 10em;
+    opacity: 1;
+  }
+  51%{
+    left: 10em;
+   
+    opacity: 0.05;
+  }
+  99%{left: 0;
+  transform: scaleX(-1);
+    opacity: 0.05}
+  100%:{left: 0;
+  transform: scaleX(-1);
+    opacity: 1}
+}
+
+
+</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+  
+<body>
+<div class="container" id="big">
+  <p class="caption">
+    During summer in the Northern hemisphere the 
+    Earth's axis tilts towards the sun. The North Pole is in permanent 
+    daylight, while the South Pole is continually dark. As the Earth continues its 
+    orbit around the Sun, it's axis begins to tilt away and 
+    eventually the positions are reversed. 
+  <p>
+  <div class="container" id="small">
+     
+    <div id ="earth-container">
+      <div id = "earth-mask">
+        <div class="ball" id="earth">
+          <div class="triangle" id="pointer"></div>
+        </div>
+       <div class="small-line" id="small-line1"></div>
+       <div class="small-line" id = "small-line2"></div>
+      </div>
+     <div id ="axis-line"></div> 
+    </div>
+ 
+  <div class="ball" id="sun"></div>    
+  <div id="sunlight"> </div> 
+ </div>
+</div>
+  
+</body>
+  
+</html>
