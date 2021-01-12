@@ -1,3 +1,9 @@
+#logo {
+  height: 3em;
+  margin-bottom: 1em;
+}
+
+
 body {
     margin: 5em auto;
     width: 60%;
@@ -10,24 +16,18 @@ body {
     width:90%;
   }
 }
-
-#logo {
-  height: 3em;
-  margin-bottom: 1em;
-}
   
 nav ul, footer ul {
-    padding: 0px;
-    list-style: none;   
+    padding: 0;
+    list-style: none;
+    
 }
-
 nav ul li, footer ul li {
     display: inline;
-    margin-right: 20px;
+    margin-right: 2em;
     font-size: 0.8em;
     font-weight: 300;
 }
-
 a {
     text-decoration: none;
     color: white;
@@ -35,28 +35,26 @@ a {
 a:hover {
     text-decoration: underline;
 }
-
 h1 {
     font-size: 1.5em;
-  color: white;
-  font-weight: 600;
+    color: white;
+    font-weight: 600;
 }
-
 p {
     font-weight: 400;
     font-size: 1em;
     line-height: 1.4em;
     color: #212121;
 }
-
 footer, nav {
     border-top: 0.05em solid grey;
     border-bottom: 0.05em solid grey;
 }
 
-ul.posts { 
-    margin: 20px auto 40px; 
-    font-size: 1.5em;
+ul.posts {
+  padding: 0; 
+  margin: 0 0 2em 0em;
+    font-size: 1em;
 }
 
 ul.posts li {
@@ -72,5 +70,4 @@ pre {
   border-top: 0.05em dashed white;
   border-bottom: 0.05em dashed white;
   padding: 1em 0 1em 0;
-  overflow: auto;
 }
