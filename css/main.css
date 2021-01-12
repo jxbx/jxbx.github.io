@@ -18,15 +18,16 @@ body {
   
 nav ul, footer ul {
     padding: 0px;
-    list-style: none;
-    
+    list-style: none;   
 }
+
 nav ul li, footer ul li {
     display: inline;
     margin-right: 20px;
     font-size: 0.8em;
     font-weight: 300;
 }
+
 a {
     text-decoration: none;
     color: white;
@@ -34,17 +35,20 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
 h1 {
     font-size: 1.5em;
   color: white;
   font-weight: 600;
 }
+
 p {
     font-weight: 400;
     font-size: 1em;
     line-height: 1.4em;
     color: #212121;
 }
+
 footer, nav {
     border-top: 0.05em solid grey;
     border-bottom: 0.05em solid grey;
@@ -68,3 +72,4 @@ pre {
   border-top: 0.05em dashed white;
   border-bottom: 0.05em dashed white;
   padding: 1em 0 1em 0;
+}
