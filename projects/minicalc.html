@@ -90,6 +90,91 @@ input[type=button]:focus {
 }
 
 </style>
+<script>
+let inputString = [];
+const symbols = ["+", "-", "/", "*"];
+
+function displayInput(input) {
+	const lastChar = inputString[inputString.length - 1];
+	//special conditions when input is "+", "-", "/" or "*"
+	if (symbols.includes(input)) {
+		if (inputString.length === 0) {
+			console.log("enter a number");
+		} else if (symbols.includes(lastChar) || lastChar === ".") {
+			inputString = inputString.substring(0, inputString.length - 1) + input;
+		} else inputString += input;
+	}
+	//special conditions when input is "."
+	else if (input === ".") {
+		if (inputString.length === 0 || symbols.includes(lastChar)) {
+			inputString = inputString + "0.";
+		} else if (lastChar === ".") {
+			inputString = inputString.substring(0, inputString.length - 1) + input;
+		} else inputString += input;
+	}
+	//conditions for all other inputs
+	else {
+		inputString += input;
+	}
+	document.getElementById("display").innerHTML = inputString;
+}
+
+function clearInput() {
+	inputString = [];
+	document.getElementById("display").innerHTML = inputString;
+}
+
+function calculate() {
+	//generate separate arrays of numbers and symbols using regular expressions
+	let numArr = inputString.split(/\+|\-|\*|\//g);
+	let symbolArr = inputString.replace(/[0-9]|\./g, "").split("");
+	let result = parseFloat(numArr[0]);
+	console.log(numArr);
+	console.log(symbolArr);
+	if (symbols.includes(inputString[inputString.length - 1])) {
+		return;
+	} else {
+		for (let n = 1; n < numArr.length; n++) {
+			if (symbolArr[n - 1] === "*") {
+				result *= parseFloat(numArr[n]);
+			} else if (symbolArr[n - 1] === "/") {
+				result /= parseFloat(numArr[n]);
+			} else if (symbolArr[n - 1] === "+") {
+				result += parseFloat(numArr[n]);
+			} else {
+				result -= parseFloat(numArr[n]);
+			}
+		}
+	}
+	result = result;
+	console.log(result);
+	document.getElementById("display").innerHTML = result;
+	inputString = [];
+}
+//adding numpad input functionality
+function keyInput(event) {
+	if (event.keyCode > 95 && event.keyCode < 106) {
+		displayInput(parseInt(event.keyCode) - 96);
+	} else if (event.keyCode === 106) {
+		displayInput("*");
+	} else if (event.keyCode === 107) {
+		displayInput("+");
+	} else if (event.keyCode === 109) {
+		displayInput("-");
+	} else if (event.keyCode === 110) {
+		displayInput(".");
+	} else if (event.keyCode === 111) {
+		displayInput("/");
+	} else if (event.keyCode === 13) {
+		calculate();
+	} else if (event.keyCode === 8) {
+		clearInput();
+	} else {
+		return;
+	}
+}
+window.addEventListener("keydown", keyInput);
+</script>
 <body>
 	<div class="grid-container">
 		<div class="header">
