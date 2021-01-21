@@ -1,6 +1,6 @@
 ---
 layout: post
-title: First blog post
+title: A calculator
 date: 2020-12-21
 ---
 Just a test:
