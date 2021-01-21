@@ -1,3 +1,9 @@
+---
+layout: post
+title: First blog post
+date: 2020-12-21
+---
+Just a test:
 <html>
 <style>
 html {
