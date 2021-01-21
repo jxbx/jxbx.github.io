@@ -1,1 +1,200 @@
+<html>
+<style>
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+body {
+	max-width: 25rem;
+	min-width: 15rem;
+	font-family: "Kanit", "sans-serif";
+	font-size: 2rem;
+	margin: auto;
+}
+p {
+	overflow-wrap: break-word;
+	width: 100%;
+	margin: 0;
+}
+.grid-container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat (4, 1fr);
+	grid-template-rows: repeat (3, 1fr);
+	border: 0.5rem solid #c2c2c2;
+	border-radius: 1rem;
+	background-color: gray;
+	margin-top: 5rem;
+}
+.header {
+	width: 100%;
+	min-height: 5.5rem;
+	overflow: hidden;
+	grid-area: 1/1/1/5;
+	background-color: #cde0b6;
+	border: 0.1rem solid gray;
+	border-bottom: 0.05rem solid gray;
+	border-radius: 0.5rem 0.5rem 0 0;
+	padding: 1rem;
+}
+.numbers {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-area: 2/1/3/4;
+	border-left: 0.05rem solid gray;
+}
+.symbols {
+	display: grid;
+	grid-area: 2/4/3/5;
+}
+.symbols>input[type=button] {
+	background-color: #bfbfbf;
+	border-right: 0.1rem solid gray;
+}
+.equals {
+	grid-area: 5/1/5/5;
+}
+.equals>input[type=button] {
+	width: 100%;
+	background-color: #cce3e1;
+	border-radius: 0 0 0.5rem 0.5rem;
+	border: 0.1rem solid gray;
+	border-top: 0.05rem solid gray;
+}
+input[type=button] {
+	border: 0.05rem solid gray;
+	height: 4rem;
+	font-size: 1rem;
+	font-family: "Kanit"
+}
+input[type=button]:hover {
+	background-color: gray;
+	color: white;
+}
+input[type=button]:active {
+	transform: translateY(0.2rem);
+}
+input[type=button]:focus {
+	outline: none;
+	box-shadow: none;
+}
 
+</style>
+<script>
+let inputString = [];
+const symbols = ["+", "-", "/", "*"];
+
+function displayInput(input) {
+	const lastChar = inputString[inputString.length - 1];
+	//special conditions when input is "+", "-", "/" or "*"
+	if (symbols.includes(input)) {
+		if (inputString.length === 0) {
+			console.log("enter a number");
+		} else if (symbols.includes(lastChar) || lastChar === ".") {
+			inputString = inputString.substring(0, inputString.length - 1) + input;
+		} else inputString += input;
+	}
+	//special conditions when input is "."
+	else if (input === ".") {
+		if (inputString.length === 0 || symbols.includes(lastChar)) {
+			inputString = inputString + "0.";
+		} else if (lastChar === ".") {
+			inputString = inputString.substring(0, inputString.length - 1) + input;
+		} else inputString += input;
+	}
+	//conditions for all other inputs
+	else {
+		inputString += input;
+	}
+	document.getElementById("display").innerHTML = inputString;
+}
+
+function clearInput() {
+	inputString = [];
+	document.getElementById("display").innerHTML = inputString;
+}
+
+function calculate() {
+	//generate separate arrays of numbers and symbols using regular expressions
+	let numArr = inputString.split(/\+|\-|\*|\//g);
+	let symbolArr = inputString.replace(/[0-9]|\./g, "").split("");
+	let result = parseFloat(numArr[0]);
+	console.log(numArr);
+	console.log(symbolArr);
+	if (symbols.includes(inputString[inputString.length - 1])) {
+		return;
+	} else {
+		for (let n = 1; n < numArr.length; n++) {
+			if (symbolArr[n - 1] === "*") {
+				result *= parseFloat(numArr[n]);
+			} else if (symbolArr[n - 1] === "/") {
+				result /= parseFloat(numArr[n]);
+			} else if (symbolArr[n - 1] === "+") {
+				result += parseFloat(numArr[n]);
+			} else {
+				result -= parseFloat(numArr[n]);
+			}
+		}
+	}
+	result = result;
+	console.log(result);
+	document.getElementById("display").innerHTML = result;
+	inputString = [];
+}
+//adding numpad input functionality
+function keyInput(event) {
+	if (event.keyCode > 95 && event.keyCode < 106) {
+		displayInput(parseInt(event.keyCode) - 96);
+	} else if (event.keyCode === 106) {
+		displayInput("*");
+	} else if (event.keyCode === 107) {
+		displayInput("+");
+	} else if (event.keyCode === 109) {
+		displayInput("-");
+	} else if (event.keyCode === 110) {
+		displayInput(".");
+	} else if (event.keyCode === 111) {
+		displayInput("/");
+	} else if (event.keyCode === 13) {
+		calculate();
+	} else if (event.keyCode === 8) {
+		clearInput();
+	} else {
+		return;
+	}
+}
+window.addEventListener("keydown", keyInput);
+</script>
+<body>
+	<div class="grid-container">
+		<div class="header">
+			<p id="display"></p>
+		</div>
+		<div class="numbers">
+			<input id="9" onclick="displayInput(9)" type="button" value="9"> 
+			<input id="8" onclick="displayInput(8)" type="button" value="8"> 
+			<input id="7" onclick="displayInput(7)" type="button"value="7"> 
+			<input id="6" onclick="displayInput(6)" type="button" value="6"> 
+			<input id="5"onclick="displayInput(5)" type="button" value="5"> 
+			<input id="4" onclick="displayInput(4)" type="button" value="4"> 
+			<input id="3" onclick="displayInput(3)" type="button" value="3"> 
+			<input id="2" onclick="displayInput(2)" type="button" value="2"> 
+			<input id="1" onclick="displayInput(1)"type="button" value="1"> 
+			<input id="0" onclick="displayInput(0)" type="button" value="0">
+			<input id="decimal" onclick="displayInput('.')" type="button" value="."> 
+			<input id="clear"onclick="clearInput()" type="button" value="Clear">
+		</div>
+		<div class="symbols">
+			<input id="plus" onclick="displayInput('+')" type="button" value="+"> 
+			<input id="minus" onclick="displayInput('-')" type="button" value="-"> 
+			<input id="divide" onclick="displayInput('/')"type="button" value="/"> 
+			<input id="multiply" onclick="displayInput('*')" type="button" value="*">
+		</div>
+		<div class="equals">
+			<input id="equals" onclick="calculate()" type="button" value="=">
+		</div>
+	</div>
+</body>
+</html>
