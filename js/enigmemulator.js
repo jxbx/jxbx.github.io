@@ -9,7 +9,7 @@ const decodeSelectElement = document.getElementById("decodeSelect")
 
 const ciphertextElement = document.getElementById("ciphertext");
 const keystringElement = document.getElementById("keystring");
-
+const graphicElement = document.getElementById("graphic");
 
 
 //scrambler inputs (1,2,3)
@@ -42,7 +42,8 @@ function runEnigmemulator() {
   else {
     output = showPlaintext(plaintextElement.value);
   }
-  ciphertextElement.innerText = output.toUpperCase()
+  ciphertextElement.innerText = output.toUpperCase();
+  checkArray();
 }
 
 function encodeChar(input, startPos, stepRate, num) {
@@ -141,6 +142,8 @@ function clearAll(){
   ciphertextElement.innerText = "<output appears here>";
 }
 
+
+
 function generateKey(){
   
     let keyString = "";
@@ -173,6 +176,52 @@ function generateKey(){
   }
   keystringElement.innerText = keyString;
 }
+
+function checkArray(){
+  for (let i=0; i<subsArray.length; i++){
+    for (let j=1; j<subsArray[0].length; j++){
+      if (subsArray[i][j].value > 25){
+        subsArray[i][j].value = "25";
+      }
+    }
+  } 
+}
+
+function animateText() {
+
+let animOutput = "";
+let counter = 0;
+
+function animate () {
+   
+  let text = "enigmemulator/";
+
+    counter++;
+  if (counter < 65){
+    animOutput+= text;
+    graphicElement.innerText = animOutput;
+  }
+  else return;
+  }
+
+
+                
+let counterx = 0;
+
+function mess () {
+  counterx++;
+  if (counter < 50 && animOutput.length > 500 ){
+  animOutput = showCiphertext(animOutput);
+  graphicElement.innerText = animOutput;
+ }
+else return;
+}   
+
+setInterval(animate, 25);
+setInterval(mess, 50);
+}
+
+animateText();
 
 plaintextElement.oninput = runEnigmemulator;
 substring1Element.oninput = runEnigmemulator;
