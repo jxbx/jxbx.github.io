@@ -2,8 +2,9 @@
 
 const plaintextElement = document.getElementById("plaintext");
 const decodeButtonElement = document.getElementById("decodeButton");
-const encodeSelectElement = document.getElementById("encodeSelect")
-const decodeSelectElement = document.getElementById("decodeSelect")
+const encodeSelectElement = document.getElementById("encodeSelect");
+const decodeSelectElement = document.getElementById("decodeSelect");
+const infoElement = document.getElementById("more");
 
 //outputs
 
@@ -222,6 +223,18 @@ setInterval(mess, 50);
 }
 
 animateText();
+
+function expandInfo() {
+  const more = document.getElementById("more");
+  
+  if(more.style.display === "block"){
+    more.style.display = "none";
+  }
+  else{
+    more.style.display = "block";
+  }
+}
+
 
 plaintextElement.oninput = runEnigmemulator;
 substring1Element.oninput = runEnigmemulator;
