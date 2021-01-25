@@ -6,12 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>EnigMemulator 8 Billion</title>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+    
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-<script src="https://jxbx.github.io/js/enigmemulator.js" defer></script>
 	  <style>
-html {
+		html {
   box-sizing: border-box;
 }
 *, *:before, *:after {
@@ -36,6 +42,7 @@ p {
   margin: 0 0 0.5rem 0;
   padding: 0.5rem;
   border: 0.1rem solid white;
+  width: 200%
 }
 
 .grid-container {
@@ -153,12 +160,12 @@ input::placeholder {
 
 
 #keytext {
-  width: 12rem;
+  width: 10rem;
   margin: 0 0 0 0.5rem;
 }
 
 
-.graphic {
+.graphicbox {
   color: white;
   border: 0.1rem solid white;
   width: auto;
@@ -169,35 +176,40 @@ input::placeholder {
 
 }
 
-.graphic > div {
+#graphic {
   position: relative;
-  top: -2.1rem;
-  left: -0.2rem;
+  width: 40rem;
+  overflow-wrap: anywhere;
   transform: rotate(10deg);
+  top: -0.5rem;
+  left:-0.2rem;
 }
 
 .header {
   display: flex;
   column-gap: 0.5rem;
 }
-	</style>
-</head>
-  
+
+
+
+@media only screen and (max-width: 415px) {
+  form.selector {
+    width: 50%;
+  }
+  button.clear {
+  width: 50%;
+}
+  .topright{
+    width: 100%;
+  }
+}
+	  </style>
+  </head>
   <body>
     <div class="header">
-    <div class = "logo">ENIGMEMULATOR <br> 8BILLION
+    <div class = "logo">ENIGMEMULATOR <br> 8BILLION*****
       </div>
-      <div class="graphic"><div>thisistheewetergrdfgffgnigddulxgfggjhgysjhseteerefdfhghhgfhfdgfdgv<br>
-    ffsdafsagfgdasadsfdgfdfdfdfffgadddgfdxgfggjhgysjhseteerefdfhghhgfhfdgfdgv<br>
-    fhsghhsfdfsasdgawetytrrgshtsfhxgfggjhgysjhseteerefdfhghhgfhfdgfdgv<br>
-    xgfggjhgysjhseteerefdfhghhgfhfdgfdgvxgfggjhgysjhseteerefdfhghhgfhfdgfdgv<br>
-        fhsghhsfdfsasdgawetytrrgshtsfhxgfggjhgysjhseteerefdfhghhgfhfdgfdgv<br>
-        fhsghhsfdfsasdgawetytrrgshtsfhbxgfggjhgysjhseteerefdfhghhgfhfdgfdgv<br>
-        fhsghhsfdfsasdgawetytrrgshtsfhnxgfggjhgysjhseteerefdfhghhgfhfdgfdgv<br>
-        fhsghhsfdfsasdgawetytrrgshtsfhcvxgfggjhgysjhseteerefdfhghhgfhfdgfdgv<br>
-        fhsghhsfdfsasdgawetytrrgshtsfhvxgfggjhgysjhseteerefdfhghhgfhfdgfdgv<br>
-        fhsghhsfdfsasdgawetytrrgshtsfhvxgfggjhgysjhseteerefdfhghhgfhfdgfdgv<br>
-        fhsghhsfdfsasdgawetytrrgshtsfhvxgfggjhgysjhseteerefdfhghhgfhfdgfdgv<br></div>
+      <div class="graphicbox"><div id ="graphic"></div>
   </div>
       </div>
     <div class="topControls">
