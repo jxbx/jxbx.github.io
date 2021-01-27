@@ -4,7 +4,7 @@ const plaintextElement = document.getElementById("plaintext");
 const decodeButtonElement = document.getElementById("decodeButton");
 const encodeSelectElement = document.getElementById("encodeSelect");
 const decodeSelectElement = document.getElementById("decodeSelect");
-const infoElement = document.getElementById("more");
+const more = document.getElementById("more");
 
 //outputs
 
@@ -120,12 +120,12 @@ let string = input.toLowerCase();
       }
       newString += charNew;
     }
-    
     string = newString;
-   
   }
    return string;
 }
+
+//reset all inputs / outputs
 
 function clearAll(){
   plaintextElement.value = "";
@@ -143,7 +143,7 @@ function clearAll(){
   ciphertextElement.innerText = "<output appears here>";
 }
 
-
+//generate key code from inputs
 
 function generateKey(){
   
@@ -165,53 +165,58 @@ function generateKey(){
          {return subsArray[n][m].value
          }
          else return subsArray[n][m].value + "-";
-         
          }
-       
-       
        let char = stringToId();
        
        keyString += char;
-       
-  }
+    }
   }
   keystringElement.innerText = keyString;
 }
+
+//validate startPos and stepRate inputs
 
 function checkArray(){
   for (let i=0; i<subsArray.length; i++){
     for (let j=1; j<subsArray[0].length; j++){
       if (subsArray[i][j].value > 25){
-        subsArray[i][j].value = "25";
+        subsArray[i][j].value = 25;
+      }
+      else if (subsArray[i][j].value === ""){
+        subsArray[i][j].value = 0;
+      }
+      else{
+        subsArray[i][j].value = parseInt(subsArray[i][j].value);
       }
     }
   } 
 }
 
+//animation on page load
+
 function animateText() {
 
 let animOutput = "";
-let counter = 0;
+let counterA = 0;
+let counterB = 0;
 
 function animate () {
    
   let text = "enigmemulator/";
-
-    counter++;
-  if (counter < 65){
+  counterA++;
+  
+  if (counterA < 65){
     animOutput+= text;
     graphicElement.innerText = animOutput;
   }
   else return;
-  }
+}
+              
 
-
-                
-let counterx = 0;
 
 function mess () {
-  counterx++;
-  if (counter < 50 && animOutput.length > 500 ){
+  counterB++;
+  if (counterB < 50 && animOutput.length > 500 ){
   animOutput = showCiphertext(animOutput);
   graphicElement.innerText = animOutput;
  }
@@ -224,9 +229,9 @@ setInterval(mess, 50);
 
 animateText();
 
+//expand "more info" tab
+
 function expandInfo() {
-  const more = document.getElementById("more");
-  
   if(more.style.display === "block"){
     more.style.display = "none";
   }
@@ -234,7 +239,6 @@ function expandInfo() {
     more.style.display = "block";
   }
 }
-
 
 plaintextElement.oninput = runEnigmemulator;
 substring1Element.oninput = runEnigmemulator;
