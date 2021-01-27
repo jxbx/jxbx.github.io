@@ -166,6 +166,7 @@ function keyInput(event) {
 	} else if (event.keyCode === 111) {
 		displayInput("/");
 	} else if (event.keyCode === 13) {
+		event.preventDefault(); 
 		calculate();
 	} else if (event.keyCode === 8) {
 		clearInput();
