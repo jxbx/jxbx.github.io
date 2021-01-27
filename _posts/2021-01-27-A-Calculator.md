@@ -11,5 +11,5 @@ Test
 <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
 
 
-<iframe src="https://jxbx.github.io/projects/minicalc.html" width="100%" height="500" style="border:none;">
+<iframe src="https://jxbx.github.io/projects/minicalc.html" width="100%" height="600" style="border:none;">
 </iframe>
