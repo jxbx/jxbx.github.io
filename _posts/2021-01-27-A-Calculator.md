@@ -6,20 +6,12 @@ date: 2020-12-21
 
 Test
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Hello!</title>
-
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>MiniCalc</title>
-</head>
-<body>
+
+
+<div>
   <div class="grid-container">
     <div class="header">
       <p id="display"></p>
@@ -73,7 +65,6 @@ Test
              id ="clear"
              onclick = "clearInput()"
              value="Clear" />
-
     </div>
     <div class = "symbols">
        <input type="button" 
@@ -100,9 +91,10 @@ Test
              value="=" />
     </div>
   </div>
-</body>
+</div>
 
-<script>let inputString = [];
+<script>
+let inputString = [];
 const symbols = ["+", "-", "/", "*"];
 
 function displayInput(input) {
@@ -196,7 +188,9 @@ function keyInput(event) {
 		return;
 	}
 }
-window.addEventListener("keydown", keyInput);</script>
+window.addEventListener("keydown", keyInput);
+</script>
+
 <style>
 html {
 	box-sizing: border-box;
