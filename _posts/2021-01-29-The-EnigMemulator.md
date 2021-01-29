@@ -5,7 +5,7 @@ date: 2021-01-29
 ---
 
 I built the [EnigMemulator](https://www.justinbailey.net/projects/enigmemulator.html) a loose clone of the Enigma code machine which was used by the German military to send encrypted messages during World War II. I’ve been looking for a project to bed in some of the Javascript fundamentals I've learnt, and this has been super fun to work on. The [Wikipedia page](https://en.wikipedia.org/wiki/Enigma_machine) on the Engima machine is brilliant, so I recommend reading more there if you’re interested, but I’ve tried to give a little flavour below of how the original machine worked before jumping into some details of the coding.
-<iframe src="https://www.justinbailey.net/projects/enigmemulator.html" width="100%" height="100%"></iframe>
+<iframe src="https://www.justinbailey.net/projects/enigmemulator.html" width="100%" height="600"></iframe>
 
 The machine
 
@@ -157,7 +157,7 @@ Once we have our encryption function, we can iterate through each set of variabl
 Here’s an example of how the input string flows through the function using `subsArray = [[A,0,0],[A,0,0],[A,0,0]]` :
 
 
-    string = “hello”          ... subsArray[0]           
+    string = “hello”    ... subsArray[0]           
         |		 
     newString = “itssg”	... subsArray[1]  
         |		
