@@ -4,7 +4,8 @@ title: The EnigMemulator
 date: 2021-01-29
 ---
 
-I built the EnigMemulator a loose clone of the Enigma code machine which was used by the German military to send encrypted messages during World War II. I’ve been looking for a project to bed in some of the Javascript fundamentals I've learnt, and this has been super fun to work on. The [Wikipedia page](https://en.wikipedia.org/wiki/Enigma_machine) on the Engima machine is brilliant, so I recommend reading more there if you’re interested, but I’ve tried to give a little flavour below of how the original machine worked before jumping into some details of the coding.
+I built the [EnigMemulator](https://www.justinbailey.net/projects/enigmemulator.html) a loose clone of the Enigma code machine which was used by the German military to send encrypted messages during World War II. I’ve been looking for a project to bed in some of the Javascript fundamentals I've learnt, and this has been super fun to work on. The [Wikipedia page](https://en.wikipedia.org/wiki/Enigma_machine) on the Engima machine is brilliant, so I recommend reading more there if you’re interested, but I’ve tried to give a little flavour below of how the original machine worked before jumping into some details of the coding.
+<iframe src="https://www.justinbailey.net/projects/enigmemulator.html"></iframe>
 
 The machine
 
