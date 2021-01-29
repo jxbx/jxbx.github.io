@@ -60,11 +60,11 @@ Writing the encryption function
 The route our plaintext input takes through the code machine looks something like this:
 
 
-          startPos1 	   startPos2      startPos3
-            |     		  |			|
+                startPos1 	  startPos2      startPos3
+                   |               |		|
       Input  >  subString1  >  subString2  >  subString3  >  output
                    |               |              |
-          stepRate1 	    stepRate2      stepRate3
+                stepRate1 	  stepRate2      stepRate3
 
 The encryption has three stages, and at each stage we need to set `startPos`, `subString` and `stepRate`, making nine variables in total. These variables are all stored in a nested array for easy access. 
 
@@ -150,7 +150,7 @@ Once we have our encryption function, we can iterate through each set of variabl
 Here’s an example of how the input string flows through the function using `subsArray = [[A,0,0],[A,0,0],[A,0,0]]` :
 
 
-    string = “hello” ... subsArray[0]           
+    string = “hello”          ... subsArray[0]           
         |		 
     newString = “itssg”	... subsArray[1]  
         |		
