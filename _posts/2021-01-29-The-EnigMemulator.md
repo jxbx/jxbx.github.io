@@ -24,32 +24,32 @@ The EnigMemulator uses three levels of alphabetic substitution, and at each leve
 
 At each level of the encryption, the substitution string can be set to one of three values:
 
-A: “QWERTYUIOPASDFGHJKLZXCVBNM”
-B: “MLPNKOBJIVHUCGYXFTXDRSEAWQ”
-C: “BNCMXZLAKSJDHFGYTURIEOWPQV”
+A: “QWERTYUIOPASDFGHJKLZXCVBNM”\\
+B: “MLPNKOBJIVHUCGYXFTXDRSEAWQ”\\
+C: “BNCMXZLAKSJDHFGYTURIEOWPQV”\\
 
 Adjusting the startPos simply changes the indexing on the string, like so:
 
 subString=“QWERTYUIOPASDFGHJKLZXCVBNM”
 
-startPos = 0:  “QWER…VBNM”
-startPos = 1:  “WERT…BNMQ”
-startPos = 2:  “ERTY…NMQW”
-startPos = 3:  “RTYU….MQWE”
-…
-startPos = 25: “MQWE...CVBN”
+startPos = 0:  “QWER…VBNM”\\
+startPos = 1:  “WERT…BNMQ”\\
+startPos = 2:  “ERTY…NMQW”\\
+startPos = 3:  “RTYU….MQWE”\\
+…\\
+startPos = 25: “MQWE...CVBN”\\
 
 Because there are 26 characters in the alphabet, a  startPos of 26 simply wraps the string back round to 0. Any number higher than this will simply map to a lower value, so there are only 26 distinct settings available. 
 
 Adjusting the stepRate allows us to shift the string every time a character is entered. This is equivalent to counting forward n positions along the string for every new character that is typed. 
 
-Input = “AAA”
-subString = “QWERTYUIOPASDFGHJKLZXCVBNM”
-startPos = 0
+Input = “AAA”\\
+subString = “QWERTYUIOPASDFGHJKLZXCVBNM”\\
+startPos = 0\\
 
-stepRate = 0 … Output = “QQQ”
-stepRate = 1 … Output = “QWE”
-stepRate = 2 … Output = “QET”
+stepRate = 0 … Output = “QQQ”\\
+stepRate = 1 … Output = “QWE”\\
+stepRate = 2 … Output = “QET”\\
 
 This functionality means that any character can be replaced by any other character, depending on the settings chosen and the length of the string. In the example above, repeatedly entering the same character results in a different output each time. Conversely, setting the stepRate to 25 and entering a string of successive characters like “ABC” will result in a bizarre looking (but correct!) output of “QQQ”, where the same character is returned each time. 
 
@@ -103,9 +103,9 @@ Wow! Now how about adding `stepRate` and `startPos` into the mix? As mentioned b
 
 We started along this path by assigning `charIndex` .  A new `encodeChar()` function takes this value and manipulates it based on the `startPos` and `stepRate` values we’ve selected. 
 
-function encodeChar(input, startPos, stepRate, num) {
-  return (input + startPos + stepRate * num)%26;
-}
+          function encodeChar(input, startPos, stepRate, num) {
+            return (input + startPos + stepRate * num)%26;
+          }
 
 Let’s try this on our test phrase, “armadillo”:
 
