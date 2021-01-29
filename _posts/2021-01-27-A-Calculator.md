@@ -9,12 +9,12 @@ date: 2021-01-27
 
 
 
-I was looking for a Javascript project which I could complete in a few hours, so I decided to have a go at the classic challenge of building a calculator from scratch.
+I was looking for a Javascript project which I could complete in a few hours, so I decided to have a go at the classic challenge of building a calculator from scratch. To avoid making this project over-complex I decided from the outset that it would be a good idea to set limits, which meant only building in basic arithmetic, and no fancy features like memory/recall. Setting a realistic scope from the outset was probably the biggest timesaver of all while making this, since adding extended functionality would have rapidly expanded the complexity of the program. 
 
 <iframe src="https://jxbx.github.io/projects/minicalc.html" width="100%" height="600" style="border:none;">
 </iframe>
 
-To avoid making this project over-complex I decided from the outset that it would be a good idea to set limits, which meant only building in basic arithmetic, and no fancy features like memory/recall. Setting a realistic scope from the outset was probably the biggest timesaver of all while making this, since adding extended functionality would have rapidly expanded the complexity of the program. 
+
 
 The way this calculator works is very simple: 
 
