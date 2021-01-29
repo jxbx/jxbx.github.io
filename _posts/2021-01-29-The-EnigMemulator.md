@@ -87,17 +87,17 @@ To show how this might work across multiple substitution strings, have a look at
     |
     qwertyuiopasdfghjklzxcvbnm (charNew = subString.charAt(0) = “q”)
     |_______________
-    |
+                    |
     abcdefghijklmnopqrstuvwxyz (string = “q”, charIndex = 16)
                     |
     qwertyuiopasdfghjklzxcvbnm (charNew = subString.charAt(16) = “j”)
-      _____|
-        |
+              ______|
+             |
     abcdefghijklmnopqrstuvwxyz (string = “j”, charIndex = 9)
              |
     qwertyuiopasdfghjklzxcvbnm (charNew = subString.charAt(9) = “p”)
-        |
-        Output = “p”
+             |
+             Output = “p”
 
 Wow! Now how about adding `stepRate` and `startPos` into the mix? As mentioned before, these two values will take a `subString` and nudge the starting point to a different position along the string. `startPos` will do this once, at the start of the string, and  `stepRate` will do this for each time we encounter a new character in the string. If we use indexing we can convert everything into numbers and make this really simple. 
 
