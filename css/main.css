@@ -1,54 +1,29 @@
-#logo {
-  height: 3em;
-  margin-bottom: 1em;
+html {
+  padding: 5em;
 }
 
-
 body {
-    margin: 5em auto;
-    width: 60%;
+    margin: auto;
+    max-width: 45em;
     background-color: #eb9763;
     font-family:'Nunito', 'Arial', 'Sans-Serif';  
 }
 
-@media only screen and (max-width: 600px) {
-  body {
-    width:90%;
-  }
+#logo {
+  height: 3em;
+  margin-bottom: 1em;
 }
   
 nav ul, footer ul {
     padding: 0;
     list-style: none;
-    
 }
+
 nav ul li, footer ul li {
     display: inline;
     margin-right: 2em;
     font-size: 0.8em;
     font-weight: 300;
-}
-a {
-    text-decoration: none;
-    color: white;
-}
-a:hover {
-    text-decoration: underline;
-}
-h1 {
-    font-size: 1.5em;
-    color: white;
-    font-weight: 600;
-}
-p {
-    font-weight: 400;
-    font-size: 1em;
-    line-height: 1.4em;
-    color: #212121;
-}
-footer, nav {
-    border-top: 0.05em solid grey;
-    border-bottom: 0.05em solid grey;
 }
 
 ul.posts {
@@ -62,8 +37,44 @@ ul.posts li {
     padding: 1em 0 0 0;
 }
 
+footer, nav {
+    border-top: 0.05em solid grey;
+    border-bottom: 0.05em solid grey;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    font-size: 1.5em;
+    color: white;
+    font-weight: 600;
+}
+
+h2 {
+    padding: 0.2em;
+    font-size: 0.8em;
+    font-weight: 300;
+    color:white;
+}
+
+p {
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 1.4em;
+    color: #212121;
+}
+
+
 code {
   font-size: 1.1em;
+  background-color: #d29a79;
 }
 
 pre {
@@ -71,8 +82,25 @@ pre {
   border-top: 0.05em dashed white;
   border-bottom: 0.05em dashed white;
   padding: 1em 0 1em 0;
+  overflow: auto;
 }
 
 iframe {
   border: none;
+  width: 100%;
+}
+
+.blog-img{
+  width: 100%;
+  padding: 1em 0 0 0 ;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    width:90%;
+    margin: 1.5em auto 1em auto;
+  }
+  html {
+    padding: 0;
+  }
 }
