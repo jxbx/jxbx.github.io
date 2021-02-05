@@ -6,7 +6,7 @@ date: 2021-01-29
 
 I built the [EnigMemulator](https://www.justinbailey.net/projects/enigmemulator.html) a loose clone of the Enigma code machine which was used by the German military to send encrypted messages during World War II. I’ve been looking for a project to bed in some of the Javascript fundamentals I've learnt, and this has been super fun to work on. The [Wikipedia page](https://en.wikipedia.org/wiki/Enigma_machine) on the Engima machine is brilliant, so I recommend reading more there if you’re interested, but I’ve tried to give a little flavour below of how the original machine worked before jumping into some details of the coding.
 
-<iframe src="https://www.justinbailey.net/projects/enigmemulator.html" width="100%" height="600"></iframe>
+<iframe src="https://www.justinbailey.net/projects/enigmemulator.html" height="600"></iframe>
 
 The machine
 
@@ -69,10 +69,10 @@ The route our plaintext input takes through the code machine looks something lik
 
 
                 startPos1 	  startPos2      startPos3
-                   |               |		|
-      Input  >  subString1  >  subString2  >  subString3  >  output
-                   |               |              |
-                stepRate1 	  stepRate2      stepRate3
+                   |              |		           |
+    Input  >  subString1  >  subString2  >  subString3  >  output
+                   |              |              |
+               stepRate1 	    stepRate2      stepRate3
 
 The encryption has three stages, and at each stage we need to set `startPos`, `subString` and `stepRate`, making nine variables in total. These variables are all stored in a nested array for easy access. 
 
@@ -111,9 +111,9 @@ Wow! Now how about adding `stepRate` and `startPos` into the mix? As mentioned b
 
 We started along this path by assigning `charIndex` .  A new `encodeChar()` function takes this value and manipulates it based on the `startPos` and `stepRate` values we’ve selected. 
 
-          function encodeChar(input, startPos, stepRate, num) {
-            return (input + startPos + stepRate * num)%26;
-          }
+    function encodeChar(input, startPos, stepRate, num) {
+      return (input + startPos + stepRate * num)%26;
+    }
 
 Let’s try this on our test phrase, “armadillo”:
 
@@ -149,11 +149,11 @@ The `encodeChar` function sits inside `showCiphertext` and handles the numbers, 
 
 Once we have our encryption function, we can iterate through each set of variables using a for loop:
 
-      for (let i = 0; i<subsArray.length; i++){
+    for (let i = 0; i<subsArray.length; i++){
 
-        let subString = subsArray[i][0].value;
-        let startPos = parseInt(subsArray[i][1].value);
-        let stepRate = parseInt(subsArray[i][2].value);
+      let subString = subsArray[i][0].value;
+      let startPos = parseInt(subsArray[i][1].value);
+      let stepRate = parseInt(subsArray[i][2].value);
 
 Here’s an example of how the input string flows through the function using `subsArray = [[A,0,0],[A,0,0],[A,0,0]]` :
 
