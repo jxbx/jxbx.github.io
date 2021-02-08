@@ -1,3 +1,9 @@
+---
+layout: post
+title: Bubbles and stacks: visualising recursive functions
+date: 2021-02-08
+---
+
 Recursive functions can be a bit mindbending when you first encounter them. As part of my process to understand them better I looked at some simple examples and tried to step through each function stage by stage to get an idea of how the seemingly paradoxical process of a function calling itself can actually return a result. My intial way into this was through the "bubbling up" analogy, which really intuitive and easy to grasp. Once that makes sense, there's a refinement to the analogy which looks at the way the call stack manages function calls when a script is being run in browser. 
 
 Check out this example of a really simple recursive function:
