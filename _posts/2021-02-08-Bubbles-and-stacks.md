@@ -38,13 +38,13 @@ When we hit `factorial(1)` we break out of the loop and finally return the value
 
 	factorial(5) = 5*---------------120  // finally!
 	  ↓                           	↑
-	  factorial(4) = 4*-------------24   
+	  factorial(4) = 4*-------------24
 	    ↓                       	↑
-	    factorial(3) = 3*-----------6    
-	      ↓                     	↑           
-	      factorial(2) = 2*---------2   
-		↓                 	↑   
-		factorial(1) = -----→---1  
+	    factorial(3) = 3*-----------6
+	      ↓                     	↑
+	      factorial(2) = 2*---------2
+		↓                 	↑
+		factorial(1) = -----→---1
                                 
 The analogy of "bubbling up" which I first came across in [This video](https://www.youtube.com/watch?v=LteNqj4DFD8) was a huge help in understanding how this kind of function works. When we have a whole tree of nested function calls waiting to be resolved, the bottom of the tree is where the chain of evaluations starts. As we successfully evaluate and close function calls, the result "bubbles" up to the top of the tree, eventually returning a result for our original function call.
 
@@ -56,7 +56,7 @@ This seems neat and tidy, but what happens when we move onto more complex recurs
 	    return [];
 	  }
 	  else {
-	    let list = range(a,b-1);    
+	    let list = range(a,b-1);
 	    list.push(b-1);
 	     return list;
 	  }
@@ -134,13 +134,13 @@ The "bubbling up" analogy from earlier really makes sense in this function. Intu
 
 First we call `total()`, but this cannot be evaluated until we've called `first()` and `second()`. So `total()` goes onto the bottom of the stack, while `first()` and `second()` are added above it. When `first()` and `second()` are evaluated we can clear them off the stack and pass their values into `evaluate`. 
 
-					+---------+	+---------+ 		
+					+---------+	+---------+
 					|second() |	| = 6     |
-			+---------+	+---------+	+---------+ 	
+			+---------+	+---------+	+---------+
 			| first() |	|first()  |	| = 5     |
-	+---------+	+---------+     +---------+	+---------+	+---------+  		
+	+---------+	+---------+     +---------+	+---------+	+---------+
 	| total() | →   | total() | →   | total() | →	| total() | →   | = 11    |
-	+---------+     +---------+     +---------+	+---------+ 	+---------+ 	 	
+	+---------+     +---------+     +---------+	+---------+ 	+---------+
 
 How does this work for a recursive function? There's no difference really. Here's an animation to demonstrate how the call stack manages the `factorial()` function from above:
 
