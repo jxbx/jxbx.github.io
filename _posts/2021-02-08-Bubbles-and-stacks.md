@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Bubbles and stacks: visualising recursive functions
+title: Bubbles and stacks: figuring out recursive functions
 date: 2021-02-08
 ---
 
