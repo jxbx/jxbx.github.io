@@ -144,7 +144,8 @@ First we call `total()`, but this cannot be evaluated until we've called `first(
 
 How does this work for a recursive function? There's no difference really. Here's an animation to demonstrate how the call stack manages the `factorial()` function from above:
 
-<div class="blog.img"><img src="https://github.com/jxbx/jxbx.github.io/blob/main/images/factorialanim.gif?raw=true" width="400px"></div>
+<img src="https://github.com/jxbx/jxbx.github.io/blob/main/images/factorialanim.gif?raw=true" width="400px"
+class="blog-img">
 
 
 
