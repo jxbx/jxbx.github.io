@@ -33,7 +33,7 @@ Plugging in a value and stepping through the function in your head might go some
 
 At this point the universe should crack open because surely there's no way to evaluate a function whose value is another function call! The solution is to keep going deeper: if `factorial(5)` can only be evaluated when we know the value of `factorial(4)` then we need to evaluate that too. If factorial(4) can only be evaluated when we know the value of `factorial(3)` ... well you get it. We need to keep descending further and further until we hit something we can actually know the value of ... which is where the break condition comes in. 
 
-When we hit `factorial(1)` we break out of the loop and finally return the value of 1. Now we can start the long climb back up to the top of this tree of nested function calls. Using our value for `factorial(1)` we can evaluate `factorial(2)` (2*1=2). This lets us evaluate `factorial(3)` (3*2*1=6). This then gives `factorial(4)`, which then gives `factorial(5)`.
+When we hit `factorial(1)` we break out of the loop and finally return the value of 1. Now we can start the long climb back up to the top of this tree of nested function calls. Using our value for `factorial(1)` we can evaluate `factorial(2)` (2 * 1 = 2). This lets us evaluate `factorial(3)` (3 * 2 * 1 = 6). This then gives `factorial(4)`, which then gives `factorial(5)`.
 
 
 	factorial(5) = 5*---------------120  // finally!
@@ -144,7 +144,7 @@ First we call `total()`, but this cannot be evaluated until we've called `first(
 
 How does this work for a recursive function? There's no difference really. Here's an animation to demonstrate how the call stack manages the `factorial()` function from above:
 
-<img src="https://github.com/jxbx/jxbx.github.io/blob/main/images/factorialanim.gif?raw=true" width="200px">
+<img src="https://github.com/jxbx/jxbx.github.io/blob/main/images/factorialanim.gif?raw=true" width="400px">
 
 
 
