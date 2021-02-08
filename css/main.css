@@ -85,6 +85,10 @@ pre {
   overflow: auto;
 }
 
+pre code{
+  background-color: transparent;
+}
+
 iframe {
   border: none;
   width: 100%;
