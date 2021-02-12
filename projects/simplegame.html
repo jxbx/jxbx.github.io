@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Shooting game</title>
+    
+    <style>
+      /* CSS files add styling rules to your content */
+
+      body {
+        font-family: helvetica, arial, sans-serif;
+        margin: 2em;
+      }
+
+      #playArea {
+        height: 600px;
+        width: 400px;
+        background-color: black;
+        position: relative;
+      }
+
+      #player {
+        height: 20px;
+        width: 20px;
+        background-color: white;
+        position: absolute;
+      }
+
+      #enemy {
+         height: 20px;
+        width: 20px;
+        background-color: red;
+        position: absolute;
+      }
+
+      #score {
+        color: white;
+        font-size: 2.5em;
+        position: relative;
+      }
+    </style>
+    <script src="https://jxbx.github.io/js/simplegame.js" defer></script>
+  </head>  
+  <body>
+    <div id = "playArea">
+      <div id = "player">
+        </div>
+        <div id = "score">
+        </div>
+    </div>
+  </body>
+</html>
