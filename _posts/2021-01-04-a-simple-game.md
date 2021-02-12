@@ -5,7 +5,7 @@ date: 2021-01-04
 ---
 
 Here's a very simple game which plays a little bit like Snake ... without the snake. You play as the white dot, chasing a static enemy around the play area, and every time you catch the enemy it respawns in a random location. This is still trivial at the moment, since there's no additional gameplay element to add increasing interest or difficulty. For now the limiting factor is simply your own endurance or boredom! 
-<iframe src="https://www.justinbailey.net/projects/simplegame.html" height="800"></iframe>
+<iframe src="https://www.justinbailey.net/projects/simplegame.html" height="1200"></iframe>
 I've spent a bit of time learning how to draw elements using the Javascript canvas, but I decided to try a different approach here: the game is drawn using the DOM, and the play area, player and enemy are all simple <div> elements. I like the fact that there's no need to write an explicit rendering function in the Javascript with this approach, although there are limitations to drawing shapes in CSS.  
 
 Player, enemy, and play area
