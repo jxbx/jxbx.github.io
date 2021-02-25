@@ -1,3 +1,9 @@
+---
+layout: post
+title: Postcards from the edge
+date: 2021-02-25
+---
+
 I've been spending some time working through problem solving challenges on HackerRank; here's one I really enjoyed. It seemed easy to solve at first glance, but it threw up some interesting edge cases, and after a good start it took me a while longer to write a comprehensive function which would handle all the test inputs.
 
 The full problem description is available on the challenge page, but here's my summary:
