@@ -4,15 +4,13 @@ title: Postcards from the edge
 date: 2021-02-25
 ---
 
-I've been spending some time working through problem solving challenges on HackerRank; here's one I really enjoyed. It seemed easy to solve at first glance, but it threw up some interesting edge cases, and after a good start it took me a while longer to write a comprehensive function which would handle all the test inputs.
+I've been spending some time working through problem solving challenges on HackerRank; [here's one I really enjoyed](https://www.hackerrank.com/challenges/append-and-delete/problem?h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen). It seemed easy to solve at first glance, but it threw up some interesting edge cases, and after a good start it took me a while longer to write a comprehensive function which would handle all the test inputs.
 
 The full problem description is available on the challenge page, but here's my summary:
 
 -You start with two strings, `s` and `t`. 
 
--You can perform two operations on string `s`:
-	-Delete the last character in the string
-	-Add a new character to the end of the string
+-You can perform two operations on string `s`: delete the last character in the string, or add a new character to the end of the string
 
 Given the value `k`, is it possible to mutate string `s` into string `t` in exactly  `k` moves, only using these two operations? Return `Yes` or `No`.
 
@@ -114,8 +112,8 @@ This edge case is quite tricky to spot because it only applies in a very limited
 
     minAns = 7
 
-    Yes: k>=13, k=9, k=11
-    No: k<7
+    //Yes: k>=13, k=9, k=11
+    //No: k<7
 
 The results `No` for `k<7` and `Yes` for `k>=13` are easy to figure out, but the extra test is needed to pick out those two loose values (9 and 11) where `minAns < k < s.length+t.length`. 
 
