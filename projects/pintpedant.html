@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pint Pedant</title>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;800&display=swap"
+          rel="stylesheet"
+        />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Pint Pedant</title>
+      </head>
+      <body>
+        <div class="bigContainer">
+          <div id="beerContainer">
+            <div id="beerBody"></div>
+            <div class="glassBody"></div>
+            <div class="base"></div>
+            <div class="side" id="left"></div>
+            <div class="side" id="right"></div>
+            <div class="shading"></div>
+            <div class="highlight"></div>
+            <div id="drip"></div>
+          </div>
+
+          <div id="statContainer">
+            <div class="statText">
+              <h2>Froth volume:</h2>
+              <h1 id="frothVolText"></h1>
+            </div>
+            <div class="statText">
+              <h2>Beer volume:</h2>
+              <h1 id="beerVolText"></h1>
+            </div>
+            <div class="statText">
+              <h2>Froth percentage:</h2>
+              <h1 id="percentText"></h1>
+            </div>
+            <div class="statText">
+              <h2>Froth cost:</h2>
+              <h1 id="costText"></h1>
+            </div>
+            <div>
+              <button id="again" onclick="againAnimate()">
+                try again?
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="pageOne" class="pageContainer">
+          <img
+            id="logo"
+            src="https://raw.githubusercontent.com/jxbx/jxbx.github.io/382c49270e6d65a900945f5f3021e012b0ba71d0/images/ppLogo.svg"
+          />
+          <p class="intro">
+            A tool for people who really, REALLY care how much beer is in their
+            glass.
+          </p>
+          <p id="arrow"><a href="#">↓</a></p>
+        </div>
+        <div id="pageTwo" class="pageContainer"></div>
+        <div id="pageThree" class="pageContainer">
+          <div class="inputContainer">
+            <label for="price">Pint price (£)</label>
+            <input type="number" id="price" />
+            <label for="headDepth">Head depth (cm)</label>
+            <input type="number" id="headDepth" />
+            <div class="glassSelector">
+              <button
+                class="selectArrow"
+                id="leftArrow"
+                onclick="glassSelector(0)"
+              >
+                ←
+              </button>
+              <p class="glasses" id="glassesText">standard conical</p>
+              <button
+                class="selectArrow"
+                id="rightArrow"
+                onclick="glassSelector(1)"
+              >
+                →
+              </button>
+            </div>
+
+            <p id="glassInfo">
+              Height: 14cm <br />
+              Top diameter: 8cm
+            </p>
+
+            <button onclick="resultAnimate()">Submit</button>
+          </div>
+        </div>
+      </body>
+    </html>
+  </body>
+</html>
