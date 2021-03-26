@@ -4,6 +4,13 @@ function quadFormula(a, b, c) {
   return 0.5 * (-b + Math.sqrt(b * b - 4 * a * c));
 }
 
+function findRad2(glass){
+  
+  let newVar = Math.pow(glass.rad1, 2) - glass.volume / ((Math.PI*glass.height) / 3);
+  
+  return quadFormula(1, glass.rad1, newVar);
+}
+
 //formula to calculate volume of truncated cone
 
 function findVol(height, rad1, rad2) {
@@ -14,6 +21,8 @@ function findVol(height, rad1, rad2) {
     (Math.pow(rad1, 2) + Math.pow(rad2, 2) + rad1 * rad2)
   );
 }
+
+
 
 const standardPintGlass = {
   height: 14,
@@ -57,11 +66,7 @@ const pintTypeLookup = {
 function checkHead(glass, inputHeadHeight, inputPrice) {
   let result = [];
 
-  let rad2 = quadFormula(
-    1,
-    glass.rad1,
-    Math.pow(glass.rad1, 2) - glass.volume / ((Math.PI * glass.height) / 3)
-  );
+  let rad2 = findRad2(glass);
 
   let headRatio = inputHeadHeight / glass.height;
   let radNew = glass.rad1 - headRatio * (glass.rad1 - rad2);
