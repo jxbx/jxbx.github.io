@@ -25,7 +25,7 @@ const standardPintGlass = {
 
 const standardHalfPintGlass = {
   height: 11,
-  rad1: 3.5,
+  rad1: 3.2,
   volume: 284,
   scaleX: 3.2 / 4,
   scaleY: 12 / 14
