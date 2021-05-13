@@ -36,6 +36,7 @@ body {
   position: relative;
   left: -0.5rem;
   color: black;
+  max-width: 5rem;
 }
 
 #alert {
