@@ -7,12 +7,12 @@
 
     <title>EnigMemulator 8 Billion</title>
 
- <script src="https://jxbx.github.io/js/enigmemulator.js" defer></script>
-    
+ <script src="/js/enigmemulator.js" defer></script>
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-	  
+
 <style>
 html {
   box-sizing: border-box;
@@ -70,7 +70,7 @@ p {
 #info {
   color: black;
   width: 100%;
-  
+
   overflow: hidden;
   line-height: 0.8rem;
   height: 1.4rem;
@@ -86,7 +86,7 @@ p {
   border: 0.1rem solid white;
   width: 100%;
   margin: 0 0 0.5rem 0;
-  overflow-wrap: 
+  overflow-wrap:
   line-height: 0.8rem;
   display: none;
   align-items: center;
@@ -215,7 +215,7 @@ button.clear {
     width: 100%;
   }
 }
-	
+
 a {
   color: cyan;
 }
@@ -226,7 +226,7 @@ a:visited {
 </style>
   </head>
   <body>
-    
+
     <div class="header">
     <div class = "logo">ENIGMEMULATOR <br> 8BILLION*****
       </div>
@@ -235,22 +235,22 @@ a:visited {
       </div>
     <button id="info" onclick="expandInfo()">more info ▾</button>
     <div id="more"><p>
-      ENIGMEMULATOR 8BILLION is a tool for writing secret messages, inspired by 
-      the famous Engima code machine used during World War II. It generates 
-      ciphers using nine different parameters, offering over 8 billion possible 
+      ENIGMEMULATOR 8BILLION is a tool for writing secret messages, inspired by
+      the famous Engima code machine used during World War II. It generates
+      ciphers using nine different parameters, offering over 8 billion possible
       encryption settings.<br><br>
-      To write a coded message, start typing in the input field. Adjust 
-      "scrambler", "start position" and "step-rate" parameters to customise 
-      your cipher, and generate a key so you can decode your message again 
+      To write a coded message, start typing in the input field. Adjust
+      "scrambler", "start position" and "step-rate" parameters to customise
+      your cipher, and generate a key so you can decode your message again
       later. <br><br>
-      To decipher a message, use the key to help you set up the parameters 
-      correctly and switch the machine to "decode" mode. Type in your coded 
+      To decipher a message, use the key to help you set up the parameters
+      correctly and switch the machine to "decode" mode. Type in your coded
       message and the original text will magically appear! Read more <a href=https://www.justinbailey.net/2021/01/29/The-EnigMemulator.html>here</a></p></div>
-	  
+
     <div class="topControls">
-      
+
       <input type="text" id="plaintext" placeholder = "<type input here>"/>
-      
+
       <div class="topright">
        <form class = "selector">
       <input type="radio" id="encodeSelect" name = "functiontoggle" checked="checked">encode</input>
@@ -259,7 +259,7 @@ a:visited {
       <button class ="clear" onclick="clearAll()">clear all</button>
     </div>
     </div>
-   
+
 
     <div class="grid-container">
       <div class="gridheader">scrambler<br>(A/B/C)</div>
@@ -267,7 +267,7 @@ a:visited {
       <div class="gridheader">step rate<br>(0-25)</div>
 
 <!first scrambler>
-      
+
 
         <form>
           <select id="scrambler1">
@@ -276,19 +276,19 @@ a:visited {
             <option value="bncmxzlaksjdhfgyturieowpqv">C</option>
           </select>
         </form>
-    
+
         <form>
           <input type="number" id="startPos1" min="0" max="25" value="0" />
         </form>
- 
+
         <form>
           <input type="number" id="stepRate1" min="0" max="25" value="0" />
         </form>
-     
+
 
 <!second scrambler>
-      
-    
+
+
         <form>
           <select id="scrambler2">
             <option value="qwertyuiopasdfghjklzxcvbnm">A</option>
@@ -296,7 +296,7 @@ a:visited {
             <option value="bncmxzlaksjdhfgyturieowpqv">C</option>
           </select>
         </form>
- 
+
         <form>
           <input type="number" id="startPos2" min="0" max="25" value="0" />
         </form>
@@ -304,11 +304,11 @@ a:visited {
         <form>
           <input type="number" id="stepRate2" min="0" max="25" value="0" />
         </form>
-    
-      
+
+
 <!third scrambler>
-      
-     
+
+
         <form>
           <select id="scrambler3">
             <option value="qwertyuiopasdfghjklzxcvbnm">A</option>
@@ -316,24 +316,24 @@ a:visited {
             <option value="bncmxzlaksjdhfgyturieowpqv">C</option>
           </select>
         </form>
-      
 
-     
+
+
         <form>
           <input type="number" id="startPos3" min="0" max="25" value="0" />
         </form>
-    
-      
+
+
 
         <form>
           <input type="number" id="stepRate3" min="0" max="25" value="0" />
         </form>
-      
+
       </div>
     <div class="output">
       <p id="ciphertext">&ltoutput appears here&gt</p>
     </div>
-  
+
   <div class="keygen">
     <button onclick="generateKey()">generate key</button>
     <div class="output" id = "keytext">
