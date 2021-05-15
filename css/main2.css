@@ -33,11 +33,13 @@ div.projectContainer {
 }
 
 div.projectContainer img {
-  width: 15em;
-  height: 10em;
-  padding: 0 1em 0 0;
+  width: 25em;
+  height: 15em;
 }
 
+div.projectContainer p {
+  padding: 0 1em 0 1em;
+}
 
 
 ul.posts, ul.projects {
@@ -51,10 +53,27 @@ ul.posts {
     padding:  0;
 }
 
+#projectsContent {
+  transition-property: height;
+  transition-duration: 0.5s;
+  overflow: hidden;
+  height: auto;
+}
+
+
+
+#postsContent {
+  transition-property: height;
+  transition-duration: 0.5s;
+  overflow: hidden;
+  height: 0;
+}
+
+
+
 ul.projects li {
   background-color: #d6ca7c;
   list-style: none;
-  padding: 0 1rem 0 0;
   margin-bottom: 1em;
   border-radius: 0.3em;
   overflow: hidden;
@@ -63,6 +82,12 @@ ul.projects li {
 ul.projects a {
   font-weight: 600;
   margin-top: 2rem;
+}
+
+div.selector {
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.5em;
 }
 
 
@@ -129,7 +154,7 @@ iframe {
   padding: 1em 0 0 0 ;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   body {
     width:90%;
     margin: 1.5em auto 1em auto;
@@ -144,4 +169,5 @@ iframe {
     width: 100%;
     height: auto;
   }
+
 }

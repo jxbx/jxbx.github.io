@@ -4,7 +4,7 @@
     <title>{{ page.title }}</title>
       <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/main2.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
@@ -12,6 +12,39 @@
 
     <link rel="icon" href="../images/favicon.png">
   </head>
+
+  <script>
+    function projectsSelect () {
+
+      let projects = document.getElementById("projectsButton");
+      let blog = document.getElementById("blogButton");
+      let projectsContent = document.getElementById("projectsContent");
+      let postsContent = document.getElementById("postsContent");
+
+
+      if (projects.style.color = "grey"){
+        projects.style.color = "white";
+        blog.style.color = "grey";
+        postsContent.style.height = "0";
+        projectsContent.style.height = "auto";
+      };
+    }
+
+    function blogSelect () {
+
+      let projects = document.getElementById("projectsButton");
+      let blog = document.getElementById("blogButton");
+      let projectsContent = document.getElementById("projectsContent");
+      let postsContent = document.getElementById("postsContent");
+
+      if (blog.style.color = "grey"){
+        blog.style.color = "white";
+        projects.style.color = "grey";
+        postsContent.style.height = "auto";
+        projectsContent.style.height = "0";
+      };
+    }
+  </script>
 
 
   <body>
@@ -26,35 +59,58 @@
       <li><a href="https://github.com/jxbx">GITHUB</a></li>
     </ul>
   </nav>
-
-  <div class="container">
-    <h1>Projects</h1>
-    <ul class = "posts">
+  <div class="selector">
+  <h1 id="projectsButton" onclick="projectsSelect()" value="true" style="color: white">Projects</h1><h1>|</h1>
+  <h1 id="blogButton" onclick="blogSelect()" value="false" style="color: grey">Blog</h1>
+  </div>
+  <div class="container" id="projectsContent">
+    <ul class = "projects" >
       <li>
-        <h1> The Enigmemulator </h1>
         <div class=projectContainer>
           <img src="https://assets.londonist.com/uploads/2019/04/i875/56490473_2097834703646565_4784550222934048768_n.jpg"/>
+
           <p>
-              I’ve been spending some time working through problem solving challenges on HackerRank; here’s one I really enjoyed. It seemed easy to solve at first glance, but it threw up some interesting edge cases, and after a good start it took me a while longer to write a comprehensive function which would handle all the test inputs.
+            <a href=#>Enigmemulator</a><br><br>
+              I’ve been spending some time working through problem solving challenges on HackerRank; here’s one I really enjoyed. It seemed easy to solve at first.
+                <br><br><a href=#>Project »</a><span>&nbsp&nbsp</span><a href=#>Write-up »</a>
           </p>
         </div>
-        <a href=#>more</a>
       </li>
+
       <li>
-        <h1> The Enigmemulator </h1>
         <div class=projectContainer>
           <img src="https://assets.londonist.com/uploads/2019/04/i875/56490473_2097834703646565_4784550222934048768_n.jpg"/>
+
           <p>
-              I’ve been spending some time working through problem solving challenges on HackerRank; here’s one I really enjoyed. It seemed easy to solve at first glance, but it threw up some interesting edge cases, and after a good start it took me a while longer to write a comprehensive function which would handle all the test inputs.
+            <a href=#>Enigmemulator</a><br><br>
+              I’ve been spending some time working through problem solving challenges on HackerRank; here’s one I really enjoyed. It seemed easy to solve at first.
+                <br><br><a href=#>Project »</a><span>&nbsp&nbsp</span><a href=#>Write-up »</a>
           </p>
         </div>
       </li>
     </ul>
-    {{ content }}
+  </div>
+
+  <div class="container" id="postsContent">
+    <h1>{{ page.title }}</h1>
+  	<ul class="posts">
+
+  	  {% for post in site.posts %}
+  	    <li>
+  		    <span>{{ post.date | date_to_string }}</span>
+  		    » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+  		    <div>{{ post.excerpt }}
+  			<a href="{{ post.url }}">more »</a>
+  		    </div>
+  	  </li>
+
+  	  {% endfor %}
+  	</ul>
   </div>
 
   <footer>
    <ul>
+  </div>
 
      <li><a href="https://www.behance.net/justindraws">BEHANCE</a></li>
      <li><a href="https://500px.com/p/justinbailey?view=photos">500PX</a></li>
