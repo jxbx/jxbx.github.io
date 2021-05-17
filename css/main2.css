@@ -26,8 +26,6 @@ nav ul li, footer ul li {
     font-weight: 300;
 }
 
-
-
 div.projectContainer {
   display: flex;
 }
@@ -38,13 +36,10 @@ div.projectContainer img {
   flex: 0 1 5em;
 }
 
-
-
 div.projectText {
   padding: 1em 1em 1em 1em;
 
 }
-
 
 ul.posts, ul.projects {
   padding: 0;
@@ -53,14 +48,13 @@ ul.posts, ul.projects {
 
 ul.posts {
     list-style: none;
-    border-top: 0.05em solid grey;
     padding:  0;
 }
 
 ul.posts li {
     list-style: none;
     border-top: 0.05em solid grey;
-    padding: 1em 0 0 0;
+    padding: 1em 0 1em 0;
 }
 
 #projectsContent {
@@ -99,9 +93,13 @@ ul.projects a {
 }
 
 div.selector {
-  display: flex;
-  flex-direction: row;
-  column-gap: 0.5em;
+  border-bottom: 0.05em solid grey;
+  padding: 1em 0 1em 0;
+}
+
+div.selector h1 {
+  display: inline;
+  padding: 0.1em;
 }
 
 
