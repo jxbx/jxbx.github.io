@@ -4,37 +4,38 @@ title: Latest posts
 ---
 	<h1>{{ page.title }}</h1>
 
-	<ul class = "projects" >
+	<div class="container" id="projectsContent">
+		<ul class = "projects" >
 
-		{% for project in site.projects %}
+			{% for project in site.projects %}
+				<li>
+					<div class="projectContainer">
+						<img src="{{ project.img }}"/>
+						<div class="projectText">
+							<h3>{{ project.title }}</h3>
+							<p>
+								{{ project }}
+							</p>
+							<a href="{{ project.url }}">Project</a><span>      </span><a href=#>Write-up</a>
+						</div>
+					</div>
+				</li>
+				{% endfor %}
+		</ul>
+  </div>
 
-		<li>
-			<div class="projectContainer">
-				<img src="{{ project.img }}"/>
-				<div class="projectText">
-					<h3>{{ project.title }}</h3>
-					<p>
-						{{ content }}
-					</p>
-					<a href="{{ project.url }}">Project</a><span>      </span><a href=#>Write-up</a>
-				</div>
-			</div>
-		</li>
-		{% endfor %}
-	</ul>
+  <div class="container" id="postsContent">
+		<ul class="posts">
 
+		  {% for post in site.posts %}
+		    <li>
+			    <span>{{ post.date | date_to_string }}</span>
+			    » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+			    <div>{{ post.excerpt }}
+				<a href="{{ post.url }}">more »</a>
+			    </div>
+		  </li>
 
-
-	<ul class="posts">
-
-	  {% for post in site.posts %}
-	    <li>
-		    <span>{{ post.date | date_to_string }}</span>
-		    » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-		    <div>{{ post.excerpt }}
-			<a href="{{ post.url }}">more »</a>
-		    </div>
-	  </li>
-
-	  {% endfor %}
-	</ul>
+		  {% endfor %}
+		</ul>
+  </div>
