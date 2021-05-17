@@ -1,13 +1,12 @@
 ---
 layout: default2
-title: Latest posts
+title: Coding projects and blog
 ---
-	<h1>{{ page.title }}</h1>
 
 	<div class="container" id="projectsContent">
 		<ul class = "projects" >
 
-			{% for project in site.projects %}
+			{% for post in site.projects %}
 				<li>
 					<div class="projectContainer">
 						<img src="{{ project.img }}"/>
@@ -25,8 +24,8 @@ title: Latest posts
   </div>
 
   <div class="container" id="postsContent">
+		<h1>Latest Posts</h1>
 		<ul class="posts">
-
 		  {% for post in site.posts %}
 		    <li>
 			    <span>{{ post.date | date_to_string }}</span>
