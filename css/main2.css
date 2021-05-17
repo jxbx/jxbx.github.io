@@ -33,12 +33,16 @@ div.projectContainer {
 }
 
 div.projectContainer img {
-  width: 25em;
-  height: 15em;
+  width: 15em;
+  object-fit: cover;
+  flex: 0 1 5em;
 }
 
-div.projectContainer p {
-  padding: 0 1em 0 1em;
+
+
+div.projectText {
+  padding: 1em 1em 1em 1em;
+
 }
 
 
@@ -79,6 +83,10 @@ ul.projects li {
   border-radius: 0.2em;
 }
 
+ul.projects li:hover {
+  background-color: #d6ba7c;
+}
+
 ul.projects a {
   font-weight: 600;
   margin-top: 2rem;
@@ -106,7 +114,7 @@ a:hover {
     text-decoration: underline;
 }
 
-h1 {
+h1, h3 {
     font-size: 1.5em;
     color: white;
     font-weight: 600;
@@ -117,6 +125,11 @@ h2 {
     font-size: 0.8em;
     font-weight: 300;
     color:white;
+}
+
+h3 {
+  font-size: 1.2em;
+  margin: 0;
 }
 
 p {
@@ -162,12 +175,15 @@ iframe {
   html {
     padding: 0;
   }
+
   div.projectContainer {
     display: block;
   }
   div.projectContainer img {
     width: 100%;
     height: auto;
+    flex: none;
   }
+
 
 }
