@@ -57,6 +57,12 @@ ul.posts {
     padding:  0;
 }
 
+ul.posts li {
+    list-style: none;
+    border-top: 0.05em solid grey;
+    padding: 1em 0 0 0;
+}
+
 #projectsContent {
   transition-property: height;
   transition-duration: 0.5s;
