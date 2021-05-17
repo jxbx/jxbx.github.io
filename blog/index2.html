@@ -3,6 +3,28 @@ layout: default2
 title: Latest posts
 ---
 	<h1>{{ page.title }}</h1>
+
+	<ul class = "projects" >
+
+		{% for project in site.projects %}
+
+		<li>
+			<div class="projectContainer">
+				<img src="{{ project.img }}"/>
+				<div class="projectText">
+					<h3>{{ project.title }}</h3>
+					<p>
+						{{ content }}
+					</p>
+					<a href="{{ project.url }}">Project</a><span>      </span><a href=#>Write-up</a>
+				</div>
+			</div>
+		</li>
+
+	</ul>
+
+
+
 	<ul class="posts">
 
 	  {% for post in site.posts %}
