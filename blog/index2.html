@@ -1,30 +1,11 @@
 ---
 layout: default2
-title: Latest posts
+title: Coding projects and blog
 ---
-	<h1>{{ page.title }}</h1>
-
-	<div class="container" id="projectsContent">
-		<ul class = "projects" >
-
-			{% for project in site.projects %}
-				<li>
-					<div class="projectContainer">
-						<img src="{{ project.img }}"/>
-						<div class="projectText">
-							<h3>{{ project.title }}</h3>
-							<p>
-								{{ project }}
-							</p>
-							<a href="{{ project.url }}">Project</a><span>      </span><a href=#>Write-up</a>
-						</div>
-					</div>
-				</li>
-				{% endfor %}
-		</ul>
-  </div>
 
   <div class="container" id="postsContent">
+		<h1>{{ page.title }}</h1>
+
 		<ul class="posts">
 
 		  {% for post in site.posts %}
