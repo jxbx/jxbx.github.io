@@ -26,32 +26,16 @@ nav ul li, footer ul li {
     font-weight: 300;
 }
 
-ul.posts, ul.projects {
+ul.posts {
   padding: 0;
   font-size: 1em;
 }
 
-ul.posts {
+ul.posts li {
     list-style: none;
     border-top: 0.05em solid grey;
-    padding:  0;
+    padding: 1em 0 0 0;
 }
-
-ul.projects li {
-  background-color: #d6ca7c;
-  list-style: none;
-  padding: 0 1em 0 1em;
-  margin-bottom: 1em;
-  border-radius: 0.3em;
-  overflow: hidden;
-}
-
-ul.projects a {
-  font-weight: 600;
-  margin-top: 2rem;
-}
-
-
 
 footer, nav {
     border-top: 0.05em solid grey;
@@ -123,11 +107,16 @@ iframe {
   html {
     padding: 0;
   }
-  div.projectContainer {
-    display: block;
-  }
-  div.projectContainer img {
-    width: 100%;
-    height: auto;
-  }
 }
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
