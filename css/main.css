@@ -34,7 +34,7 @@ ul.posts {
 ul.posts li {
     list-style: none;
     border-top: 0.05em solid grey;
-    padding: 1em 0 0 0;
+    padding: 1em 0 1em 0;
 }
 
 footer, nav {
