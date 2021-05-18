@@ -89,7 +89,7 @@ ul.projects li:hover {
 
 ul.projects a {
   font-weight: 600;
-  margin-top: 2rem;
+  margin: 2rem 1rem 0 0;
 }
 
 div.selector {

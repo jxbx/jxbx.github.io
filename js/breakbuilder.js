@@ -20,7 +20,7 @@ let untilWin = document.getElementById("untilWin");
 //initialising array to keep track of game state:
 
 let balls = [
- {colour: "red", quantity: 5, points: 1},
+ {colour: "red", quantity: 15, points: 1},
  {colour: "yellow", quantity: 1, points: 2},
  {colour: "green", quantity: 1, points: 3},
  {colour: "brown", quantity: 1, points: 4},
@@ -193,7 +193,8 @@ function updateBar() {
 function clearAlert () {
   alertText.innerText = "";
 }
-//returns total remaining points on table;
+
+//returns total remaining points on table:
 
 function updateRemaining () {
 
