@@ -49,7 +49,6 @@ let redOn = true; //red available for next shot?
 let tableCleared = false; //ready to clear the colours?
 const maxPoints = updateRemaining(); //max possible points available - declared at initialisation
 
-
 //****POTTING ACTIONS****
 
 //case 1) red ball is selected by user:
