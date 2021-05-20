@@ -34,6 +34,7 @@ div.projectContainer img {
   width: 15em;
   object-fit: cover;
   flex: 0 1 5em;
+  border-right: 0.1em solid white;
 }
 
 div.projectText {
@@ -76,11 +77,11 @@ ul.posts li {
 
 
 ul.projects li {
-  background-color: #d6ca7c;
+  background-color: #edcc8b;
   list-style: none;
   margin-bottom: 1em;
   overflow: hidden;
-  border-radius: 0.2em;
+  border-radius: 0.3em;
 }
 
 ul.projects li:hover {
