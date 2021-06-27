@@ -3,7 +3,7 @@
 //initialise DOM:
 
 window.addEventListener('load', (event) => {
-  //updateScore("red");
+  updateScore("red");
 });
 
 
@@ -13,7 +13,8 @@ let alertText = document.getElementById("alert");
 let scoreText = document.getElementById("score");
 let pointsRemainingText = document.getElementById("pointsRemaining");
 let maxBar = document.getElementById("maxBar");
-let scoreBar = document.getElementById("scoreBar");
+let pointsBar = document.getElementById("pointsBar");
+let remainingBar = document.getElementById("remainingBar");
 let pointerElement = document.getElementById("pointer");
 let untilWin = document.getElementById("untilWin");
 
@@ -164,26 +165,27 @@ function updateBar() {
   // total points left in game
   let pointsAvailable = score + updateRemaining();
 
-  let widthFactor = 25; //allows score bar width to be calculated relative to 25rem initial width;
-  let maxWidth = (pointsAvailable/maxPoints)*widthFactor; //sets bar width
-  let scoreWidth = (score/maxPoints)*widthFactor; //sets score width
-
   let winningScore = (pointsAvailable%2 === 0) ?
   (pointsAvailable/2)+1 :
   Math.ceil(pointsAvailable/2);
 
   let pointsUntilWin = winningScore - score;
-  let winningPosition = (winningScore/maxPoints)*widthFactor;
+  let winningPosition = winningScore/maxPoints*100;
 
   //update CSS with new values:
 
-  pointerElement.style.left = `${winningPosition}rem`;
-  scoreBar.style.width = `${maxWidth}rem`;
-  scoreBar.style.borderLeft = `${scoreWidth}rem solid pink`;
+  pointsBar.style.width = `${score/maxPoints*100}%`;
+  remainingBar.style.width = `${updateRemaining()/maxPoints*100}%`;
+  pointerElement.style.marginLeft = `${winningPosition}%`;
 
   untilWin.innerText = (pointsUntilWin >= 0) ?
-  `win in ${pointsUntilWin} points` :
-  "win achieved";
+  `▲ win in ${pointsUntilWin} points` :
+  "▲ win achieved";
+
+  let tool = remainingBar.style.width;
+  console.log(tool);
+
+
 
 }
 

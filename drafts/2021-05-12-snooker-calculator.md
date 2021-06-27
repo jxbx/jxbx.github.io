@@ -4,15 +4,15 @@ title: Building a score calculator for Snooker
 date: 2021-02-08
 ---
 
-BreakBuilder v0.1 is a simple web application which works as a score tracker in the game of snooker. The BBC sometimes show an [interesting score graphic](https://www.reddit.com/r/snooker/comments/65oel7/can_anyone_explain_the_point_of_this_infographic/) alongside their snooker coverage, and this is essentially what I've been trying to recreate. Due to the fiddly nature of snooker's scoring system, it's necessary to keep track of several variables in order to correctly compute the score as the game progresses, which meant it was a good opportunity to learn about state management. I've been studying React recently, so, having developed this in vanilla Javascript I'm going to see if I can later redevelop it as a React application using React's very different paradigm for state management.
+BreakBuilder v0.1 is a simple web application which works as a score tracker in the game of snooker. The BBC sometimes show an [interesting score graphic](https://www.reddit.com/r/snooker/comments/65oel7/can_anyone_explain_the_point_of_this_infographic/) alongside their snooker coverage, and this is essentially what I've been trying to recreate. Due to the fiddly nature of snooker's scoring system, it's necessary to keep track of several variables in order to correctly compute the score as the game progresses, which meant it was a good opportunity to learn about state management. I've been studying React recently, so, having developed this in vanilla Javascript I'm going to see if I can then develop it as a React application using React's own paradigm for state management.
 
-Background:
+_Background_
 
 Snooker is a cue sport, like pool (yes, they really are sports!), which you play by shooting balls into pockets in the corners and sides of a special table. Snooker is played on a much larger table than pool and is an unbelievably difficult game in real life. It's also insanely popular; in the UK, prime time TV schedules are wiped to broadcast it, and millions of people watch.
 
 Snooker is a two player game played in segments called "frames" (basically the same as "racks" in pool). the winner at the end of each frame is the person who scores the most points, and the overall winner is the first person to accumulate some agreed number of frames. In casual play this might be first to five, but in elite play an outright win can require you to win up to 18 frames.  
 
-Snooker has a unique scoring system, which I've often had to explain to non-enthusiasts; usually this starts with me saying "it really isn't that complicated..." and ends with them leaving the room. In my defence, it really is quite simple:
+Snooker has a unique scoring system, which I've often had to explain to non-enthusiasts; usually this starts with me saying "it really isn't that complicated..." and ends with them leaving the room. Well, here goes:
 
 1. There are seven different colours of ball, each worth a different number of points.
 
@@ -44,14 +44,255 @@ Fill in the figures and we get the magic figure:
 
 So how do we keep track of the score here? And how do we go about creating something that looks a bit like the BBC's score bar?
 
-There are a few different variables we need to think about:
+_Problem analysis_
+
+I imagine my score bar looking something like this:
+
+  IMG!
+
+The full width of the score bar represents the theoretical maximum points available in the game, which we now know is 147. This value never changes.
+
+Within this, we have the score (how many points you've made so far) and the remaining points (the maximum points still available). Both of these values will change as the game goes on. Add them together and you get the total points in the game *at that stage of the game*. If you only ever potted red and black balls this total would remain equal to 147. However, every time you have the chance to pot a black ball and choose a lower value colour ball this value goes down, since you are essentially "losing" points from the game.
+
+We also need some inputs, and an output which can be used to show alert messages:
+
+  IMG!
+
+In order to make this work, there are a few different variables we need to think about:
 
 1. *What colour next?* Are we shooting at a red, or a colour? If it's a colour, which one?
 
-2. *What stage of the game are we in?* The scoring sequence and the behaviour of the balls changes once all the reds are potted, so we need to know when to make this switch.
+2. *What phase of the game are we in?* There are two distinct phases of the game. Phase 1, the "red/colour" phase, is where we alternate potting between red and colour balls and colour balls are continually replaced. Phase 2, the "clear the colours" phase, is where all the reds have been potted and we just need to pot the colours in order. The scoring sequence and the behaviour of the balls changes depending on the phase, so we need to know when to make this switch.
 
 3. *What's the score?* How many points have we accumulated so far?
 
 4. *Where's the winning line?* At what point are we mathematically certain of winning (barring points from fouls), and how many points do we need to get there?
 
-5. *What's the total number of points in the game?* You might not expect this to be variable, but it is. To get the maximum possible score you must pot a black ball with every red ball. Potting a different colour increases your score but reduces the total number of points in the game. Potting a red and then missing also reduces the number of points in the game, because your opponent must score a red as their first ball, meaning the colour ball is missed out.
+5. *What's the total number of points in the game?* To get the maximum possible score you must pot a black ball with every red ball. Potting a different colour increases your score but reduces the total number of points in the game. Potting a red and then missing also reduces the number of points in the game, because your opponent must score a red as their first ball, meaning the colour ball is missed out.
+
+_Method_
+
+TO start, I declared the array `balls`, with an object entry for each colour. The two important values to keep track of here are `quantity` and `points` (i.e. the points value of each colour).
+
+  let balls = [
+   {colour: "red", quantity: 15, points: 1},
+   {colour: "yellow", quantity: 1, points: 2},
+   {colour: "green", quantity: 1, points: 3},
+   {colour: "brown", quantity: 1, points: 4},
+   {colour: "blue", quantity: 1, points: 5},
+   {colour: "pink", quantity: 1, points: 6},
+   {colour: "black", quantity: 1, points: 7}
+  ];
+
+For convenience, I then created a lookup table which allows me to access the relevant object in `balls` using a string ("red", "yellow" etc) rather than its index. To calculate the score I'm planning to write functions which can be called against any colour, and to make the code more readable I want to be able to do this by passing plain English arguments into the function so I can call `myFunction("red")` or `myFunction("yellow")` rather than `myFunction(0)` or `myFunction(1)`.
+
+  const lookup = {
+    "red": 0,
+    "yellow": 1,
+    "green": 2,
+    "brown": 3,
+    "blue": 4,
+    "pink": 5,
+    "black": 6
+  };
+
+I can now manage the state of the balls, but I still need declare some global variables to manage the state of the scoring:
+
+  let score = 0; // total points from balls potted
+
+  let remaining = 0; // max points available from remaining balls
+
+  let redOn = true; // red available for next shot?
+
+  let tableCleared = false; // ready to clear the colours?
+
+  const maxPoints = updateRemaining(); // max possible points available - declared at initialisation
+
+The `score` and `remaining` variables keep track of how many points we've achieved, and how many points are left. These will be used to generate the values in the score bar.
+
+`score` is of course set to `0` on initialisation. We know already that in standard snooker `remaining` should be set to `147` at the beginning of the frame, but instead of hardcoding this value I've also set it to `0` to start with. When the page loads I'll call a function `updateRemaining()` which will calculate `remaining` based on the values in `balls`. This seems more rigorous, and it means that if we decided to change the values in `balls` for any reason the calculator would still work. Whenever we update the score we'll change the values in `balls` and call `updateRemaining()` again to update the `remaining` variable.
+
+The booleans `redOn` and `tableCleared` are important for checking the game state. `redOn` toggles based on whether the last ball we potted was a red, so we always know what colour we are shooting at next. `tableCleared` monitors what phase the game is in. Remember, once all the red/colour pairs have been potted the scoring sequence and the behaviour of the remaining balls changes.
+
+It's really important to note here that the second phase of the game only starts after the last red *and* its subsequent colour are potted, and not just when there are no reds left. When we pot the final red, we then pot a colour, which is returned to the table. Only then do we move to phase 2. It would be easy for an error situation to occur here simply by toggling `tableCleared` at the wrong time. The correct sequence should be:
+
+    ... red > colour > `tableCleared === true` > colour > colour ...
+
+The `maxPoints` const represents the theoretical maximum points available if you always pot the highest scoring balls, and determines the overall width of the score bar. We'll define the widths of `score` and `remaining` relative to `maxPoints`. We know that `remaining === maxPoints === 147` at the start of the frame, so we can use `updateRemaining()`  to set the value of `maxPoints` on initialisation, making sure to declare it as a const so the value isn't recalculated.
+
+These elements should be everything we need to manage the state of our game. I now need to write some functions which I can use to change the game state. I'll start by looking at the potting actions:
+
+Case 1: trying to pot a red ball
+Case 2: trying to pot a colour ball during the "red/colour" phase
+Case 3: trying to pot a colour ball during the "clear the colours" phase
+
+Case 1:
+
+When we try to pot a red ball, we need to check whether `redOn === true`. This will confirm whether we can shoot at a red on our next go. We then need to check that `balls[0].quantity > 0` to confirm there are still reds available. If we fail either of these tests an alert message will be returned. If we pass both tests we can now proceed to update the state of the game:
+
+    function potRed() {
+
+    //if a red has just been potted:
+
+        if (!redOn){
+          alertText.innerText = "choose a colour ball";
+          return;
+        }
+
+    // if there are no reds left:
+
+        if (balls[0].quantity <= 0){
+          alertText.innerText = "already potted reds";
+          return;
+        }
+
+    //otherwise:
+
+          score ++;
+          balls[0].quantity -= 1;
+          redOn = false;
+          alertText.innerText = "you potted red";
+      }
+
+Case 2:
+
+When we try to pot a colour ball we need to check whether `tableCleared === true`. This will confirm what phase of the game we are in. If `tableCleared === true` we will move on to case 3, which handles the "clear the colours" phase. Otherwise we are still in the "red/colour" phase, so we now need to check the value of `redOn` to find out if we can shoot at a colour ball on our next go. If we pass this test, we can now update the state of the game:
+
+    function potColour(colour) {
+
+    //if all reds and final colour ball potted:
+
+      if (tableCleared) {
+        clearColours(colour);
+        return;
+      }
+
+    //if a colour ball has just been potted:
+
+      if (redOn) {
+        alertText.innerText = "choose a red ball";
+        return;
+      }
+
+    //otherwise:
+
+      score += balls[lookup[colour]].points;
+      redOn = true;
+      alertText.innerText = "you potted " + colour;
+
+    //toggle tableCleared if final colour ball has just been potted:
+
+      if (balls[0].quantity < 1){
+        tableCleared = true;
+      }
+    }
+
+Note that as well as updating `balls`, `score` and toggling `redOn` we now need to run a conditional against `tableCleared` every time we pot a colour during the "red/colour" phase. Remember, the reason why we check the game phase here and not during `potRed()` is because we only enter the "clear the colours" phase after the final red *and* the subsequent colour are potted. If `balls[0].quantity < 1` and we've just potted a colour, we have satisfied these conditions and `tableCleared` can be toggled to `true`.
+
+Note also that `potColour()` takes `colour` as an argument; we can pass a string like "yellow" or "green" into the function and use our lookup table to index this against the `balls` array.
+
+Case 3:
+
+This is our alternate case when a colour ball is selected during the second phase of the game. During this "clear the colours" phase we have new rules: we must pot all the colour balls in the correct points order, starting with yellow and finishing with black. Because the rules are now different, it felt simpler to create a new function to handle this, but case 3 could also be included as a branch within the potColour() function from case 2.
+
+When we try to pot a colour ball we must first check that `balls[lookup[colour]].quantity > 0` to confirm the ball has not already been potted. Next, we need to confirm that we are potting the ball at its correct order in the sequence. To do this, we iterate through the `balls` array up to the colour we are trying to pot, checking whether any of the colours have `quantity > 0`. If we find a ball with `quantity > 0` we stop immediately and return an alert stating that this ball must be potted first. If we pass that test, and we know that the ball we are trying to pot has `quantity > 0`, we know that the ball is being potted in the correct order, so we can go ahead and update the game state.
+
+    function clearColours (colour) {
+
+      //if colour ball has already been potted:
+
+      if (balls[lookup[colour]].quantity < 1){
+        alertText.innerText = "already potted " + colour;
+        return;
+      }
+
+      //else iterate through colour balls; if an earlier colour ball still needs to be potted:
+
+      for (let i=1; i<lookup[colour]; i++){
+        if (balls[i].quantity > 0){
+          alertText.innerText = "you must pot " + balls[i].colour + " first";
+          return;
+        }
+      }
+
+      //otherwise:
+
+      score += balls[lookup[colour]].points;
+      balls[lookup[colour]].quantity --;
+      alertText.innerText = "you potted " + balls[lookup[colour]].colour;
+
+    }
+
+Great! We've now written code to handle the game state. The only thing left to do is to write some functions to tidy things up and update the DOM so our score bar displays correctly.
+
+`clearAlert()` allows us to clear our alert text; we'll call this every time we call one of our potting functions.
+
+    function clearAlert () {
+      alertText.innerText = "";
+    }
+
+We've already mentioned the need for an `updateRemaining()` function to keep track of the number of points in the game. This will be called on initialisation before the game starts to set `maxPoints` and `remaining`. It will then be called every time we call a potting function and pass all the conditionals to legally pot the ball. To start with, we iterate through `balls`, using `total` to make a running count of `ball.points * ball.quantity`. This accounts for potting all the red balls, and potting all the colours during the "clear the colours" phase. However, we still need to add the colour balls available during the "red/colour" phase. For every red ball we can pot one colour ball, and since we are trying to calculate the maximum points remaining, we'll assume this is always the black ball, which is worth the most points. To get the correct value we need to use `redOn` to check whether the ball we've just potted is a red. if `redOn === true` we can pot a black ball for every red ball, so  `total += balls[6].points * balls[0].quantity`. If `!redOn` we can pot a black ball for every red ball, but we also still need to pot the colour for the red we've just potted, so `total += balls[6].points * (balls[0].quantity + 1`.
+
+    function updateRemaining () {
+
+      let total = 0;
+
+      for (const ball of balls){
+        total += ball.points*ball.quantity
+      }
+
+      if (redOn){
+        total += balls[6].points * balls[0].quantity;
+      }
+      else {
+        total += balls[6].points * (balls[0].quantity + 1);
+      }
+
+      return total;
+
+    }
+
+Finally, we need to write the function to update our DOM. The mark-up for our score bar elements looks like this:
+
+    <h2 id="score">score: 0</h2>
+
+    <div id="barContainer">
+      <div class = "bar" id="scoreBar"></div>
+      <div class = "bar" id = "maxBar"></div>
+      <div id="pointer">▲</div>
+        <div id = "untilWin">win in 74 points</div>
+    </div>
+
+The `barContainer` element is the "outline" of the score bar; its width is fixed.
+The `scoreBar` element is the "points scored" and "points remaining" parts of the score bar. These two values are represented by the `width` and `border-left` CSS attributes of a single `div` element.
+THe `pointer` element and it's nested `untilWin` element show the winning line on the score bar. The position of `pointer` will be changed using the `left` CSS attribute.
+
+We'll use `document.getElementById()` to access the `score`, `scoreBar`, `pointer` and `untilWin` elements in the Javascript.
+
+function updateBar() {
+
+  // total points left in game
+  let pointsAvailable = score + updateRemaining();
+
+  let widthFactor = 25; //allows score bar width to be calculated relative to 25rem initial width;
+  let maxWidth = (pointsAvailable/maxPoints)*widthFactor; //sets bar width
+  let scoreWidth = (score/maxPoints)*widthFactor; //sets score width
+
+  let winningScore = (pointsAvailable%2 === 0) ?
+  (pointsAvailable/2)+1 :
+  Math.ceil(pointsAvailable/2);
+
+  let pointsUntilWin = winningScore - score;
+  let winningPosition = (winningScore/maxPoints)*widthFactor;
+
+  //update CSS with new values:
+
+  pointerElement.style.left = `${winningPosition}rem`;
+  scoreBar.style.width = `${maxWidth}rem`;
+  scoreBar.style.borderLeft = `${scoreWidth}rem solid pink`;
+
+  untilWin.innerText = (pointsUntilWin >= 0) ?
+  `win in ${pointsUntilWin} points` :
+  "win achieved";
+
+}

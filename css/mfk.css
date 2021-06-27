@@ -7,12 +7,12 @@ html {
 
 body {
   background-color: black;
-  height: 100vh;
   margin: 0;
 }
 
 div.container {
   display: block;
+
 }
 
 div.navArrows {
@@ -39,6 +39,7 @@ img.pageContent {
 
 div.artwork {
   position: relative;
+
 }
 
 #counterText {
@@ -46,7 +47,7 @@ div.artwork {
 }
 
 #introGraphic {
-  padding: 1rem;
+  padding-left: 1rem;
 }
 
 .tool {
@@ -55,7 +56,8 @@ div.artwork {
 }
 
 #title {
-  width: 70%;
+  width: 100%;
+  height: 100vh;
 }
 
 
@@ -65,10 +67,10 @@ div.artwork {
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: 30% auto;
-    height: 100vh;
+
     max-width: 60rem;
     justify-content: center;
-    height: 45rem;
+    height: 42rem;
     position: relative;
   }
 
@@ -79,6 +81,7 @@ div.artwork {
 
   #title {
     width: 100%;
+    height: auto;
   }
 
   #titleAndNav {
