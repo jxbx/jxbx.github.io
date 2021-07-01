@@ -1,11 +1,15 @@
-//BREAK BUILDER v.0.2
 
 //initialise DOM:
 
 window.addEventListener('load', (event) => {
-  updateScore("red");
+  for (const ball of balls){
+  createButton(ball)
+  }
 });
 
+window.addEventListener('load', (event) => {
+  updateScore("red");
+});
 
 //declaring DOM elements as variables:
 
@@ -17,17 +21,18 @@ let pointsBar = document.getElementById("pointsBar");
 let remainingBar = document.getElementById("remainingBar");
 let pointerElement = document.getElementById("pointer");
 let untilWin = document.getElementById("untilWin");
+let buttonGroup = document.getElementById("buttonGroup");
 
-//initialising array to keep track of game state:
+//array to keep track of game state; also hexcodes for use when rendering individual button elements to DOM:
 
 let balls = [
- {colour: "red", quantity: 15, points: 1},
- {colour: "yellow", quantity: 1, points: 2},
- {colour: "green", quantity: 1, points: 3},
- {colour: "brown", quantity: 1, points: 4},
- {colour: "blue", quantity: 1, points: 5},
- {colour: "pink", quantity: 1, points: 6},
- {colour: "black", quantity: 1, points: 7}
+ {colour: "red", quantity: 15, points: 1, hex: "#FF0000"},
+ {colour: "yellow", quantity: 1, points: 2, hex: "#ffff33"},
+ {colour: "green", quantity: 1, points: 3, hex: "#00cc00"},
+ {colour: "brown", quantity: 1, points: 4, hex: "#996633"},
+ {colour: "blue", quantity: 1, points: 5, hex: "#0099ff"},
+ {colour: "pink", quantity: 1, points: 6, hex: "#ff99cc"},
+ {colour: "black", quantity: 1, points: 7, hex: "#000000"}
 ];
 
 //lookup allows access to balls[index] using a string ("red", "yellow" etc)
@@ -50,9 +55,21 @@ let redOn = true; //red available for next shot?
 let tableCleared = false; //ready to clear the colours?
 const maxPoints = updateRemaining(); //max possible points available - declared at initialisation
 
+//for rendering button elements to the DOM:
+
+function createButton (input) {
+  let button = document.createElement('BUTTON');
+  let text = document.createTextNode(`${input.quantity}`);
+  button.appendChild(text);
+  button.style.backgroundColor = input.hex;
+  input.colour === "red" ?
+  button.addEventListener("click", potRed) :
+  button.addEventListener("click", function () {potColour(input.colour)});
+  buttonGroup.appendChild(button);
+}
 //****POTTING ACTIONS****
 
-//case 1) red ball is selected by user:
+//CASE 1) red ball is selected by user:
 
 function potRed() {
 
@@ -81,7 +98,7 @@ function potRed() {
       updateScore("red");
   }
 
-//case 2) colour ball is selected and balls[0].quantity > 0;
+//CASE 2) colour ball is selected and balls[0].quantity > 0;
 
 function potColour(colour) {
 
@@ -115,7 +132,7 @@ function potColour(colour) {
   updateScore(colour);
 }
 
-//case 3) colour ball selected and balls[0].quantity < 1;
+//CASE 3) colour ball selected and balls[0].quantity < 1;
 
 function clearColours (colour) {
 
@@ -153,8 +170,11 @@ function clearColours (colour) {
 
 function updateScore (input) {
   scoreText.innerText = "score: " + score;
-  document.getElementById(input).innerText = "Remaining: " + balls[lookup[input]].quantity;
   pointsRemainingText.innerText = "points remaining: " + updateRemaining();
+  let buttons = document.getElementById("buttonGroup").children;
+  for (let i=0; i<buttons.length; i++){
+    buttons[i].innerText=balls[i].quantity;
+  }
   updateBar();
 }
 
