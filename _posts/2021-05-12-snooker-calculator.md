@@ -4,11 +4,15 @@ title: Building a score calculator for Snooker
 date: 2021-02-08
 ---
 
-BreakBuilder v0.1 is a simple web application which works as a score tracker in the game of snooker. The BBC sometimes show an [interesting score graphic](https://www.reddit.com/r/snooker/comments/65oel7/can_anyone_explain_the_point_of_this_infographic/) alongside their snooker coverage, and this is essentially what I've been trying to recreate. Due to the fiddly nature of snooker's scoring system, it's necessary to keep track of several variables in order to correctly compute the score as the game progresses, which meant it was a good opportunity to learn about state management. I've been studying React recently, so, having developed this in vanilla Javascript I'm going to see if I can then develop it as a React application using React's own paradigm for state management.
+BreakBuilder is a simple web application which works as a score tracker in the game of snooker. The BBC sometimes show an [interesting score graphic](https://www.reddit.com/r/snooker/comments/65oel7/can_anyone_explain_the_point_of_this_infographic/) alongside their snooker coverage, and this is essentially what I've been trying to recreate. Due to the fiddly nature of snooker's scoring system, it's necessary to keep track of several variables in order to correctly compute the score as the game progresses, which meant it was a good opportunity to learn about state management. My minimum viable product looks something like this:
+
+<iframe src="https://jxbx.github.io/projects/breakbuilder.html" width="100%" height="600" style="border: none;">
+</iframe>
+
 
 _Background_
 
-Snooker is a cue sport, like pool (yes, they really are sports!), which you play by shooting balls into pockets in the corners and sides of a special table. Snooker is played on a much larger table than pool and is an unbelievably difficult game in real life. It's also insanely popular; in the UK, prime time TV schedules are wiped to broadcast it, and millions of people watch.
+Snooker is a cue sport, like pool, which you play by shooting balls into pockets in the corners and sides of a special table. Snooker is played on a much larger table than pool and is an unbelievably difficult game in real life. It's also insanely popular; in the UK, prime time TV schedules are wiped to broadcast it, and millions of people watch.
 
 Snooker is a two player game played in segments called "frames" (basically the same as "racks" in pool). the winner at the end of each frame is the person who scores the most points, and the overall winner is the first person to accumulate some agreed number of frames. In casual play this might be first to five, but in elite play an outright win can require you to win up to 18 frames.  
 
