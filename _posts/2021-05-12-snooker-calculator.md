@@ -6,7 +6,7 @@ date: 2021-06-15
 
 BreakBuilder is a simple web application which works as a score tracker in the game of snooker. The BBC sometimes show an [interesting score graphic](https://www.reddit.com/r/snooker/comments/65oel7/can_anyone_explain_the_point_of_this_infographic/) alongside their snooker coverage, and this is essentially what I've been trying to recreate. Due to the fiddly nature of snooker's scoring system, it's necessary to keep track of several variables in order to correctly compute the score as the game progresses, which meant it was a good opportunity to learn about state management. My minimum viable product looks something like this:
 
-<iframe src="https://jxbx.github.io/projects/breakbuilder.html" width="100%" height="600" style="border: none;">
+<iframe src="https://jxbx.github.io/projects/breakbuilder.html" width="100%" height="700" style="border: none;">
 </iframe>
 
 
@@ -293,4 +293,4 @@ We'll use `document.getElementById()` to access the `pointsBar`, `remainingBar`,
 
 Two new variables, `pointsAvailable` and `winningScore` allow us to update the position and text of our pointer element. Meanwhile, the `scoreBar` and `remainingBar` elements are upated using the globally available values for `score` and `updateRemaining()`. We also have access to anothe global variable, `maxPoints`, which represents our "perfect" 147 score. Since we need our `scoreBar` and `remainingBar` to be defined in relation to this perfect score we simply divide them by `maxPoints` and multiply by 100 to get a percentage value, which can now be passed back into the CSS. From here, the browser can calculate the correct pixel widths.
 
-So that's it! A functioning score calculator for snooker which provides an interesting, visualisation of the game state as the score changes. Having tested this I consider it viable, but there are plenty of updates worth making for the next version of the application. When I work on this again I'll focus on improving the user interface to make it simpler and more intuitive, and improving the score bar visualisation to be simpler to understand without a lot of explanation. 
+So that's it! A functioning score calculator for snooker which provides an interesting, visualisation of the game state as the score changes. Having tested this I consider it viable, but there are plenty of updates worth making for the next version of the application. When I work on this again I'll focus on improving the user interface to make it simpler and more intuitive, and improving the score bar visualisation to be simpler to understand without a lot of explanation.
