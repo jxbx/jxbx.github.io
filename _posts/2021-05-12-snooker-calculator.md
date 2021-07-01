@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Building a score calculator for Snooker
-date: 2021-02-08
+date: 2021-06-15
 ---
 
 BreakBuilder is a simple web application which works as a score tracker in the game of snooker. The BBC sometimes show an [interesting score graphic](https://www.reddit.com/r/snooker/comments/65oel7/can_anyone_explain_the_point_of_this_infographic/) alongside their snooker coverage, and this is essentially what I've been trying to recreate. Due to the fiddly nature of snooker's scoring system, it's necessary to keep track of several variables in order to correctly compute the score as the game progresses, which meant it was a good opportunity to learn about state management. My minimum viable product looks something like this:
@@ -20,13 +20,7 @@ Snooker has a unique scoring system, which I've often had to explain to non-enth
 
 1. There are seven different colours of ball, each worth a different number of points.
 
-Red (1)
-Yellow (2)
-Green (3)
-Brown (4)
-Blue (5)
-Pink (6)
-Black (7)
+    Red (1); Yellow (2); Green (3); Brown (4); Blue (5); Pink (6); Black (7)
 
 2. There are fifteen red balls but only one each of the other colours. These other colours are usually referred to collectively as the "colour balls" (as opposed to the "red balls").
 
@@ -42,7 +36,7 @@ With this in mind it's pretty easy to calculate the maximum number of points a s
 
     (red.value + black.value)*red.quantity + (total value of the six colour balls)
 
-Fill in the figures and we get the magic figure:
+Fill in the values and we get the magic figure for the perfect game:
 
     (1+7)*15 + 7! = 147
 
@@ -102,15 +96,15 @@ For convenience, I then created a lookup table which allows me to access the rel
 
 I can now manage the state of the balls, but I still need declare some global variables to manage the state of the scoring:
 
-  let score = 0; // total points from balls potted
+    let score = 0; // total points from balls potted
 
-  let remaining = 0; // max points available from remaining balls
+    let remaining = 0; // max points available from remaining balls
 
-  let redOn = true; // red available for next shot?
+    let redOn = true; // red available for next shot?
 
-  let tableCleared = false; // ready to clear the colours?
+    let tableCleared = false; // ready to clear the colours?
 
-  const maxPoints = updateRemaining(); // max possible points available - declared at initialisation
+    const maxPoints = updateRemaining(); // max possible points available - declared at initialisation
 
 The `score` and `remaining` variables keep track of how many points we've achieved, and how many points are left. These will be used to generate the values in the score bar.
 
@@ -122,7 +116,7 @@ It's really important to note here that the second phase of the game only starts
 
     ... red > colour > `tableCleared === true` > colour > colour ...
 
-The `maxPoints` const represents the theoretical maximum points available if you always pot the highest scoring balls, and determines the overall width of the score bar. We'll define the widths of `score` and `remaining` relative to `maxPoints`. We know that `remaining === maxPoints === 147` at the start of the frame, so we can use `updateRemaining()`  to set the value of `maxPoints` on initialisation, making sure to declare it as a const so the value isn't recalculated.
+The `maxPoints` const represents the "perfect" score; the theoretical maximum points available if you always pot the highest scoring balls. This will eventually determine the overall width of the score bar. We'll define the widths of `score` and `remaining` relative to `maxPoints`. We know that `remaining === maxPoints === 147` at the start of the frame, so we can use `updateRemaining()`  to set the value of `maxPoints` on initialisation, making sure to declare it as a const so the value is locked in and won't be recalculated when the game state changes.
 
 These elements should be everything we need to manage the state of our game. I now need to write some functions which I can use to change the game state. I'll start by looking at the potting actions:
 
@@ -246,10 +240,10 @@ We've already mentioned the need for an `updateRemaining()` function to keep tra
       }
 
       if (redOn){
-        total += balls[6].points * balls[0].quantity;
+        total += balls[lookup[black]].points * balls[lookup[red]].quantity;
       }
       else {
-        total += balls[6].points * (balls[0].quantity + 1);
+        total += balls[lookup[black]].points * (balls[lookup[red]].quantity + 1);
       }
 
       return total;
@@ -259,44 +253,44 @@ We've already mentioned the need for an `updateRemaining()` function to keep tra
 Finally, we need to write the function to update our DOM. The mark-up for our score bar elements looks like this:
 
     <h2 id="score">score: 0</h2>
-
     <div id="barContainer">
-      <div class = "bar" id="scoreBar"></div>
-      <div class = "bar" id = "maxBar"></div>
-      <div id="pointer">▲</div>
-        <div id = "untilWin">win in 74 points</div>
+      <div class = "bar" id = "maxBar">
+        <div class = "bar" id="pointsBar"></div>
+        <div class = "bar" id="remainingBar"></div>
+      </div>
+      <div id="pointer">
+        <div id = "untilWin">▲ win in 74 points</div>
+      </div>
     </div>
 
-The `barContainer` element is the "outline" of the score bar; its width is fixed.
-The `scoreBar` element is the "points scored" and "points remaining" parts of the score bar. These two values are represented by the `width` and `border-left` CSS attributes of a single `div` element.
-THe `pointer` element and it's nested `untilWin` element show the winning line on the score bar. The position of `pointer` will be changed using the `left` CSS attribute.
+The `maxBar` element is the "outline" of the score bar. Following good responsive design practice, in the CSS, its `width` is set to 100% of its container, which means it will scale to the size of the viewing window. The `pointsBar` and `remainingBar` elements are the "points scored" and "points remaining" parts of the score bar. The full width of `maxBar` is equivalent to a perfect score of 147 points, so the widths of `scoreBar` and `remainingBar` should always be defined relative to this. With perfect play, `scoreBar` and `remainingBar` will fill the whole width of `maxBar`, but every time a non-optimal scoring choice is made the number of points in the game will go down, and we'll see empty space appear in `maxBar`, showing the difference between the perfect score and the maximum possible score now achievable in our game.
 
-We'll use `document.getElementById()` to access the `score`, `scoreBar`, `pointer` and `untilWin` elements in the Javascript.
+ We'll control the size of these bars using the `width` property in the CSS as well; by creating these as child elements to `maxBar` and using percentage values for width (rather than px, rem, etc.) we can easily express the size of these bars in relation to the width of `maxBar`. If we adjust the width of `maxBar` by scaling the browser window, the scaling will be inherited by `pointsBar` and `remainingBar`, keeping everything locked in proportion.  
 
-function updateBar() {
+The `pointer` element and its nested `untilWin` element show the winning line on the score bar. The position of `pointer` will be changed using the `left` CSS attribute.
 
-  // total points left in game
-  let pointsAvailable = score + updateRemaining();
+We'll use `document.getElementById()` to access the `pointsBar`, `remainingBar`, `pointer` and `untilWin` elements in the Javascript. Once we have access to these we can write the `updateBar()` function:
 
-  let widthFactor = 25; //allows score bar width to be calculated relative to 25rem initial width;
-  let maxWidth = (pointsAvailable/maxPoints)*widthFactor; //sets bar width
-  let scoreWidth = (score/maxPoints)*widthFactor; //sets score width
+    function updateBar() {
 
-  let winningScore = (pointsAvailable%2 === 0) ?
-  (pointsAvailable/2)+1 :
-  Math.ceil(pointsAvailable/2);
+      // total points left in game
+      let pointsAvailable = score + updateRemaining();
 
-  let pointsUntilWin = winningScore - score;
-  let winningPosition = (winningScore/maxPoints)*widthFactor;
+      let winningScore = (pointsAvailable%2 === 0) ?
+      (pointsAvailable/2)+1 :
+      Math.ceil(pointsAvailable/2);
 
-  //update CSS with new values:
+      //update CSS with new values:
 
-  pointerElement.style.left = `${winningPosition}rem`;
-  scoreBar.style.width = `${maxWidth}rem`;
-  scoreBar.style.borderLeft = `${scoreWidth}rem solid pink`;
+      pointsBar.style.width = `${score/maxPoints*100}%`;
+      remainingBar.style.width = `${updateRemaining()/maxPoints*100}%`;
+      pointerElement.style.marginLeft = `${winningScore/maxPoints*100}%`;
 
-  untilWin.innerText = (pointsUntilWin >= 0) ?
-  `win in ${pointsUntilWin} points` :
-  "win achieved";
+      untilWin.innerText = (winningScore - score >= 0) ?
+      `▲ win in ${winningScore - score} points` :
+      "▲ win achieved";
+    }
 
-}
+Two new variables, `pointsAvailable` and `winningScore` allow us to update the position and text of our pointer element. Meanwhile, the `scoreBar` and `remainingBar` elements are upated using the globally available values for `score` and `updateRemaining()`. We also have access to anothe global variable, `maxPoints`, which represents our "perfect" 147 score. Since we need our `scoreBar` and `remainingBar` to be defined in relation to this perfect score we simply divide them by `maxPoints` and multiply by 100 to get a percentage value, which can now be passed back into the CSS. From here, the browser can calculate the correct pixel widths.
+
+So that's it! A functioning score calculator for snooker which provides an interesting, visualisation of the game state as the score changes. Having tested this I consider it viable, but there are plenty of updates worth making for the next version of the application. When I work on this again I'll focus on improving the user interface to make it simpler and more intuitive, and improving the score bar visualisation to be simpler to understand without a lot of explanation. 
