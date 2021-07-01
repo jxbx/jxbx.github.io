@@ -1,25 +1,24 @@
-
 //initialise DOM:
 
-window.addEventListener('load', (event) => {
+window.addEventListener('load', () => {
   for (const ball of balls){
   createButton(ball)
   }
 });
 
-window.addEventListener('load', (event) => {
+window.addEventListener('load', () => {
   updateScore("red");
 });
 
 //declaring DOM elements as variables:
 
 let alertText = document.getElementById("alert");
-let scoreText = document.getElementById("score");
-let pointsRemainingText = document.getElementById("pointsRemaining");
+let scoreText = document.getElementById("scoreText");
+let pointsRemainingText = document.getElementById("pointsRemainingText");
 let maxBar = document.getElementById("maxBar");
 let pointsBar = document.getElementById("pointsBar");
 let remainingBar = document.getElementById("remainingBar");
-let pointerElement = document.getElementById("pointer");
+let pointer = document.getElementById("pointer");
 let untilWin = document.getElementById("untilWin");
 let buttonGroup = document.getElementById("buttonGroup");
 
@@ -78,7 +77,7 @@ function potRed() {
 //if a red has just been potted:
 
     if (!redOn){
-      alertText.innerText = "choose a colour ball";
+      alertText.innerText = "select a colour ball";
       return;
     }
 
@@ -94,7 +93,7 @@ function potRed() {
       score ++;
       balls[0].quantity -= 1;
       redOn = false;
-      alertText.innerText = "you potted red";
+      alertText.innerText = "you potted red (+1)";
       updateScore("red");
   }
 
@@ -114,7 +113,7 @@ function potColour(colour) {
 //if a colour ball has just been potted:
 
   if (redOn) {
-    alertText.innerText = "choose a red ball";
+    alertText.innerText = "select red ball";
     return;
   }
 
@@ -122,7 +121,7 @@ function potColour(colour) {
 
   score += balls[lookup[colour]].points;
   redOn = true;
-  alertText.innerText = "you potted " + colour;
+  alertText.innerText = "you potted " + colour + ` (+${balls[lookup[colour]].points})`;
 
 //toggle tableCleared if final colour ball has just been potted:
 
@@ -169,8 +168,8 @@ function clearColours (colour) {
 //"remaining" value for individual colours;
 
 function updateScore (input) {
-  scoreText.innerText = "score: " + score;
-  pointsRemainingText.innerText = "points remaining: " + updateRemaining();
+  scoreText.innerText = score;
+  pointsRemainingText.innerText = updateRemaining();
   let buttons = document.getElementById("buttonGroup").children;
   for (let i=0; i<buttons.length; i++){
     buttons[i].innerText=balls[i].quantity;
@@ -196,15 +195,15 @@ function updateBar() {
 
   pointsBar.style.width = `${score/maxPoints*100}%`;
   remainingBar.style.width = `${updateRemaining()/maxPoints*100}%`;
-  pointerElement.style.marginLeft = `${winningPosition}%`;
+  pointer.style.marginLeft = `${winningPosition}%`;
 
-  untilWin.innerText = (pointsUntilWin >= 0) ?
-  `▲ win in ${pointsUntilWin} points` :
-  "▲ win achieved";
+  untilWin.innerText = (pointsUntilWin > 0) ?
+  `win in ${pointsUntilWin} points` :
+  `win achieved`;
 
-
-
-
+  if (pointsUntilWin < 0){
+    untilWin.style.color = "white";
+  }
 
 }
 
@@ -233,4 +232,15 @@ function updateRemaining () {
 
   return total;
 
+}
+
+//opens and closes the info section at the top of the page
+
+function expandInfo() {
+  if(aboutContent.style.display === "block"){
+    aboutContent.style.display = "none";
+  }
+  else{
+    aboutContent.style.display = "block";
+  }
 }

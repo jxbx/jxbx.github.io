@@ -1,36 +1,66 @@
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>BreakBuilder v0.1</title>
-  <link rel="stylesheet" href="../css/breakbuilder2.css" />
-  <script src="../js/breakbuilder2.js" defer></script>
+  <title>Breakbuilder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/breakbuilder2.css" />
+<script src="../js/breakbuilder2.js" defer></script>
 </head>
 <body>
-
   <div id="wrapper">
-      <h2 id="score">score: 0</h2>
-      <div id="barContainer">
-        <div class = "bar" id = "maxBar">
-          <div class = "bar" id="pointsBar"></div>
-          <div class = "bar" id="remainingBar"></div>
-        </div>
-        <div id="pointer">
-          <div id = "untilWin">▲ win in 74 points</div>
-        </div>
-      </div>
 
-      <div id="info">
-        <p id ="pointsRemaining">points remaining: 147</p>
-        <p id="alert"></p>
-      </div>
+    <div id="topContent">
+    <h1>Break<span style="color:white">builder</span></h1>
 
-      <div id="buttonGroup">
-        <!--javascript creates button elements-->
+      <ul class="topNav">
+        <li><a href="#" onclick="expandInfo()">▼about</a></li>
+
+        <li><a href="https://en.wikipedia.org/wiki/Rules_of_snooker">▶rules of snooker</a></li>
+        <li id="aboutContent" onclick="expandInfo()">
+          Breakbuilder is a dynamic score bar which helps you keep track of your points when you're
+          playing snooker. It shows how many points you've scored, how many are left, and how
+          many you need to win the frame. Click red to start potting balls!
+        </li>
+      </ul>
+    </div>
+
+    <div id="scoreContainer">
+      <p id="alert">select red to start your break</p>
+      <ul class="scoreInfo">
+        <li>
+          <span style="color: #ccccff">■
+          </span>
+          score:
+          <span class="number" id="scoreText">
+          </span>
+        </li>
+        <li>
+          <span style="color: #ebb44d">■
+          </span>
+          points left:
+          <span class ="number" id="pointsRemainingText"
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div id="barContainer">
+      <div class="bar" id="maxBar">
+        <div class="bar" id="pointsBar"></div>
+        <div class="bar" id="remainingBar"></div>
       </div>
+      <div id="pointer">
+        <p >▲ <br> <span id="untilWin"></span></p>
+      </div>
+    </div>
+
+
+    <div id="buttonGroup">
+    </div>
+
   </div>
-
-
-
 </body>
 </html>
