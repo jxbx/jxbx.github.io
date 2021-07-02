@@ -5,7 +5,13 @@ title: Latest posts
 
 <script>
 	function toggle() {
-		document.getElementById("postsElement").style.display = "none";
+		if (document.getElementById("postsElement").style.display === "none"){
+			document.getElementById("postsElement").style.display = "block";
+		}
+		else {
+			document.getElementById("postsElement").style.display = "none"; 
+		}
+
 		console.log("test");
 	}
 </script>
