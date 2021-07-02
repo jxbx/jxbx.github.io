@@ -1,9 +1,9 @@
 ---
 layout: default3
-title: Latrest posts
+title: Latest posts
 ---
 	<h1>{{ page.title }}</h1>
-	<ul class="posts" id="postsElement" style="display: none">
+	<ul class="posts" id="postsElement">
 	  {% for post in site.posts %}
 		{% if post.category == "blog" %}
 		<li>
@@ -17,7 +17,7 @@ title: Latrest posts
 	  {% endfor %}
 	</ul>
 
-	<ul class = "projects" id="projectsElement" style="display: block">
+	<ul class = "projects" id="projectsElement">
 	  {% for post in site.posts %}
 		{% if post.category !="blog" %}
 		<li>
