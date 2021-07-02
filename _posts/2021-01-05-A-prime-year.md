@@ -2,6 +2,7 @@
 layout: post
 title: Making the Earth wobble
 date: 2021-01-05
+category: blog
 ---
 
 My friend Lucie pointed out earlier this week that 2021 is a rare year whose value is the product of two consecutive primes. Apparently this hasn't happened since 1763 and won't happen again until 2491. Clearly this has great cosmological significance, so I decided to check the figures in case of any awkward mistakes.
