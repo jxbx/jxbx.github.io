@@ -2,6 +2,7 @@
 layout: post
 title: Pint Pedant
 category: project
+thumbnail: /blog/assets/pintPedantThumb.jpg
 viewwriteup: null
 viewproject: https://www.justinbailey.net/projects/pintpedant.html
 ---

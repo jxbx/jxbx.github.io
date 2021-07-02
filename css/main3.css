@@ -131,11 +131,37 @@ iframe {
   text-decoration: none;
 }
 
+#projectsElement li img {
+  width: 15em;
+  object-fit: cover;
+  margin: 0 1rem 0 0;
+  flex: 0 1 8em;
+  border-right: 0.2em solid white;
+}
+
+ul.projects li {
+  display: flex;
+}
+
 
 @media only screen and (max-width: 600px) {
   body {
     width:90%;
     margin: 1.5rem auto 1em auto;
     padding: 0;
+    }
+
+  #projectsElement li img {
+    object-fit: cover;
+    margin: 0 0 1rem 0;
+    border: none;
+    width: 100%;
+    height: auto;
+    flex: none;
+    }
+
+  ul.projects li {
+    display: block;
   }
+
 }

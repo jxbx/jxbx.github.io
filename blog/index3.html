@@ -39,10 +39,13 @@ title: Latest posts
 	{% for post in site.posts %}
 	{% if post.category !="blog" %}
 	<li>
-		<h1>{{ post.title }}</h1>
-		<div>{{ post.excerpt }}
-			<a class="projectLink" href="{{ post.viewproject }}" title="{{ post.title }}">view project</a>
-			<a class="projectLink" href="{{ post.viewwriteup }}" title="{{ post.title }} write-up">view write-up</a>
+		<img src="{{post.thumbnail}}" />
+		<div class="projectText">
+			<h1>{{ post.title }}</h1>
+			<div>{{ post.excerpt }}
+				<a class="projectLink" href="{{ post.viewproject }}" title="{{ post.title }}">view project</a>
+				<a class="projectLink" href="{{ post.viewwriteup }}" title="{{ post.title }} write-up">view write-up</a>
+			</div>
 		</div>
 	</li>
 	{% endif %}
