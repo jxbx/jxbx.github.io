@@ -110,9 +110,9 @@ iframe {
 }
 
 #projectsElement {
-  display: block;
+  background-color: red;
 }
 
 #postsElement {
-  display: none;
+ background-color: blue;
 }
