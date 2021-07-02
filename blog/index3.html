@@ -23,6 +23,8 @@ title: Latrest posts
 		<li>
 			 <h1>{{ post.title }}</h1>
 			 <p>{{ post.excerpt }}</p>
+			 <a href="{{ post.viewproject }}" title="{{ post.title }}">view project</a>
+			 <a href="{{ post.viewwriteup }}" title="{{ post.title }} write-up">view write-up</a>
 		</li>
 		{% endif %}
 	  {% endfor %}
