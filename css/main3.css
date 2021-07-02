@@ -1,17 +1,14 @@
-html {
-  padding: 5em;
-}
-
 body {
+  padding: 5rem;
     margin: auto;
-    max-width: 45em;
+    max-width: 45rem;
     background-color: #eb9763;
     font-family:'Nunito', 'Arial', 'Sans-Serif';
 }
 
 #logo {
-  height: 3em;
-  margin-bottom: 1em;
+  height: 3rem;
+  margin-bottom: 1rem;
 }
 
 nav ul, footer ul {
@@ -21,35 +18,40 @@ nav ul, footer ul {
 
 nav ul li, footer ul li {
     display: inline;
-    margin-right: 2em;
-    font-size: 0.8em;
+    margin-right: 2rem;
+    font-size: 0.8rem;
     font-weight: 300;
 }
 
-ul.posts {
+ul.posts, ul.projects {
   padding: 0;
-  font-size: 1em;
+  font-size: 1rem;
 }
 
-ul.posts li {
+ul.posts li, ul.projects li {
     list-style: none;
     border-top: 0.05em solid grey;
-    padding: 1em 0 1em 0;
+    padding: 1rem 0 1rem 0;
 }
 
 ul.selector {
-  list-style: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 600;
 }
 
 ul.selector li {
+ margin: 0;
+  padding: 0 0.5rem 0 0;
   display: inline;
+  list-style: none;
 }
 
-
 footer, nav {
-    border-top: 0.05em solid grey;
-    border-bottom: 0.05em solid grey;
+    border-top: 0.05rem solid grey;
+    border-bottom: 0.05rem solid grey;
 }
 
 a {
@@ -57,27 +59,26 @@ a {
     color: white;
 }
 
+a.projectLink {
+  padding: 0 2rem 0 0;
+  white-space: nowrap;
+}
+
 a:hover {
     text-decoration: underline;
 }
 
 h1 {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     color: white;
     font-weight: 600;
-}
-
-h2 {
-    padding: 0.2em;
-    font-size: 0.8em;
-    font-weight: 300;
-    color:white;
+    margin: 0;
 }
 
 p {
     font-weight: 400;
-    font-size: 1em;
-    line-height: 1.4em;
+    font-size: 1rem;
+    line-height: 1.4rem;
     color: #212121;
 }
 
@@ -89,9 +90,9 @@ code {
 
 pre {
   color: white;
-  border-top: 0.05em dashed white;
-  border-bottom: 0.05em dashed white;
-  padding: 1em 0 1em 0;
+  border-top: 0.05rem dashed white;
+  border-bottom: 0.05rem dashed white;
+  padding: 1rem 0 1rem 0;
   overflow: auto;
 }
 
@@ -106,23 +107,35 @@ iframe {
 
 .blog-img{
   width: 100%;
-  padding: 1em 0 0 0 ;
+  padding: 1rem 0 0 0 ;
 }
 
-@media only screen and (max-width: 600px) {
-  body {
-    width:90%;
-    margin: 1.5em auto 1em auto;
-  }
-  html {
-    padding: 0;
-  }
+#projectsButton:hover, #postsButton:hover {
+   text-decoration: underline;
+  cursor: pointer;
+}
+
+#postsElement {
+  display: none;
 }
 
 #projectsElement {
   display: block;
 }
 
-#postsElement {
-  display: none;
+#projectsButton {
+  text-decoration: underline;
+}
+
+#postsButton {
+  text-decoration: none;
+}
+
+
+@media only screen and (max-width: 600px) {
+  body {
+    width:90%;
+    margin: 1.5rem auto 1em auto;
+    padding: 0;
+  }
 }
