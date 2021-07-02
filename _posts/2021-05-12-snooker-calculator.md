@@ -2,7 +2,6 @@
 layout: post
 title: Building a score calculator for Snooker
 date: 2021-06-15
-category: blog
 ---
 
 BreakBuilder is a simple web application which works as a score tracker in the game of snooker. The BBC sometimes show an [interesting score graphic](https://www.reddit.com/r/snooker/comments/65oel7/can_anyone_explain_the_point_of_this_infographic/) alongside their snooker coverage on TV; the purpose of this is to show how many points a player has scored, the maximum number of points they could score, and the minimum number of points they need to win. This is all useful information, but I've always found the score bar hard to interpret because it only ever appears as a static graphic at random points during a game. In snooker, a player can choose from multiple scoring options while they are playing the game, and every choice they make has an effect on the overall game state, so to reflect this I've tried to make a dynamic score bar where it's possible to see the graphic update in real time as a player accumulates points.
