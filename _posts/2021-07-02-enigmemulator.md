@@ -2,7 +2,7 @@
 layout: post
 title: Enigmemulator
 category: project
-thumbnail: /blog/assets/enigmemulatorThumb.jpg
+thumbnail: /blog/assets/enigmemulatorThumb.png
 viewwriteup: https://www.justinbailey.net/blog/2021/01/29/The-EnigMemulator.html
 viewproject: https://www.justinbailey.net/projects/enigmemulator.html
 ---
