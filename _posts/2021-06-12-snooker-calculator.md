@@ -49,13 +49,15 @@ _Problem analysis_
 
 I imagine my score bar looking something like this:
 
-  IMG!
+![sketch of score bar interface](/blog/assets/01.jpg)
 
 The full width of the score bar represents the theoretical maximum points available in the game, which we now know is 147. This value never changes.
 
 Within this, we have the score (how many points you've made so far) and the remaining points (the maximum points still available). Both of these values will change as the game goes on. Add them together and you get the total points in the game *at that stage of the game*. If you only ever potted red and black balls this total would remain equal to 147. However, every time you have the chance to pot a black ball and choose a lower value colour ball this value goes down, since you are essentially losing points from the game. Our final element is the marker which shows us how many more points we need to secure victory; although this might seem like it's just a fixed value, it's actually a variable as well, as I'll explain later.  
 
 We also need some inputs, and an output which can be used to show alert messages:
+
+![sketch of input and output interface](/blog/assets/02.jpg)
 
   IMG!
 
