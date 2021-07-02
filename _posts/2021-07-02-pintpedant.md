@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Enigmemulator
+title: Pint Pedant
 category: project
 viewwriteup: null
 viewproject: https://www.justinbailey.net/projects/pintpedant.html
