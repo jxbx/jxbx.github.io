@@ -9,7 +9,7 @@ BreakBuilder is a simple web application which works as a score tracker in the g
 
 Due to the fiddly nature of snooker's scoring system, it's necessary to keep track of several variables in order to correctly record the game state compute the score as the game progresses, which means that as well as having some real world relevance this this has been an interesting coding challenge with lots of opportunities to think about and learn about state management. You can have a look at my minimum viable product below, built using vanilla Javascript. In the rest of the blog post you can read about the development. I start with a bit of contextual background before jumping into the code.
 
-<iframe src="../projects/breakbuilder.html" width="100%" height="700" style="border: none;">
+<iframe src="/projects/breakbuilder.html" width="100%" height="700" style="border: none;">
 </iframe>
 
 
