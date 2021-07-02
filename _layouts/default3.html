@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ page.title }}</title>
+      <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <link rel="icon" href="/images/favicon.png">
+  </head>
+
+
+  <body>
+      <img src= "/images/logo_large.png"
+       id="logo">
+
+
+  <nav>
+    <ul>
+      <li><a href="https://www.justinbailey.net/blog/">BLOG HOME</a></li>
+      <li><a href="null">ABOUT</a></li>
+      <li><a href="https://github.com/jxbx">GITHUB</a></li>
+    </ul>
+  </nav>
+
+  <div class="selector">
+  <h1 id="projectsButton" onclick="projectsSelect()" value="true" style="color: white">Projects</h1>
+  <h1>|</h1>
+  <h1 id="blogButton" onclick="blogSelect()" value="false" style="color: grey">Blog</h1>
+  </div>
+
+  <div class="container">
+    {{ content }}
+  </div>
+
+  <footer>
+   <ul>
+
+     <li><a href="https://www.behance.net/justindraws">BEHANCE</a></li>
+     <li><a href="https://500px.com/p/justinbailey?view=photos">500PX</a></li>
+     <li><a href="https://www.instagram.com/juiced_in_time/">INSTAGRAM</a></li>
+     <li><a href="https://dribbble.com/justindraws">DRIBBBL</a></li>
+   </ul>
+  </footer>
+  </body>
+
+</html>
