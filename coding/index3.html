@@ -21,7 +21,8 @@ title: Latrest posts
 	  {% for post in site.posts %}
 		{% if post.category !="blog" %}
 		<li>
-			 <span>{{ post.title }}</span>
+			 <h1>{{ post.title }}</h1>
+			 <p>{{ content }}</p>
 		</li>
 		{% endif %}
 	  {% endfor %}
