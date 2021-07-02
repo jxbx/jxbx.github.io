@@ -13,6 +13,26 @@
     <link rel="icon" href="/images/favicon.png">
   </head>
 
+  <script>
+    function toggle () {
+
+      let projectsElement = document.getElementById("projectsElement");
+      let postsElement = document.getElementById("postsElement");
+
+
+      postsElement.style.display === "none"){
+        postsElement.style.display === "block";
+        projectsElement.style.display === "none";
+      }
+      else {
+        postsElement.style.display === "none";
+        projectElement.style.display === "block";
+      }
+
+    }
+  </script>
+
+
 
   <body>
       <img src= "/images/logo_large.png"
@@ -28,9 +48,9 @@
   </nav>
 
   <div class="selector">
-  <h1 id="projectsButton" onclick="projectsSelect()" value="true" style="color: white">Projects</h1>
+  <h1 id="projectsButton" onclick="toggle()">Projects</h1>
   <h1>|</h1>
-  <h1 id="blogButton" onclick="blogSelect()" value="false" style="color: grey">Blog</h1>
+  <h1 id="blogButton" onclick="toggle()">Blog</h1>
   </div>
 
   <div class="container">
