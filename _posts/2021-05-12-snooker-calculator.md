@@ -4,7 +4,9 @@ title: Building a score calculator for Snooker
 date: 2021-06-15
 ---
 
-BreakBuilder is a simple web application which works as a score tracker in the game of snooker. The BBC sometimes show an [interesting score graphic](https://www.reddit.com/r/snooker/comments/65oel7/can_anyone_explain_the_point_of_this_infographic/) alongside their snooker coverage, and this is essentially what I've been trying to recreate. Due to the fiddly nature of snooker's scoring system, it's necessary to keep track of several variables in order to correctly compute the score as the game progresses, which meant it was a good opportunity to learn about state management. My minimum viable product looks something like this:
+BreakBuilder is a simple web application which works as a score tracker in the game of snooker. The BBC sometimes show an [interesting score graphic](https://www.reddit.com/r/snooker/comments/65oel7/can_anyone_explain_the_point_of_this_infographic/) alongside their snooker coverage on TV; the purpose of this is to show how many points a player has scored, the maximum number of points they could score, and the minimum number of points they need to win. This is all useful information, but I've always found the score bar hard to interpret because it only ever appears as a static graphic at random points during a game. In snooker, a player can choose from multiple scoring options while they are playing the game, and every choice they make has an effect on the overall game state, so to reflect this I've tried to make a dynamic score bar where it's possible to see the graphic update in real time as a player accumulates points.
+
+Due to the fiddly nature of snooker's scoring system, it's necessary to keep track of several variables in order to correctly record the game state compute the score as the game progresses, which means that as well as having some real world relevance this this has been an interesting coding challenge with lots of opportunities to think about and learn about state management. You can have a look at my minimum viable product below, built using vanilla Javascript. In the rest of the blog post you can read about the development. I start with a bit of contextual background before jumping into the code.
 
 <iframe src="https://jxbx.github.io/projects/breakbuilder.html" width="100%" height="700" style="border: none;">
 </iframe>
@@ -14,7 +16,7 @@ _Background_
 
 Snooker is a cue sport, like pool, which you play by shooting balls into pockets in the corners and sides of a special table. Snooker is played on a much larger table than pool and is an unbelievably difficult game in real life. It's also insanely popular; in the UK, prime time TV schedules are wiped to broadcast it, and millions of people watch.
 
-Snooker is a two player game played in segments called "frames" (basically the same as "racks" in pool). the winner at the end of each frame is the person who scores the most points, and the overall winner is the first person to accumulate some agreed number of frames. In casual play this might be first to five, but in elite play an outright win can require you to win up to 18 frames.  
+Snooker is a two player game played in segments called "frames" (basically the same as "racks" in pool). the winner at the end of each frame is the person who scores the most points, and the overall winner is the first person to accumulate some agreed number of frames. In casual play this might be first to five, but in elite play an outright victory can require you to win up to 18 frames.  
 
 Snooker has a unique scoring system, which I've often had to explain to non-enthusiasts; usually this starts with me saying "it really isn't that complicated..." and ends with them leaving the room. Well, here goes:
 
@@ -30,13 +32,13 @@ Snooker has a unique scoring system, which I've often had to explain to non-enth
 
 5. Eventually, all fifteen red balls will be potted and only the colour balls will remain on the table. At this point, you must pot the colour balls in order of points value, working your way up from yellow to black.
 
-If you succeed in doing all this, you will have made what is known as a "clearance". This happens pretty often on TV, but it's actually insanely difficult, and most amateur players can't do it. If you miss at any point, the other player comes to the table and starts the sequence again, beginning with a red (or whichever colour has the lowest value if all the reds are gone), hoping to accumulate enough points to overtake you. There are ways to score points from fouls, and technically the frame isn't over until all the balls are potted, but players will usually concede rather than coming to the table if their opponent misses but it's mathematically impossible for them to catch up by potting all the remaining balls.   
+If you succeed in doing all this, you will have made what is known as a "clearance". This happens pretty often on TV, but it's actually really difficult, and most amateur players can't do it. If you miss at any point, the other player comes to the table and starts the sequence again, beginning with a red (or whichever colour has the lowest value if all the reds are gone), hoping to accumulate enough points to overtake you. There are ways to score points from fouls, and technically the frame isn't over until all the balls are potted, but players will usually concede rather than coming to the table if their opponent misses but it's mathematically impossible for them to catch up by potting all the remaining balls.   
 
 With this in mind it's pretty easy to calculate the maximum number of points a single player could score in a frame.
 
     (red.value + black.value)*red.quantity + (total value of the six colour balls)
 
-Fill in the values and we get the magic figure for the perfect game:
+Fill in the figures and we get the magic total for the perfect game:
 
     (1+7)*15 + 7! = 147
 
@@ -50,7 +52,7 @@ I imagine my score bar looking something like this:
 
 The full width of the score bar represents the theoretical maximum points available in the game, which we now know is 147. This value never changes.
 
-Within this, we have the score (how many points you've made so far) and the remaining points (the maximum points still available). Both of these values will change as the game goes on. Add them together and you get the total points in the game *at that stage of the game*. If you only ever potted red and black balls this total would remain equal to 147. However, every time you have the chance to pot a black ball and choose a lower value colour ball this value goes down, since you are essentially "losing" points from the game.
+Within this, we have the score (how many points you've made so far) and the remaining points (the maximum points still available). Both of these values will change as the game goes on. Add them together and you get the total points in the game *at that stage of the game*. If you only ever potted red and black balls this total would remain equal to 147. However, every time you have the chance to pot a black ball and choose a lower value colour ball this value goes down, since you are essentially losing points from the game. Our final element is the marker which shows us how many more points we need to secure victory; although this might seem like it's just a fixed value, it's actually a variable as well, as I'll explain later.  
 
 We also need some inputs, and an output which can be used to show alert messages:
 
@@ -64,9 +66,9 @@ In order to make this work, there are a few different variables we need to think
 
 3. *What's the score?* How many points have we accumulated so far?
 
-4. *Where's the winning line?* At what point are we mathematically certain of winning (barring points from fouls), and how many points do we need to get there?
+4. *What's the total number of points in the game?* To get the maximum possible score you must pot a black ball with every red ball. Potting a different colour increases your score but reduces the total number of points in the game. Potting a red and then missing also reduces the number of points in the game, because your opponent must score a red as their first ball, meaning the colour ball is missed out.
 
-5. *What's the total number of points in the game?* To get the maximum possible score you must pot a black ball with every red ball. Potting a different colour increases your score but reduces the total number of points in the game. Potting a red and then missing also reduces the number of points in the game, because your opponent must score a red as their first ball, meaning the colour ball is missed out.
+5. *Where's the winning line?* At what point are we mathematically certain of winning (barring points from fouls), and how many points do we need to get there? My simple interpretation is that in order to get an insurmountable lead we need just over half all the available points. If there were 99 points available, I'd need 50, leaving only 49 for my opponent. If there were 100 points available I'd need 51. A really important thing to note is that although the winning line is calculated from the total number of points in the game, it's actually a variable. At the start of the game I will need 74 points to win, assuming I just pot reds and blacks. As the game progresses, every time I remove points from the game by choosing to pot any colour other than black, I'm slightly lowering the winning threshold. If I just potted reds and yellows I could eventually win with only 42 points! However, I'm also reducing the speed at which I accumulate points. I'd only have to pot 20 balls to win with reds and blacks, but I'd need to pot 28 balls to win using reds and yellows!
 
 _Method_
 
@@ -293,4 +295,6 @@ We'll use `document.getElementById()` to access the `pointsBar`, `remainingBar`,
 
 Two new variables, `pointsAvailable` and `winningScore` allow us to update the position and text of our pointer element. Meanwhile, the `scoreBar` and `remainingBar` elements are upated using the globally available values for `score` and `updateRemaining()`. We also have access to anothe global variable, `maxPoints`, which represents our "perfect" 147 score. Since we need our `scoreBar` and `remainingBar` to be defined in relation to this perfect score we simply divide them by `maxPoints` and multiply by 100 to get a percentage value, which can now be passed back into the CSS. From here, the browser can calculate the correct pixel widths.
 
-So that's it! A functioning score calculator for snooker which provides an interesting, visualisation of the game state as the score changes. Having tested this I consider it viable, but there are plenty of updates worth making for the next version of the application. When I work on this again I'll focus on improving the user interface to make it simpler and more intuitive, and improving the score bar visualisation to be simpler to understand without a lot of explanation.
+So that's it! A functioning score calculator for snooker which provides an interesting, visualisation of the game state as the score changes. Having tested this I consider it viable, but there are plenty of updates worth making for the next version of the application.
+
+When I work on this again I'll focus on improving the user interface to make it simpler and more intuitive, and improving the score bar visualisation to be simpler to understand without a lot of explanation.
