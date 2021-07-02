@@ -37,6 +37,16 @@ ul.posts li {
     padding: 1em 0 1em 0;
 }
 
+ul.selector {
+  list-style: none;
+  padding: 0;
+}
+
+ul.selector li {
+  display: inline;
+}
+
+
 footer, nav {
     border-top: 0.05em solid grey;
     border-bottom: 0.05em solid grey;
@@ -107,4 +117,12 @@ iframe {
   html {
     padding: 0;
   }
+}
+
+#projectsElement {
+  display: block;
+}
+
+#postsElement {
+  display: none;
 }
