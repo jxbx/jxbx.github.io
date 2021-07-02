@@ -3,24 +3,21 @@ layout: default3
 title: Latest posts
 ---
 	<h1>{{ page.title }}</h1>
-	<div id="postsElement">
-		<ul class="posts">
-		  {% for post in site.posts %}
-			{% if post.category == "blog" %}
-			<li>
-				 <span>{{ post.date | date_to_string }}</span>
-				 » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-				 <div>{{ post.excerpt }}
-			 <a href="{{ post.url }}">more »</a>
-				 </div>
-			</li>
-			{% endif %}
-		  {% endfor %}
-		</ul>
-	</div>
+	<ul class="posts" id="postsElement">
+	  {% for post in site.posts %}
+		{% if post.category == "blog" %}
+		<li>
+			 <span>{{ post.date | date_to_string }}</span>
+			 » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+			 <div>{{ post.excerpt }}
+		 <a href="{{ post.url }}">more »</a>
+			 </div>
+		</li>
+		{% endif %}
+	  {% endfor %}
+	</ul>
 
-	<div id="projectsElement">
-	<ul class = "projects">
+	<ul class = "projects" id="projectsElement">
 	  {% for post in site.posts %}
 		{% if post.category !="blog" %}
 		<li>
@@ -32,4 +29,3 @@ title: Latest posts
 		{% endif %}
 	  {% endfor %}
 	</ul>
-	</div>
