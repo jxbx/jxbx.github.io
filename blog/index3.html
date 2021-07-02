@@ -7,9 +7,11 @@ title: Latest posts
 	function toggle() {
 		if (document.getElementById("postsElement").style.display === "none"){
 			document.getElementById("postsElement").style.display = "block";
+			document.getElementById("projectsElement").style.display = "none";
 		}
 		else {
-			document.getElementById("postsElement").style.display = "none"; 
+			document.getElementById("postsElement").style.display = "none";
+			document.getElementById("projectsElement").style.display = "block"; 
 		}
 
 		console.log("test");
