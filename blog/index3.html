@@ -22,7 +22,7 @@ title: Latrest posts
 		{% if post.category !="blog" %}
 		<li>
 			 <h1>{{ post.title }}</h1>
-			 <p>{{ content }}</p>
+			 <p>{{ post.excerpt }}</p>
 		</li>
 		{% endif %}
 	  {% endfor %}
