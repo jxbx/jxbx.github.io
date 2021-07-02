@@ -49,7 +49,7 @@ _Problem analysis_
 
 I imagine my score bar looking something like this:
 
-![sketch of score bar interface](/blog/assets/01.jpg){:height="400px" width="600px"}
+<img class="blog-img" src="/blog/assets/01.jpg">
 
 The full width of the score bar represents the theoretical maximum points available in the game, which we now know is 147. This value never changes.
 
@@ -57,7 +57,7 @@ Within this, we have the score (how many points you've made so far) and the rema
 
 We also need some inputs, and an output which can be used to show alert messages:
 
-![sketch of input and output interface](/blog/assets/02.jpg){:height="400px" width="600px"}
+<img class="blog-img" src="/blog/assets/02.jpg">
 
 In order to make this work, there are a few different variables we need to think about:
 
