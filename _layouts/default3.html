@@ -13,7 +13,25 @@
     <link rel="icon" href="/images/favicon.png">
   </head>
 
+  <script>
+    function toggle() {
 
+      let projectsElement = document.getElementById("projectsElement");
+      let postsElement = document.getElementById("postsElement");
+
+      if (postsElement.style.backgroundColor === "blue"){
+        postsElement.style.display === "red";
+        projectsElement.style.display === "blue";
+
+      }
+      else {
+        postsElement.style.display === "blue";
+        projectsElement.style.display === "red";
+      }
+      console.log("test");
+
+    }
+  </script>
 
 
 

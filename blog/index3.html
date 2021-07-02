@@ -2,27 +2,6 @@
 layout: default3
 title: Latest posts
 ---
-
-<script>
-	function toggle() {
-
-		let projectsElement = document.getElementById("projectsElement");
-		let postsElement = document.getElementById("postsElement");
-
-		if (postsElement.style.backgroundColor === "blue"){
-			postsElement.style.display === "red";
-			projectsElement.style.display === "blue";
-
-		}
-		else {
-			postsElement.style.display === "blue";
-			projectsElement.style.display === "red";
-		}
-		console.log("test");
-
-	}
-</script>
-
 	<h1>{{ page.title }}</h1>
 	<ul class="posts" id="postsElement">
 	  {% for post in site.posts %}
