@@ -39,7 +39,7 @@ title: Latest posts
 	{% for post in site.posts %}
 	{% if post.category !="blog" %}
 	<li>
-		<img src="{{post.thumbnail}}" />
+		<img src="{{post.thumbnail}}" alt="thumbnail illustration of project" />
 		<div class="projectText">
 			<h1>{{ post.title }}</h1>
 			<div>{{ post.excerpt }}
