@@ -34,6 +34,12 @@ ul.posts li, ul.projects li {
     padding: 1rem 0 1rem 0;
 }
 
+ul.projects li:hover {
+  background-color: #cc8d66;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
 ul.selector {
     list-style: none;
     padding: 0;
@@ -43,8 +49,7 @@ ul.selector {
 }
 
 ul.selector li {
- margin: 0;
-  padding: 0 0.5rem 0 0;
+  margin: 0 0.5rem 0 0;
   display: inline;
   list-style: none;
 }
@@ -124,10 +129,14 @@ iframe {
 
 #projectsButton {
   text-decoration: underline;
+  background-color: #cc8d66;
+  border-radius: 0.3rem;
 }
 
 #postsButton {
   text-decoration: none;
+  background-color: transparent;
+  border-radius: 0.3rem;
 }
 
 #projectsElement li img {
