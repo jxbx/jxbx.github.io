@@ -183,3 +183,7 @@ ul.projects li {
     display: block;
   }
 }
+
+#aboutText {
+  display: none;
+}
