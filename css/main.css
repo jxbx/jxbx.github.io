@@ -100,13 +100,13 @@ p {
 
 code {
   font-size: 1.1em;
-  background-color: #d29a79;
+  background-color: #dedede;
 }
 
 pre {
-  color: white;
-  border-top: 0.05rem dashed white;
-  border-bottom: 0.05rem dashed white;
+  color: #2a2a2a;
+  border-top: 0.05rem dashed grey;
+  border-bottom: 0.05rem dashed grey;
   padding: 1rem 0 1rem 0;
   overflow: auto;
 }
