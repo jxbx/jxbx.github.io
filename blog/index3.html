@@ -20,6 +20,12 @@ title: Latest posts
 	}
 </script>
 
+<ul class="selector">
+<li id="projectsButton" onclick="toggle()">Projects</li>
+<li>//</li>
+<li id="postsButton" onclick="toggle()">Blog</li>
+</ul>
+
 <ul class="posts" id="postsElement">
 	{% for post in site.posts %}
 	{% if post.category == "blog" %}
