@@ -292,7 +292,7 @@ To start with, we need to think about drawing the pint glass so it really looks 
 
 
 <html>
-  <div style="display: flex">
+  <div style="display: flex; background-color: #d1d1d1; padding: 3rem 0 3rem 3rem">
   <div style="width: 10rem; height: 15rem; background-color: red; margin-right: 2rem;">
   </div>
 
@@ -302,8 +302,6 @@ To start with, we need to think about drawing the pint glass so it really looks 
   </div>
  </div>
 </html>
-
-      <div style="display: flex">
 
         <div style="width: 10rem;
         height: 15rem; background-color: red;
@@ -324,8 +322,6 @@ To start with, we need to think about drawing the pint glass so it really looks 
         border-top: 2rem solid white">
         </div>
 
-       </div>
-
 These are all essentially the same: a simple `div` element coloured in to appear as a rectangle. However, I've managed to change the apparent shape of the rectangle using a clip path. [Clippy](https://bennettfeely.com/clippy/) is a great tool for making clip paths, which are essentially masks that sit on top of an HTML element and crop it to a specific shape. It's possible to make extremely complex clip masks using SVG, but when all that's needed is a simple geometric shape, you can just use a single line of CSS, like this:
 
     clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%)
@@ -333,7 +329,7 @@ These are all essentially the same: a simple `div` element coloured in to appear
 Adding a `border-top` and playing with the colours gives us a nice approximation of a real pint of beer with minimal effort. Beyond this, you can start nesting different `div` elements inside the glass and playing around with gradients to achieve something surprisingly complex in pure HTML/CSS without ever having to use a graphics program like Illustrator. I even have a nice simple way to vary the shape of the glass, using the `transform: scale(x, y)` attribute in CSS. This is great, because I only need to draw my pint glass once, and by feeding new values into `transform` I can stretch or squash it to look like anything from a half pint glass to a tall pilsner glass. As a final touch I'm also going to add a little keyframe animation to the div so the beer inside the glass looks like it's wobbling from side to side as it's poured.
 
 <html>
-<div style="display: flex; margin-bottom: 3rem">
+<div style="display: flex; background-color: #d1d1d1; padding: 3rem 0 3rem 3rem">
     <div style="width: 10rem;
       height: 15rem;
       background-image: linear-gradient(to top, #c7a749 , #be7b24);
@@ -413,7 +409,7 @@ In order to create a smooth and seamless experience wanted this webpage to feel 
 
 Steps 3 and 4 are actually the same slide at different stages; we can call this the "output" slide since its where we'll see the graphics and stats based on the inputs we provide in step 2. Meanwhile, step 4 includes a "try again" button which returns the user to step 2 if they want to submit new inputs.
 
-<img src="../blog/assets/03.jpg" alt = "the four stages of the web app's user journey mapped out" />
+<img src="/blog/assets/03.jpg" alt = "the four stages of the web app's user journey mapped out" />
 
 To create the "slide show" effect I'm going to create multiple `div` elements and style them to have `height: 100vh` and `width: 100%`, ensuring they completely fill the user's viewport. I'll stack these `div`s on top of each other using the `z-index` attribute, which will hide all but the topmost slide, and then I'll reveal the slides below when needed using `position: relative` and changing the value of `top` to shift unneeded slides right off the edge off the page. The content is still there, but by setting `overflow: hidden` on the HTML `body` element I'm ensuring that it will be unviewable. From the user's point of view the slide is gone, but really we're just storing it beyond the edge of the page, and we can get it back whenever we want.
 
@@ -437,7 +433,7 @@ In this page flow `pageThree`, the output page, doesn't move it all; instead, we
       document.getElementById("slider").style.top = "-200vh";
     }
 
-<img src="../blog/assets/04.jpg" alt="illustration showing how div elements can be repositioned within the viewport to create a slideshow effect"/>
+<img src="/blog/assets/04.jpg" alt="illustration showing how div elements can be repositioned within the viewport to create a slideshow effect"/>
 
 Once the values are submitted to the form we have a new function, `resultAnimate()`, which calls `checkHead()`, passes our values into the HTML and moves elements around in the viewport to show our pint pouring and reveal our stats in a synchronised manner. In order for this to work well it's really important to trigger the various animations at different times; if they all take place at once it will be a complete mess. To achieve this I'm calling some of the animations immediately, and using `setTimeout()` to add a delay to some of them:
 
