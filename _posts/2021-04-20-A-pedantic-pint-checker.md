@@ -175,7 +175,6 @@ Here's an illustration:
 
 ~~~~~~~~~~~~~~~~~~~
 
-
      glass:           froth:                       beer:
 
      _rad1
@@ -200,7 +199,6 @@ beer.volume = glass.volume-froth.volume
 This is neat, but in order to calculate the froth volume I need to find `heightNew` and `radNew`. `heightNew` is easy because it will be supplied by the user. `radNew` is trickier because it needs to be calculated. In order to find the bottom radius of the cone at any given height we can use the fact that the steepness of the cone is constant, meaning change in radius is directly proportional to change in height. In the illustration below it's clear that when we halve the height, the difference between the top and bottom radii is also halved.
 
 ~~~~~~~~~~~~~~~~~~~
-
 
   _rad1_
  |      |            
@@ -267,7 +265,7 @@ _Trying it out_
 
 Okay, so with all that work complete, we're now at the stage where we can build a minimum viable product. Mine looks like this:
 
-<iframe src="/projects/pintpedant_beta.html" width="100%" height="600" style="border:none;">
+<iframe src="/projects/pintpedant_beta.html" width="100%" height="400" style="border:none;">
 </iframe>
 
 I've used a three `div` elements aligned directly on top of each other to represent the glass and its contents.
