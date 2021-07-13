@@ -1,13 +1,31 @@
-//required to derive rad2
+//declare HTML elements as variables
+
+const slider = document.getElementById("slider");
+const priceEl = document.getElementById("price");
+const headDepthEl = document.getElementById("headDepth");
+const frothVolText = document.getElementById("frothVolText");
+const beerVolText = document.getElementById("beerVolText");
+const percentText = document.getElementById("percentText");
+const costText = document.getElementById("costText");
+const statContainer = document.getElementById("statContainer");
+const beerBody = document.getElementById("beerBody");
+const again = document.getElementById("again");
+const drip = document.getElementById("drip");
+const glassesText = document.getElementById("glassesText");
+const glassInfo = document.getElementById("glassInfo");
+const beerContainer = document.getElementById("beerContainer");
+
+
+//formulas to derive rad2
 
 function quadFormula(a, b, c) {
   return 0.5 * (-b + Math.sqrt(b * b - 4 * a * c));
 }
 
 function findRad2(glass){
-  
+
   let newVar = Math.pow(glass.rad1, 2) - glass.volume / ((Math.PI*glass.height) / 3);
-  
+
   return quadFormula(1, glass.rad1, newVar);
 }
 
@@ -22,46 +40,68 @@ function findVol(height, rad1, rad2) {
   );
 }
 
+//glass info
 
+const glasses = [
 
-const standardPintGlass = {
-  height: 14,
-  rad1: 4,
-  volume: 568,
-  scaleX: 1,
-  scaleY: 1
-};
+  {
+    name: "Standard conical",
+    height: 14,
+    rad1: 4,
+    volume: 568,
+    scaleX: 1,
+    scaleY: 1
+  },
 
-const standardHalfPintGlass = {
-  height: 11,
-  rad1: 3.2,
-  volume: 284,
-  scaleX: 3.2 / 4,
-  scaleY: 12 / 14
-};
+  {
+    name: "Standard half pint glass",
+    height: 11,
+    rad1: 3.2,
+    volume: 284,
+    scaleX: 3.2 / 4,
+    scaleY: 12 / 14
+  },
 
-const stubbyPintGlass = {
-  height: 10,
-  rad1: 4.5,
-  volume: 568,
-  scaleX: 4.5 / 4,
-  scaleY: 10 / 14
-};
+  {
+    name: "Stubby pint glass",
+    height: 10,
+    rad1: 4.5,
+    volume: 568,
+    scaleX: 4.5 / 4,
+    scaleY: 10 / 14
+  },
 
-const pilsnerPintGlass = {
-  height: 20,
-  rad1: 3.5,
-  volume: 568,
-  scaleX: 3.5 / 4,
-  scaleY: 20 / 14
-};
+  {
+    name: "Pilsner glass",
+    height: 20,
+    rad1: 3.5,
+    volume: 568,
+    scaleX: 3.5 / 4,
+    scaleY: 20 / 14
+  },
 
-const pintTypeLookup = {
-  "Standard conical": standardPintGlass,
-  "Stubby pint": stubbyPintGlass,
-  "Standard half pint": standardHalfPintGlass,
-  "Pilsner pint": pilsnerPintGlass
-};
+]
+
+//glass selector
+
+let glassCounter = 0;
+let pintSelected = glasses[glassCounter];
+
+function glassSelector(input) {
+
+  glassCounter = (glassCounter + input) % glasses.length;
+  glassCounter >= 0 ?
+  pintSelected = glasses[glassCounter]:
+  pintSelected = glasses[glasses.length + glassCounter];
+
+  glassesText.innerHTML = pintSelected.name;
+
+  glassInfo.innerHTML = `Height: ${pintSelected.height}cm <br> Top diameter: ${pintSelected.rad1 * 2}cm`;
+
+  beerContainer.style.transform = `scale(${pintSelected.scaleX},${pintSelected.scaleY})`;
+
+  checkInputs();
+}
 
 function checkHead(glass, inputHeadHeight, inputPrice) {
   let result = [];
@@ -86,153 +126,105 @@ function checkHead(glass, inputHeadHeight, inputPrice) {
 // form overlay
 
 function inputOverlay() {
-  document.getElementById("pageThree").style.top = "0vh";
-  document.getElementById("pageThree").style.opacity = "1";
-  document.getElementById("pageOne").style.top = "-100vh";
-  console.log("test");
+  slider.style.top = "-200vh";
 }
 
 //validate head depth and pint price inputs
 
-const priceEl = document.getElementById("price");
-const headDepthEl = document.getElementById("headDepth");
-
-priceEl.oninput = checkInputs;
-headDepthEl.oninput = checkInputs;
-
 function checkInputs() {
-  let glassType =
-    pintTypeLookup[Object.keys(pintTypeLookup)[Math.abs(glassCounter)]];
+
   if (priceEl.value < 0) {
     priceEl.value = 0;
   }
 
   if (headDepthEl.value < 0) {
     headDepthEl.value = 0;
-  } else if (headDepthEl.value > glassType.height) {
-    headDepthEl.value = glassType.height;
+  } else if (headDepthEl.value > pintSelected.height) {
+    headDepthEl.value = pintSelected.height;
   }
 }
+
+priceEl.oninput = checkInputs;
+headDepthEl.oninput = checkInputs;
 
 //beer pouring and stat reveal
 
 function resultAnimate() {
-  const glassType =
-    pintTypeLookup[Object.keys(pintTypeLookup)[Math.abs(glassCounter)]];
   const price = priceEl.value;
   const headDepth = headDepthEl.value;
 
-  let outputValues = checkHead(glassType, headDepth, price);
-  console.log(outputValues);
+  let outputValues = checkHead(pintSelected, headDepth, price);
 
-  document.getElementById("frothVolText").innerHTML = outputValues[0] + "ml";
-  document.getElementById("beerVolText").innerHTML = outputValues[1] + "ml";
-  document.getElementById("percentText").innerHTML = outputValues[2] + "%";
-  document.getElementById("costText").innerHTML = "£" + outputValues[3];
+  frothVolText.innerHTML = outputValues[0] + "ml";
+  beerVolText.innerHTML = outputValues[1] + "ml";
+  percentText.innerHTML = outputValues[2] + "%";
+  costText.innerHTML = "£" + outputValues[3];
+
+  //ANIMATION TIMINGS
+
+  //hide input form and reveal stat box
+
+  slider.style.top = "-300vh";
+  statContainer.style.marginLeft = `${2 + (16 * pintSelected.scaleX - 16) / 2}rem`;
+  statContainer.style.opacity = "1";
+
+  //draw in beer glass contents and reveal stats at 500ms intervals
 
   setTimeout(function() {
-    document.getElementById("frothVolText").style.opacity = "1";
+    beerBody.style.height = "30em";
+    beerBody.style.animationName = "wobble";
+    frothVolText.style.opacity = "1";
   }, 1000);
+
   setTimeout(function() {
-    document.getElementById("beerVolText").style.opacity = "1";
+    beerVolText.style.opacity = "1";
   }, 1500);
+
   setTimeout(function() {
-    document.getElementById("percentText").style.opacity = "1";
+    percentText.style.opacity = "1";
+    beerBody.style.borderTop = `${(headDepth * 2) / pintSelected.scaleY}rem solid white`;
   }, 2000);
+
   setTimeout(function() {
-    document.getElementById("costText").style.opacity = "1";
+    costText.style.opacity = "1";
   }, 2500);
+
+  //reveal re-submit button and draw in drip
+
   setTimeout(function() {
-    document.getElementById("again").style.opacity = "1";
+    again.style.opacity = "1";
+    drip.style.height = "10em";
   }, 4000);
-  document.getElementById("pageThree").style.opacity = "0";
-  setTimeout(function() {
-    document.getElementById("pageThree").style.top = "-100vh";
-  }, 1000);
 
-  document.getElementById("statContainer").style.marginLeft = `${2 +
-    (16 * glassType.scaleX - 16) / 2}rem`;
-
-  document.getElementById("pageThree").style.opacity = "0";
-  setTimeout(function() {
-    document.getElementById("statContainer").style.opacity = "1";
-  }, 1000);
-
-  setTimeout(function() {
-    document.getElementById("beerBody").style.borderTop = `${(headDepth * 2) /
-      glassType.scaleY}rem solid white`;
-  }, 2000);
-  setTimeout(function() {
-    document.getElementById("beerBody").style.height = "30em";
-  }, 1000);
-  setTimeout(function() {
-    document.getElementById("beerBody").style.animationName = "wobble";
-  }, 1000);
-  setTimeout(function() {
-    document.getElementById("drip").style.height = "10em";
-  }, 4000);
 }
 
-//again animation
+//RE-SUBMIT ANIMATION
 
 function againAnimate() {
-  document.getElementById("statContainer").style.marginLeft = "-13rem";
+
+  //reposition stat box
+
+  statContainer.style.marginLeft = "-13rem";
+
+  //reveal form
+
   inputOverlay();
-  document.getElementById("pageThree").style.top = "0vh";
+
+  // clear statbox
 
   setTimeout(function() {
-    document.getElementById("frothVolText").innerHTML = "";
-  }, 1000);
-  setTimeout(function() {
-    document.getElementById("beerVolText").innerHTML = "";
-  }, 1000);
-  setTimeout(function() {
-    document.getElementById("percentText").innerHTML = "";
-  }, 1000);
-  setTimeout(function() {
-    document.getElementById("costText").innerHTML = "";
+    frothVolText.innerHTML = "";
+    beerVolText.innerHTML = "";
+    percentText.innerHTML = "";
+    costText.innerHTML = "";
   }, 1000);
 
-  document.getElementById("frothVolText").style.opacity = "0";
-  document.getElementById("beerVolText").style.opacity = "0";
-  document.getElementById("percentText").style.opacity = "0";
-  document.getElementById("costText").style.opacity = "0";
-  document.getElementById("statContainer").style.opacity = "0";
+  //re-hide stats
 
-  document.getElementById("again").style.opacity = "0";
-}
-
-//splash screen navigation
-
-const arrowEl = document.getElementById("arrow");
-
-arrowEl.addEventListener("click", inputOverlay);
-
-//glass selector
-
-let glassCounter = 0;
-
-function glassSelector(input) {
-  if (input === 1) {
-    glassCounter = (glassCounter + 1) % Object.keys(pintTypeLookup).length;
-  } else {
-    glassCounter = (glassCounter - 1) % Object.keys(pintTypeLookup).length;
-  }
-
-  let pintSelected =
-    pintTypeLookup[Object.keys(pintTypeLookup)[Math.abs(glassCounter)]];
-
-  document.getElementById("glassesText").innerHTML = Object.keys(
-    pintTypeLookup
-  )[Math.abs(glassCounter)];
-
-  document.getElementById("glassInfo").innerHTML = `Height: ${
-    pintSelected.height
-  }cm <br> Top diameter: ${pintSelected.rad1 * 2}cm`;
-
-  document.getElementById(
-    "beerContainer"
-  ).style.transform = `scale(${pintSelected.scaleX},${pintSelected.scaleY})`;
-
-  checkInputs();
+  frothVolText.style.opacity = "0";
+  beerVolText.style.opacity = "0";
+  percentText.style.opacity = "0";
+  costText.style.opacity = "0";
+  statContainer.style.opacity = "0";
+  again.style.opacity = "0";
 }

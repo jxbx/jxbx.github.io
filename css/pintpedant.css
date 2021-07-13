@@ -8,68 +8,77 @@ html {
   box-sizing: inherit;
 }
 
-@media only screen and (max-width: 520px) {
-  html {
-    font-size: 3vw;
-  }
-  div.inputContainer {
-    transform: scale(1.5);
-  }
-}
-
 body {
   margin: 0;
+  overflow: hidden;
+  color: white;
   font-family: "Rubik", "sans-serif";
   font-weight: 800;
-  color: white;
-  background-color: black;
-  overflow: hidden;
 }
 
-div.pageContainer {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+p {
+  text-align: center;
+  margin: 0;
 }
+
+p.intro {
+  max-width: 20rem;
+  margin-bottom: 1rem;
+}
+
+#logo {
+  height: 20rem;
+  margin-bottom: 1.5rem;
+}
+
+/* beer glass and stat page */
 
 #pageOne {
+  background-color: #19c7d4;
+  height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  background-color: #fa004b;
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  transition-property: top;
-  transition-duration: 1s;
 }
+
+/* intro page */
 
 #pageTwo {
-  background-color: #19c7d4;
-  z-index: 0;
-}
-
-#pageThree {
+  background-color: #fa004b;
+  height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  position: absolute;
+}
+
+/* form page */
+
+#pageThree {
   background-color: rgba(25, 25, 25, 0.3);
-  z-index: 3;
-  top: 100vh;
-  opacity: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/*
+container for intro and form pages: adjust "top" value to
+slide this up and reveal different pages in the viewport
+*/
+
+#slider {
+  position: relative;
+  top: -100vh;
   transition-property: top;
   transition-duration: 1s;
 }
 
-div.inputContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
+/*beer glass artwork */
 
 #beerBody {
   position: absolute;
@@ -165,6 +174,148 @@ div.base {
   top: 28em;
 }
 
+#drip {
+  position: absolute;
+  height: 0em;
+  background: white;
+  top: -1em;
+  left: 11em;
+  width: 1em;
+  border-radius: 1em;
+  transition-duration: 2s;
+  transition-property: height;
+}
+
+/*form styling*/
+
+div.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+input[type="number"] {
+  padding: 0.5rem;
+  border: none;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  border-radius: 0.5rem;
+  width: 8rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+div.glassSelector {
+  display: flex;
+  flex-direction: row;
+  max-width: 4rem;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+#glassInfo {
+  margin-bottom: 1rem;
+  font-weight: 300;
+  font-size: 0.8rem;
+}
+
+/* arrow button styling */
+
+button.arrow {
+  border: none;
+  text-decoration: none;
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
+/* make intro page arrow larger */
+
+#startArrow {
+  font-size: 3em;
+}
+
+/* button styling */
+
+button {
+  border: 0.2rem dotted white;
+  text-decoration: none;
+  background-color: transparent;
+  color: inherit;
+  border-radius: 0.5rem;
+  padding: 0.4rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: inherit;
+  cursor: pointer;
+}
+
+/* emphasis for buttons / form inputs */
+
+:focus {
+  background: #ebde34;
+  outline: none;
+}
+
+/* stat container styling */
+
+#statContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: -13rem;
+  min-width: 13rem;
+
+  opacity: 0;
+  transition-property: margin-left, opacity;
+  transition-duration: 1s;
+}
+
+div.statText {
+  border-bottom: 0.2rem solid white;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.5rem;
+}
+
+/* stat label styling */
+
+h1 {
+  font-size: 3.5rem;
+  line-height: 1;
+  margin: 0;
+}
+h2 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* elements declared individually so their values
+can be individually updated from the Javascript */
+
+#frothVolText,
+#beerVolText,
+#percentText,
+#costText {
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 1s;
+}
+
+/* increase font size and form size for mobile viewing */
+
+@media only screen and (max-width: 520px) {
+  html {
+    font-size: 3vw;
+  }
+  div.formContainer {
+    transform: scale(1.5);
+  }
+}
+
 @keyframes wobble {
   0% {
     transform: rotate(0deg);
@@ -181,165 +332,4 @@ div.base {
   100% {
     transform: rotate(0deg);
   }
-}
-
-#drip {
-  position: absolute;
-  height: 0em;
-  background: white;
-  top: -1em;
-  left: 11em;
-  width: 1em;
-  border-radius: 1em;
-  transition-duration: 2s;
-  transition-property: height;
-}
-
-div.bigContainer {
-  width: 100%;
-  height: 100vh;
-  margin-left: auto;
-  margin-right: auto;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-}
-
-#statContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: -13rem;
-  min-width: 13rem;
-
-  opacity: 0;
-  transition-property: margin-left;
-  transition-duration: 1s;
-}
-
-div.statText {
-  border-bottom: 0.2rem solid white;
-  margin-bottom: 0.8rem;
-  padding-bottom: 0.5rem;
-}
-
-h1 {
-  font-size: 3.5rem;
-  line-height: 1;
-  margin: 0;
-}
-h2 {
-  font-size: 1rem;
-  margin: 0;
-}
-
-h1.stats {
-}
-
-#frothVolText,
-#beerVolText,
-#percentText,
-#costText {
-  opacity: 0;
-  transition-property: opacity;
-  transition-duration: 1s;
-}
-
-p {
-  text-align: center;
-  margin: 0;
-}
-
-p.intro {
-  max-width: 20rem;
-  margin-bottom: 1rem;
-}
-
-p.glasses {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-#arrow {
-  font-size: 3rem;
-}
-
-div.glassSelector {
-  display: flex;
-  flex-direction: row;
-  max-width: 4rem;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.5rem;
-}
-
-#glassInfo {
-  margin-bottom: 1rem;
-  font-weight: 300;
-  font-size: 0.8rem;
-}
-
-:link {
-  text-decoration: none;
-  color: white;
-}
-
-a:visited {
-  text-decoration: none;
-  color: white;
-}
-
-#arrow:active {
-  transform: scale(0.9);
-}
-
-#again {
-  opacity: 0;
-}
-
-button {
-  border: 0.2rem dotted white;
-  text-decoration: none;
-  background-color: transparent;
-  color: inherit;
-  border-radius: 0.5rem;
-  padding: 0.4rem;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: inherit;
-  cursor: pointer;
-}
-
-button:active {
-  transform: scale(0.9);
-}
-
-input[type="number"] {
-  padding: 0.5rem;
-  border: none;
-  text-decoration: none;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  border-radius: 0.5rem;
-  width: 8rem;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-button.selectArrow {
-  border: none;
-  text-decoration: none;
-}
-
-#logo {
-  height: 20rem;
-  margin-bottom: 1.5rem;
-}
-
-:focus {
-  background: #ebde34;
-  outline: none;
 }
