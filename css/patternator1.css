@@ -7,6 +7,7 @@ body{
 #bigWrapper {
   display: flex;
   flex-wrap: wrap;
+  min-width: 600px;
 }
 
 #wrapper {
