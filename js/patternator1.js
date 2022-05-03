@@ -227,7 +227,7 @@ const background = document.getElementById('wrapper');
 
 const picker0 = new Picker({
   parent: parent0,
-  color: "#a7bec2ff",
+  color: "#2197ac",
   popup: "top",
   alpha: false,
   onChange: function (color) {
@@ -239,7 +239,7 @@ const picker0 = new Picker({
 const parent1 = document.getElementById("parent1");
 const picker1 = new Picker({
   parent: parent1,
-  color: "#947567ff",
+  color: "#f45555ff",
   popup: "top",
   onChange: function (color) {
     background.style.color = color.rgbaString;
@@ -250,7 +250,7 @@ const picker1 = new Picker({
   const parent2 = document.getElementById("parent2");
   const picker2 = new Picker({
     parent: parent2,
-    color: "white",
+    color: "#356969ff",
     popup: "top",
     onChange: function (color) {
       for (const item of gridItems){
