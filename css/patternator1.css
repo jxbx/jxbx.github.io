@@ -4,6 +4,11 @@ body{
   margin: 0;
 }
 
+#bigWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 #wrapper {
   background-color: blue;
   overflow: hidden;
