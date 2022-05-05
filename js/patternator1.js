@@ -3,6 +3,7 @@
 let itemAngles = [];
 let itemStretches = [];
 let itemDropShadows = "none";
+let blends = ["normal", "multiply", "hard-light", "soft-light", "difference", "screen", "overlay", "color"];
 
 //generating 30x30 character grid; default character is "I"
 
@@ -32,7 +33,7 @@ const sliderThickness = document.getElementById("thickness");
 const outputThickness = document.getElementById("thicknessValue");
 outputThickness.innerHTML = sliderThickness.value;
 
-sliderThickness.oninput = function() {
+sliderThickness.oninput = function () {
   outputThickness.innerHTML = this.value;
 
   for (const item of gridItems){
@@ -207,8 +208,8 @@ regulariseButton.onclick = function () {
 const characterInput = document.getElementById("character");
 
 characterInput.oninput = function () {
-  for (let i=0; i<gridItems.length; i++){
-    gridItems[i].innerHTML = characterInput.value;
+  for (const item of gridItems){
+    item.innerHTML = characterInput.value;
   }
 }
 
@@ -255,10 +256,112 @@ const picker1 = new Picker({
     onChange: function (color) {
       for (const item of gridItems){
           item.style.textShadow = itemDropShadows + color.rgbaString;
-      }
+      };
 
       parent2.style.backgroundColor = color.rgbaString;
       }
     });
 
-console.log(picker1.color)
+//RANDOMISERS
+
+//randomly adjusts all eight sliders, selects random character input, selects random alignment;
+
+const parametersRandom = document.getElementById("parametersRandom");
+parametersRandom.onclick = function () {
+
+//randomise sliders
+
+  sliderThickness.value = Math.random()*800 + 100;
+  sliderThickness.dispatchEvent(new Event('input'));
+
+  sliderFontSize.value = Math.random()*295 + 5;
+  sliderFontSize.dispatchEvent(new Event('input'));
+
+  sliderJitter.value = Math.random()*100;
+  sliderJitter.dispatchEvent(new Event('input'));
+
+  sliderStretch.value = Math.random()*99 + 1;
+  sliderStretch.dispatchEvent(new Event('input'));
+
+  sliderDropShadow.value = Math.random()*100;
+  sliderDropShadow.dispatchEvent(new Event('input'));
+
+  sliderSpacing.value = Math.random()*200 + 50;
+  sliderSpacing.dispatchEvent(new Event('input'));
+
+  sliderAngle.value = Math.random()*359;
+  sliderAngle.dispatchEvent(new Event('input'));
+
+  sliderRotation.value = Math.random()*359;
+  sliderRotation.dispatchEvent(new Event('input'));
+
+//randomise character input
+
+  characterInput.value = String.fromCharCode(Math.round(Math.random()*93)+33);
+  characterInput.dispatchEvent(new Event('input'));
+
+//randomise alignment
+
+  let randomButton = Math.round(Math.random()*4);
+
+  switch(randomButton) {
+    case 0:
+      randomiseButton.click();
+      randomiseButton.focus();
+      break;
+    case 1:
+      rightAnglesButton.click();
+      rightAnglesButton.focus();
+      break;
+    case 2:
+      alternateButton.click();
+      alternateButton.focus();
+      break;
+    case 3:
+      regulariseButton.click();
+      regulariseButton.focus();
+      break;
+  }
+}
+
+//randomly selects colours;
+
+const colRandom = document.getElementById("colRandom");
+
+colRandom.onclick = function() {
+
+//generates a random colour hexcode;
+
+  function newColor () {
+    let letters = '0123456789ABCDEF'.split('');
+    let color = '#';
+    for (let i = 0; i < 6; i++ ) {
+      color += letters[Math.round(Math.random() * 15)];
+    }
+    return color;
+  }
+
+  //setColour() is from the vanillapicker module;
+
+  picker0.setColour(newColor());
+  picker1.setColour(newColor());
+  picker2.setColour(newColor());
+}
+
+// randomly selects a blend mode;
+
+const blendRandom = document.getElementById("blendRandom");
+blendRandom.onclick = function() {
+  let randomBlend = Math.round(Math.random()*7);
+  blendOptions.value = blends[randomBlend];
+  blendOptions.dispatchEvent(new Event('input'));
+}
+
+//triggers blendRandom, colRandom and parametersRandom together;
+
+const everythingRandom =document.getElementById("everythingRandom");
+everythingRandom.onclick = function () {
+  colRandom.click();
+  parametersRandom.click();
+  blendRandom.click();
+}
