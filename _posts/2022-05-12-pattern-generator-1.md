@@ -69,7 +69,7 @@ I've always wanted to have a go at building one of these, but for a long time I 
 
 How could this work? Well. let's start with a simple character like "—", the classic em dash. In the image below, I've started with a plain grid of em dashes, and created three new patterns just by applying some form of rotation to them. Initially, we've rotated all the characters by the same value so they lie on a diagonal; then, we've randomly rotated each character by either 0 or 90 degrees, to create an interesting maze-like figure; finally, we've gone full random, rotating each character by its own arbitrary amount for an effect which looks a bit like ice cream sprinkles.
 
-<img class="blog-img" src="/blog/assets/dashpatterns.jpg">
+<img class="blog-img" src="/blog/assets/dashpatterns.png">
 
 This is already starting to look quite cool. I really like the simplicity of using typographic characters as graphic elements, particularly simple symbols like +, -, O, and ~ . Even simple manipulations can create striking patterns, and we quickly forget we're looking at type. Wouldn't it be nice to have a character input which allows you to apply these sorts of transformations on any character? What would it look like if we used symbols like A, & or $ in these designs? What other parameters can we build into our pattern generator to give us even more flexibility?
 
@@ -196,7 +196,7 @@ This loop will build each element, using `setAttribute()` to add the classname `
   </div>
 
    <div class="slideContainer">
-    <input type="range" min="0" max="359" value="50" class="slider" id="angle" oninput="changeText()">
+    <input type="range" min="0" max="359" value="0" class="slider" id="angle" oninput="changeText()">
     <p class="value">Value: <span id="angleValue">0</span></p>
   </div>
 
