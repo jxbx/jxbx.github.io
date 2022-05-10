@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Building a score calculator for Snooker
+title: A semi-random pattern generator
 date: 2022-05-09
 category: blog
 ---
@@ -9,62 +9,62 @@ There are lots of pattern generators online; [here's an example](https://doodad.
 
 I've always wanted to have a go at building one of these, but for a long time I wasn't sure how to make a start. Recently, I used [variable fonts](https://web.dev/variable-fonts/) in a project, and this gave me an idea: these variable fonts are designed to offer multiple font styles in a single font file; starting with a base font, characteristics like weight, width and slant can be continuously adjusted using CSS, giving you access to thousands of different typefaces without the need to download a whole bunch of files. Here's an example:
 
-    <html>
-    <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900display=swap" rel="stylesheet">
-    </head>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900display=swap" rel="stylesheet">
+</head>
 
-      <style>
-        #container {
-          width: 600px;  
-          font-family: 'Raleway';
-          outline: 1px solid black;
-        }
+  <style>
+    #container {
+      width: 600px;  
+      font-family: 'Raleway';
+      outline: 1px solid black;
+    }
 
-        #text {
-          text-align: center;
-          font-size: 50px;
-          font-weight: 500;
-          padding: 20px 0 0 0;
-        }
+    #text {
+      text-align: center;
+      font-size: 50px;
+      font-weight: 500;
+      padding: 20px 0 0 0;
+    }
 
-        #weight {
-          display: block;
-          margin: auto;
-          width: 50%;
-        }
+    #weight {
+      display: block;
+      margin: auto;
+      width: 50%;
+    }
 
-        #value {
-          display: block;
-          margin: auto;
-          width: 100px;
-          padding: 0 0 20px 0;
-        }
-      </style>
+    #value {
+      display: block;
+      margin: auto;
+      width: 100px;
+      padding: 0 0 20px 0;
+    }
+  </style>
 
-    <body>
+<body>
 
-      <div id="container">
-        <p id="text" style="">Platypus</p>
-        <input type="range" min="100" max="900" value="500" class="slider" id="weight" oninput="changeText(value)">
-        </input>
-        <p id="value">Value: <span id="weightValue">500</span></p>
-      </div>
+  <div id="container">
+    <p id="text" style="">Platypus</p>
+    <input type="range" min="100" max="900" value="500" class="slider" id="weight" oninput="changeText(value)">
+    </input>
+    <p id="value">Value: <span id="weightValue">500</span></p>
+  </div>
 
-     </body>
+ </body>
 
-     <script type="text/javascript">
-       const weightValue = document.getElementById("weightValue");
-       const text = document.getElementById("text");
-       function changeText (input) {
-         weightValue.innerHTML = input;
-         text.style.fontWeight = input;
-       };
-     </script>
+ <script type="text/javascript">
+   const weightValue = document.getElementById("weightValue");
+   const text = document.getElementById("text");
+   function changeText (input) {
+     weightValue.innerHTML = input;
+     text.style.fontWeight = input;
+   };
+ </script>
 
-    </html>
+</html>
 
  Why not use characters from one of these variable fonts as elements in a pattern, and make these adjustable characteristics into parameters to help create different pattern designs?
 
