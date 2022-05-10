@@ -128,13 +128,11 @@ This loop will build each element, using `setAttribute()` to add the classname `
 
 
 <html>
-<head>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900display=swap" rel="stylesheet">
-</head>
 
   <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap');
+
     .slideContainer {
       width: 300px;  
       font-family: 'Raleway';
