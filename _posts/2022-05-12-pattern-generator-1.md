@@ -10,8 +10,6 @@ There are lots of pattern generators online; [here's an example](https://doodad.
 I've always wanted to have a go at building one of these, but for a long time I wasn't sure how to make a start. Recently, I used [variable fonts](https://web.dev/variable-fonts/) in a project, and this gave me an idea: these variable fonts are designed to offer multiple font styles in a single font file; starting with a base font, characteristics like weight, width and slant can be continuously adjusted using CSS, giving you access to thousands of different typefaces without the need to download a whole bunch of files. Here's an example:
 
 <html>
-
-
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap');
 
@@ -41,13 +39,12 @@ I've always wanted to have a go at building one of these, but for a long time I 
       padding: 0 0 20px 0;
     }
   </style>
-
 <body>
 
   <div id="container">
     <p id="text" style="">Platypus</p>
-    <input type="range" min="100" max="900" value="500" class="slider" id="weight" oninput="changeText()">
-    <p id="amount">Value: <span id="weightValue">500</span></p>
+    <input id="weight" type="range" min="10" max="90" value="50" class="slider"  oninput="changeText()">
+    <p id="amount">Value: <span id="weightValue">50</span></p>
   </div>
 
  </body>
@@ -55,10 +52,9 @@ I've always wanted to have a go at building one of these, but for a long time I 
  <script type="text/javascript">
    function changeText () {
      weightValue.innerHTML = weight.value;
-     text.style.fontWeight = weight.value;
+     text.style.fontSize = weight.value;
    };
  </script>
-
 </html>
 
  Why not use characters from one of these variable fonts as elements in a pattern, and make these adjustable characteristics into parameters to help create different pattern designs?
