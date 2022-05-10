@@ -10,13 +10,11 @@ There are lots of pattern generators online; [here's an example](https://doodad.
 I've always wanted to have a go at building one of these, but for a long time I wasn't sure how to make a start. Recently, I used [variable fonts](https://web.dev/variable-fonts/) in a project, and this gave me an idea: these variable fonts are designed to offer multiple font styles in a single font file; starting with a base font, characteristics like weight, width and slant can be continuously adjusted using CSS, giving you access to thousands of different typefaces without the need to download a whole bunch of files. Here's an example:
 
 <html>
-<head>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900display=swap" rel="stylesheet">
-</head>
+
 
   <style>
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap');
+
     #container {
       width: 600px;  
       font-family: 'Raleway';
