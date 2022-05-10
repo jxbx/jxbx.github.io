@@ -4,11 +4,11 @@ let itemAngles = [];
 let itemStretches = [];
 let itemDropShadows = "none";
 let blends = ["normal", "multiply", "hard-light", "soft-light", "difference", "screen", "overlay", "color"];
-
+  const container = document.getElementById("gridContainer");
 //generating 30x30 character grid; default character is "I"
 
 window.onload = function generateCharacters(){
-  for (let i=0; i<900; i++){
+  for (let i=0; i<400; i++){
     itemAngles.push(0);
     itemStretches.push(20);
     const para = document.createElement("div");
@@ -18,7 +18,7 @@ window.onload = function generateCharacters(){
     const node = document.createTextNode(character.value);
     para.appendChild(node);
 
-    const container = document.getElementById("gridContainer");
+
     container.appendChild(para);
     }
 }
@@ -103,7 +103,7 @@ outputSpacing.innerHTML = sliderSpacing.value;
 
 sliderSpacing.oninput = function () {
   outputSpacing.innerHTML = this.value;
-  gridContainer.style.gridTemplate = "repeat(30, " +  this.value + "px) / repeat(30, " + this.value + "px)";
+  gridContainer.style.gridTemplate = "repeat(20, " +  this.value + "px) / repeat(20, " + this.value + "px)";
 }
 
 //angle slider (adjusts angles of individual characters)
@@ -148,11 +148,28 @@ sliderRotation.oninput = function () {
 
 //BUTTONS
 
-//randomise button (randomly adjusts the angle of each character)
+const alignment = document.getElementById("alignment");
 
-const randomiseButton = document.getElementById("randomiseButton");
+alignment.oninput = function () {
+  switch(alignment.value) {
+    case "regular":
+      regularAlignment();
+      break;
+    case "random":
+      randomAlignment();
+      break;
+    case "right angles":
+      rightanglesAlignment();
+      break;
+    case "alternating":
+      alternatingAlignment();
+      break;
+  }
+}
 
-randomiseButton.onclick = function () {
+//random alignment (randomly adjusts the angle of each character)
+
+function randomAlignment() {
   itemAngles = [];
   for (let i=0; i<gridItems.length; i++){
     let randomAngle = Math.random()*360;
@@ -163,9 +180,7 @@ randomiseButton.onclick = function () {
 
 //right angles button (randomly adjusts each character to 0 or 90 degrees)
 
-const rightAnglesButton = document.getElementById("rightAnglesButton");
-
-rightAnglesButton.onclick = function () {
+function rightanglesAlignment() {
   for (let i=0; i<gridItems.length; i++){
     let randomAngle = Math.round(Math.random()*4)*90;
     gridItems[i].style.transform = "rotate(" + randomAngle + "deg) scaleY(" + itemStretches[i]/20 + ")";
@@ -175,9 +190,7 @@ rightAnglesButton.onclick = function () {
 
 //alternate button (adjusts character angles so they alternate between 90 and 270 degrees)
 
-const alternateButton = document.getElementById("alternateButton");
-
-alternateButton.onclick = function () {
+function alternatingAlignment() {
   for (let i=0; i<gridItems.length; i++){
     if (i % 2 !==0){
       gridItems[i].style.transform = "rotate(90deg) scaleY(" + itemStretches[i]/20 + ")";
@@ -192,9 +205,7 @@ alternateButton.onclick = function () {
 
 //regularise button (adjusts all character angles to 0 degrees)
 
-const regulariseButton = document.getElementById("regulariseButton");
-
-regulariseButton.onclick = function () {
+function regularAlignment() {
   for (let i=0; i<gridItems.length; i++){
     gridItems[i].style.transform = "rotate(0deg) scaleY(" + itemStretches[i]/20 + ")";
     itemAngles[i] = 0;
@@ -266,11 +277,12 @@ const picker1 = new Picker({
 
 //randomly adjusts all eight sliders, selects random character input, selects random alignment;
 
-const parametersRandom = document.getElementById("parametersRandom");
-parametersRandom.onclick = function () {
 
 //randomise sliders
 
+const randomiseParameters = document.getElementById("randomiseParameters");
+
+randomiseParameters.onclick = function() {
   sliderThickness.value = Math.random()*800 + 100;
   sliderThickness.dispatchEvent(new Event('input'));
 
@@ -295,43 +307,41 @@ parametersRandom.onclick = function () {
   sliderRotation.value = Math.random()*359;
   sliderRotation.dispatchEvent(new Event('input'));
 
-//randomise character input
-
-  characterInput.value = String.fromCharCode(Math.round(Math.random()*93)+33);
-  characterInput.dispatchEvent(new Event('input'));
-
-//randomise alignment
-
   let randomButton = Math.round(Math.random()*4);
 
   switch(randomButton) {
     case 0:
-      randomiseButton.click();
-      randomiseButton.focus();
+      alignment.value = "regular";
+      alignment.dispatchEvent(new Event('input'));
       break;
     case 1:
-      rightAnglesButton.click();
-      rightAnglesButton.focus();
+    alignment.value = "random";
+    alignment.dispatchEvent(new Event('input'));
       break;
     case 2:
-      alternateButton.click();
-      alternateButton.focus();
+      alignment.value = "right angles";
+      alignment.dispatchEvent(new Event('input'));
       break;
     case 3:
-      regulariseButton.click();
-      regulariseButton.focus();
+      alignment.value = "alternating";
+      alignment.dispatchEvent(new Event('input'));
       break;
   }
+
+  characterInput.value = String.fromCharCode(Math.round(Math.random()*93)+33);
+  characterInput.dispatchEvent(new Event('input'));
+
+  let randomBlend = Math.round(Math.random()*7);
+  blendOptions.value = blends[randomBlend];
+  blendOptions.dispatchEvent(new Event('input'));
 }
+
 
 //randomly selects colours;
 
-const colRandom = document.getElementById("colRandom");
+const randomiseColours = document.getElementById("randomiseColours");
 
-colRandom.onclick = function() {
-
-//generates a random colour hexcode;
-
+randomiseColours.onclick = function() {
   function newColor () {
     let letters = '0123456789ABCDEF'.split('');
     let color = '#';
@@ -348,20 +358,27 @@ colRandom.onclick = function() {
   picker2.setColour(newColor());
 }
 
-// randomly selects a blend mode;
+const randomiseEverything = document.getElementById("randomiseEverything");
 
-const blendRandom = document.getElementById("blendRandom");
-blendRandom.onclick = function() {
-  let randomBlend = Math.round(Math.random()*7);
-  blendOptions.value = blends[randomBlend];
-  blendOptions.dispatchEvent(new Event('input'));
+randomiseEverything.onclick = function() {
+  randomiseColours.click();
+  randomiseParameters.click();
 }
 
-//triggers blendRandom, colRandom and parametersRandom together;
+//download pattern as png;
 
-const everythingRandom =document.getElementById("everythingRandom");
-everythingRandom.onclick = function () {
-  colRandom.click();
-  parametersRandom.click();
-  blendRandom.click();
-}
+function downloadimage() {
+
+html2canvas(background).then(function (canvas) {
+
+  var link = document.createElement("a");
+  document.body.appendChild(link);
+  link.download = "html_image.png";
+  link.href = canvas.toDataURL();
+  link.target = '_blank';
+  link.click();
+    });
+  }
+
+let dlButton = document.getElementById("dlButton");
+dlButton.onclick = function() {downloadimage()};
