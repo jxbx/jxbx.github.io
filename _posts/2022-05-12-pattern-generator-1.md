@@ -34,7 +34,7 @@ I've always wanted to have a go at building one of these, but for a long time I 
       width: 50%;
     }
 
-    #value {
+    #amount {
       display: block;
       margin: auto;
       width: 100px;
@@ -47,7 +47,7 @@ I've always wanted to have a go at building one of these, but for a long time I 
   <div id="container">
     <p id="text" style="">Platypus</p>
     <input type="range" min="100" max="900" value="500" class="slider" id="weight" oninput="changeText()">
-    <p id="value">Value: <span id="weightValue">500</span></p>
+    <p id="amount">Value: <span id="weightValue">500</span></p>
   </div>
 
  </body>
