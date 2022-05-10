@@ -169,7 +169,7 @@ This loop will build each element, using `setAttribute()` to add the classname `
       align-items: center;
       justify-content: center;
       font-family: 'Raleway';
-      font-size: 80pt;
+      font-size: 50pt;
       font-weight: 500;
       transform: rotate(0deg);
 
