@@ -19,14 +19,14 @@ I've always wanted to have a go at building one of these, but for a long time I 
       outline: 1px solid black;
     }
 
-    #text {
+    #text1 {
       text-align: center;
       font-size: 50px;
       font-weight: 500;
       padding: 20px 0 0 0;
     }
 
-    #weight {
+    #weight1 {
       display: block;
       margin: auto;
       width: 50%;
@@ -42,17 +42,18 @@ I've always wanted to have a go at building one of these, but for a long time I 
 <body>
 
   <div id="container">
-    <p id="text" style="">Platypus</p>
-    <input id="weight" type="range" min="10" max="90" value="50" class="slider"  oninput="changeText()">
-    <p id="amount">Value: <span id="weightValue">50</span></p>
+    <p id="text1">Platypus</p>
+    <input id="weight1" type="range" min="100" max="900" value="500" class="slider"  oninput="changeWeight1()">
+    <p id="amount">Value: <span id="weightValue1">50</span></p>
   </div>
 
  </body>
 
  <script type="text/javascript">
-   function changeText () {
-     weightValue.innerHTML = weight.value;
-     text.style.fontSize = weight.value;
+
+   function changeWeight1 () {
+     weightValue1.innerHTML = weight1.value;
+     text1.style.fontWeight = weight1.value;
    };
  </script>
 </html>
