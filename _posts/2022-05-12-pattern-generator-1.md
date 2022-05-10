@@ -72,7 +72,7 @@ I've always wanted to have a go at building one of these, but for a long time I 
 
 How could this work? Well. let's start with a simple character like "—", the classic em dash. In the image below, I've started with a plain grid of em dashes, and created three new patterns just by applying some form of rotation to them. Initially, we've rotated all the characters by the same value so they lie on a diagonal; then, we've randomly rotated each character by either 0 or 90 degrees, to create an interesting maze-like figure; finally, we've gone full random, rotating each character by its own arbitrary amount for an effect which looks a bit like ice cream sprinkles.
 
-<img class="blog-img" src="/blog/assets/02.jpg">
+<img class="blog-img" src="/blog/assets/dashpatterns.jpg">
 
 This is already starting to look quite cool. I really like the simplicity of using typographic characters as graphic elements, particularly simple symbols like +, -, O, and ~ . Even simple manipulations can create striking patterns, and we quickly forget we're looking at type. Wouldn't it be nice to have a character input which allows you to apply these sorts of transformations on any character? What would it look like if we used symbols like A, & or $ in these designs? What other parameters can we build into our pattern generator to give us even more flexibility?
 
@@ -130,121 +130,121 @@ This loop will build each element, using `setAttribute()` to add the classname `
 
 
 
-    <html>
-    <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900display=swap" rel="stylesheet">
-    </head>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900display=swap" rel="stylesheet">
+</head>
 
-      <style>
-        .slideContainer {
-          width: 300px;  
-          font-family: 'Raleway';
-          outline: 1px solid black;
-          padding: 20px 0 0 0;
-          margin: 10px 0 0 0;
-        }
+  <style>
+    .slideContainer {
+      width: 300px;  
+      font-family: 'Raleway';
+      outline: 1px solid black;
+      padding: 20px 0 0 0;
+      margin: 10px 0 0 0;
+    }
 
-        .slider {
-          display: block;
-          margin: auto;
-          width: 50%;
-        }
+    .slider {
+      display: block;
+      margin: auto;
+      width: 50%;
+    }
 
-        .value {
-          display: block;
-          margin: auto;
-          width: 100px;
-          padding: 0 0 20px 0;
-        }
+    .value {
+      display: block;
+      margin: auto;
+      width: 100px;
+      padding: 0 0 20px 0;
+    }
 
-        #gridContainer {
-      display: grid;
-      width: 300px;
-      height: 300px;
-      padding: 20px;
+    #gridContainer {
+  display: grid;
+  width: 300px;
+  height: 300px;
+  padding: 20px;
+  justify-content: center;
+  grid-template: repeat(3, 100px) / repeat(3, 100px);
+  overflow: hidden;
+  border: 1px solid black;
+    }
+
+    .gridItem {
+      text-align: center;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      grid-template: repeat(3, 100px) / repeat(3, 100px);
-      overflow: hidden;
-      border: 1px solid black;
-        }
+      font-family: 'Raleway';
+      font-size: 80pt;
+      font-weight: 500;
+      transform: rotate(0deg);
 
-        .gridItem {
-          text-align: center;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-family: 'Raleway';
-          font-size: 80pt;
-          font-weight: 500;
-          transform: rotate(0deg);
-
-        }
+    }
 
 
-      </style>
+  </style>
 
-    <body>
+<body>
 
-      <div id="gridContainer">    
-      </div>
+  <div id="gridContainer">    
+  </div>
 
-      <div class="slideContainer">
-        <input type="range" min="100" max="900" value="500" class="slider" id="weight" oninput="changeText()">
-        </input>
-        <p class="value">Value: <span id="weightValue">500</span></p>
-      </div>
+  <div class="slideContainer">
+    <input type="range" min="100" max="900" value="500" class="slider" id="weight" oninput="changeText()">
+    </input>
+    <p class="value">Value: <span id="weightValue">500</span></p>
+  </div>
 
-        <div class="slideContainer">
-        <input type="range" min="10" max="100" value="50" class="slider" id="size" oninput="changeText()">
-        </input>
-        <p class="value">Value: <span id="sizeValue">50</span></p>
-      </div>
+    <div class="slideContainer">
+    <input type="range" min="10" max="100" value="50" class="slider" id="size" oninput="changeText()">
+    </input>
+    <p class="value">Value: <span id="sizeValue">50</span></p>
+  </div>
 
-       <div class="slideContainer">
-        <input type="range" min="0" max="359" value="50" class="slider" id="angle" oninput="changeText()">
-        </input>
-        <p class="value">Value: <span id="angleValue">0</span></p>
-      </div>
+   <div class="slideContainer">
+    <input type="range" min="0" max="359" value="50" class="slider" id="angle" oninput="changeText()">
+    </input>
+    <p class="value">Value: <span id="angleValue">0</span></p>
+  </div>
 
-     </body>
+ </body>
 
-     <script type="text/javascript">
-       window.onload = function () {
-        for (let i=0; i<9; i++){
-        const para = document.createElement("div");
-        para.className = "gridItem";
-        para.setAttribute("id", "cell"+i);
+ <script type="text/javascript">
+   window.onload = function () {
+    for (let i=0; i<9; i++){
+    const para = document.createElement("div");
+    para.className = "gridItem";
+    para.setAttribute("id", "cell"+i);
 
-        const node = document.createTextNode("—");
-        para.appendChild(node);
+    const node = document.createTextNode("—");
+    para.appendChild(node);
 
-        const container = document.getElementById("gridContainer");
-        container.appendChild(para);  
-        }
-       }
+    const container = document.getElementById("gridContainer");
+    container.appendChild(para);  
+    }
+   }
 
-       const gridItems = document.getElementsByClassName("gridItem");
+   const gridItems = document.getElementsByClassName("gridItem");
 
-       function changeText () {
+   function changeText () {
 
-               for (const item of gridItems){
-        item.style.fontWeight = weight.value;
-        item.style.fontSize = size.value +"pt";
-        item.style.transform = "rotate(" + angle.value + "deg)";
+           for (const item of gridItems){
+    item.style.fontWeight = weight.value;
+    item.style.fontSize = size.value +"pt";
+    item.style.transform = "rotate(" + angle.value + "deg)";
 
-        }   
+    }   
 
-        weightValue.innerHTML = weight.value;
-        sizeValue.innerHTML = size.value;
-        angleValue.innerHTML = angle.value;
+    weightValue.innerHTML = weight.value;
+    sizeValue.innerHTML = size.value;
+    angleValue.innerHTML = angle.value;
 
 
-       };
-     </script>
+   };
+ </script>
 
-    </html>
+</html>
 
 
 
