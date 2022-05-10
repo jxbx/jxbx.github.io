@@ -49,7 +49,6 @@ I've always wanted to have a go at building one of these, but for a long time I 
   <div id="container">
     <p id="text" style="">Platypus</p>
     <input type="range" min="100" max="900" value="500" class="slider" id="weight" oninput="changeText(value)">
-    </input>
     <p id="value">Value: <span id="weightValue">500</span></p>
   </div>
 
@@ -192,19 +191,16 @@ This loop will build each element, using `setAttribute()` to add the classname `
 
   <div class="slideContainer">
     <input type="range" min="100" max="900" value="500" class="slider" id="weight" oninput="changeText()">
-    </input>
     <p class="value">Value: <span id="weightValue">500</span></p>
   </div>
 
-    <div class="slideContainer">
+  <div class="slideContainer">
     <input type="range" min="10" max="100" value="50" class="slider" id="size" oninput="changeText()">
-    </input>
     <p class="value">Value: <span id="sizeValue">50</span></p>
   </div>
 
    <div class="slideContainer">
     <input type="range" min="0" max="359" value="50" class="slider" id="angle" oninput="changeText()">
-    </input>
     <p class="value">Value: <span id="angleValue">0</span></p>
   </div>
 
