@@ -1,7 +1,7 @@
 ---
 layout: post
 title: A semi-random pattern generator
-date: 2022-05-09
+date: 1990-05-09
 category: blog
 ---
 
