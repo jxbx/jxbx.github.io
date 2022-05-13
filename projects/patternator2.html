@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Patternator</title>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+  <script src="https://unpkg.com/vanilla-picker@2"></script>
+  <script src="../js/patternator1.js" defer></script>
+  <link rel="stylesheet" href="../css/patternator1.css" />
+</head>
+
+<body>
+
+<div id="bigWrapper">
+
+  <div id= "wrapper">
+    <div id="gridContainer">
+    </div>
+  </div>
+
+    <div id= "controlPanel">
+
+      <section class="controls">
+
+        <form>
+          <label for="character">Character input:</label>
+          <input type = "text" id = "character" name = "character" value = "×">
+        </form>
+
+      </section>
+
+      <section class="controls">
+
+        <div class="slideContainer">
+          <p>thickness</p>
+          <input type="range" min="100" max="900" value="700" class="slider" id="thickness">
+          <p>Value: <span id="thicknessValue"></span></p>
+        </div>
+
+        <div class="slideContainer">
+          <p>size</p>
+          <input type="range" min="5" max="300" value="35" class="slider" id="fontSize">
+          <p>Value: <span id="fontSizeValue"></span></p>
+        </div>
+
+        <div class="slideContainer">
+          <p>jitter</p>
+          <input type="range" min="0" max="100" value="0" class="slider" id="jitter">
+          <p>Value: <span id="jitterValue"></span></p>
+        </div>
+
+        <div class="slideContainer">
+          <p>stretch</p>
+          <input type="range" min="1" max="50" value="10" class="slider" id="stretch">
+          <p>Value: <span id="stretchValue"></span></p>
+        </div>
+
+      </section>
+
+      <section class="controls">
+
+        <div class="slideContainer">
+          <p>drop shadow</p>
+          <input type="range" min="0" max="100" value="0" class="slider" id="dropShadow">
+          <p>Value: <span id="dropShadowValue"></span></p>
+        </div>
+
+        <div class="slideContainer">
+          <p>spacing</p>
+          <input type="range" min="50" max="250" value="50" class="slider" id="spacing">
+          <p>Value: <span id="spacingValue"></span></p>
+        </div>
+
+        <div class="slideContainer">
+          <p>angle</p>
+          <input type="range" min="0" max="359" value="0" class="slider" id="angle">
+          <p>Value: <span id="angleValue"></span></p>
+        </div>
+
+        <div class="slideContainer">
+          <p>rotation</p>
+          <input type="range" min="0" max="359" value="0" class="slider" id="rotation">
+          <p>Value: <span id="rotationValue"></span></p>
+        </div>
+
+      </section>
+
+      <section class="controls">
+
+        <div class="listContainer">
+          <label for="alignment">Alignment:</label>
+          <select name="alignment" id="alignment">
+            <option value="regular">Regular</option>
+            <option value="random">Random</option>
+            <option value="right angles">Right angles</option>
+            <option value="alternating">Alternating</option>
+          </select>
+        </div>
+
+        <div class="listContainer">
+          <label for="blendOptions">Blend mode:</label>
+          <select name="blendOptions" id="blendOptions">
+            <option value="normal">Normal</option>
+            <option value="multiply">Multiply</option>
+            <option value="hard-light">Hard light</option>
+            <option value="soft-light">Soft light</option>
+            <option value="difference">Difference</option>
+            <option value="screen">Screen</option>
+            <option value="overlay">Overlay</option>
+            <option value="color">Colour</option>
+          </select>
+        </div>
+
+      </section>
+
+      <section>
+        <button type="button" id="randomiseColours">Random colours</button>
+        <button type="button" id="randomiseParameters">Random parameters</button>
+        <button type="button" id="randomiseEverything">Random everything!</button>
+
+
+      </section>
+
+      <section class="controls">
+
+        <div id="parent0" class="colourSelectContainer">Background colour</div>
+        <div id="parent1"  class="colourSelectContainer">Foreground colour 1</div>
+        <div id="parent2"  class="colourSelectContainer">Foreground colour 2</div>
+
+      </section>
+
+    </div>
+
+  </div>
+
+  <button id="dlButton">Click To Download Image</button>
+  <button id="shareButton">Share design</button>
+
+  </body>
+</html>
