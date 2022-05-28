@@ -2,16 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap');
 
 
-.container {
+#bigContainer {
   height: 600px;
   width: 600px;
-  background-color: pink;
-}
-
-
-
-#box {
-  border: 1px solid black;
 }
 
 
@@ -25,14 +18,16 @@ section {
   justify-content: space-between;
 }
 
-.item {
-  font-family: "Raleway", sans-serif;
-  font-size: 100px;
-  font-weight: 100;
-  fill: yellow;
+.controls {
+  display: flex;
+  padding: 10px 0 0 0;
+  width: 600px;
+  justify-content: space-between;
 }
 
-
-#item10 {
-  fill: red;
+.colourSelectContainer {
+  border: 1px solid black;
+  height: 50px;
+  padding: 0 10px 0 10px;
+  flex-grow: 1;
 }
