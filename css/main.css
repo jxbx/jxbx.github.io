@@ -155,7 +155,6 @@ div.post img{
   object-fit: cover;
   margin: 0 1rem 0 0;
   flex: 0 1 8em;
-  border-right: 0.2em solid #34495e;
 }
 
 ul.projects li {
