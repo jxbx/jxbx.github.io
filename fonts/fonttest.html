@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    /* @import url('./font-face/raleway.css'); */
+
+    @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..700&display=swap');
+
+    #sampleText1 {
+      font-family: "tool";
+      font-weight: 100;
+      font-size: 80px;
+      margin: 0;
+    }
+
+    #sampleText2 {
+      font-family: "dosis";
+      font-weight: 200;
+      font-size: 80px;
+      margin: 0;
+    }
+  </style>
+  <script>
+    function changeWeight(input, textId, valueId) {
+       textId.style.fontWeight = input.value;
+       valueId.innerText = input1.value;
+     }
+  </script>
+</head>
+<body>
+
+<div>
+  <p id="sampleText1">Oobleck</p>
+  <input type="range" id="input1" min="100" max="900" value ="100" oninput="changeWeight(this, sampleText1, value1)">
+  <p id="value1">100</p>
+</div>
+
+<div>
+  <p id="sampleText2">Oobleck</p>
+  <input type="range" id="input2" min="100" max="900" value ="100" oninput="changeWeight(this, sampleText2, value2)">
+  <p id="value2">100</p>
+</div>
+
+</body>
+
+</html>
