@@ -230,3 +230,145 @@ This loop will build each element, using `setAttribute()` to add the classname `
  </script>
 
 </html>
+  <style>
+  html {
+    font-family: "arial", sans-serif;
+
+  }
+  #patternSwatch {
+    background: #9fc9aa;
+  }
+  #patternContainer {
+    height: 200px;
+    width: 200px;
+    font-size: 50px;
+    display: inline-block;
+    border: 5px solid blue;
+  }
+
+  #outputContainer {
+    height: 100px;
+    width: 100px;
+    border: 5px solid red;
+  }
+
+  #tiling {
+    height: 400px;
+    width: 600px;
+    border: 5px solid yellow;
+
+  }
+
+  #controls {
+    display: flex;
+    flex;
+    margin: 0 0 30px 0;
+  }
+
+    #wrapper {
+      display: flex;
+      flex-direction: row;
+      column-gap: 15px;
+    }
+  }
+  </style>
+
+
+  <div id="wrapper">
+
+  <div>
+
+
+    <div id="patternContainer">
+      <svg id="patternSwatch" viewbox="-300 -300 600 600" xmlns="http://www.w3.org/2000/svg">
+      </svg>
+    </div>
+
+    <div id="controls">
+      <div>
+        <p id="sizeValue">Font size: 50</p>
+        <input type="range" id="sizeSlider" min="50" max="700" value="50" >
+      </div>
+      <div>
+        <p id="shadowValue">Shadow: 0</p>
+        <input type="range" id="shadowSlider" min="0" max="100" value="0" >
+      </div>
+    </div>
+
+  </div>
+
+  <div>
+  <div id="outputContainer">
+    <svg id="outputSwatch" viewbox="-150 -150 300 300" xmlns="http://www.w3.org/2000/svg" style="background: #9fc9aa">
+    </svg>
+  </div>
+  </div>
+
+  </div>
+
+  <div id="tiling">
+  </div>
+
+
+  <script>
+  const coordinates = [[-150,-135],[0,-135],[150,-135],[-150,15],[0,15],[150,15],[-150,165],[0,165],[150,165]];
+  const gridItems = document.getElementsByClassName("item");
+  const spacing = 150;
+
+  window.onload = function () {
+  for (let i = 0; i < 9; i++) {
+    const shape = document.createElementNS('http://www.w3.org/2000/svg', "text");
+    shape.setAttributeNS(null, "id", "item" + i);
+    shape.setAttributeNS(null, "x", coordinates[i][0]);
+    shape.setAttributeNS(null, "y", coordinates[i][1]+23);
+    shape.setAttributeNS(null, "class", "item");
+    const text = document.createTextNode("O");
+    shape.appendChild(text);
+    patternSwatch.appendChild(shape);
+  }
+  for (const item of gridItems){
+    item.style.transformOrigin = "center";
+    item.style.textAnchor = "middle";
+    item.style.dominantBaseline = "middle";
+    item.style.fontFamily = "Raleway";
+    render();
+  }
+
+
+  }
+
+
+
+  sizeSlider.addEventListener("input", changeText);
+  shadowSlider.addEventListener("input", changeShadow);
+
+
+
+  function changeText () {
+  sizeValue.innerText = "Font size: " + this.value;
+  render();
+  }
+
+  function changeShadow () {
+  shadowValue.innerText = "Shadow: " + this.value;
+  render();
+  }
+
+  function render() {
+  for (const item of gridItems) {
+    item.style.fontSize = sizeSlider.value + "px";
+    if (shadowSlider.value <= 0){
+      item.style.filter = null;
+    }
+    else {
+      item.style.filter = "drop-shadow(" + shadowSlider.value + "px 0 white)";
+    }
+
+  }
+  outputSwatch.innerHTML = patternSwatch.innerHTML;
+  tiling.style.background = "url(\'data:image/svg+xml;base64," + btoa(outputSwatch.outerHTML) + "\')";
+  tiling.style.backgroundSize = "100px";
+  }
+
+  </script>
+</html>
