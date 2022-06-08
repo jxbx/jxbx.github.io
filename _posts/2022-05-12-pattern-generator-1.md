@@ -8,6 +8,7 @@ category: blog
 There are lots of pattern generators online; [here's an example](https://doodad.dev/pattern-generator/) of a really nice one, which lets you export your artwork as svg graphics for use in your design work. [Here's something similar](https://haikei.app); this tool generates simple graphic elements.
 
 I've always wanted to have a go at building one of these, but for a long time I wasn't sure how to make a start. Recently, I used [variable fonts](https://web.dev/variable-fonts/) in a project, and this gave me an idea: these variable fonts are designed to offer multiple font styles in a single font file; starting with a base font, characteristics like weight, width and slant can be continuously adjusted using CSS, giving you access to thousands of different typefaces without the need to download a whole bunch of files. Here's an example:
+
 <html>
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap');
@@ -36,6 +37,7 @@ I've always wanted to have a go at building one of these, but for a long time I 
       width: 100px;
       padding: 0 0 20px 0;
     }
+
   </style>
 <body>
 
@@ -54,11 +56,10 @@ I've always wanted to have a go at building one of these, but for a long time I 
      text1.style.fontWeight = weight1.value;
    };
  </script>
+
 </html>
 
  Why not use characters from one of these variable fonts as elements in a pattern, and make these adjustable characteristics into parameters to help create different pattern designs?
-
-
 
 How could this work? Well. let's start with a simple character like "—", the classic em dash. In the image below, I've started with a plain grid of em dashes, and created three new patterns just by applying some form of rotation to them. Initially, we've rotated all the characters by the same value so they lie on a diagonal; then, we've randomly rotated each character by either 0 or 90 degrees, to create an interesting maze-like figure; finally, we've gone full random, rotating each character by its own arbitrary amount for an effect which looks a bit like ice cream sprinkles.
 
@@ -68,9 +69,9 @@ This is already starting to look quite cool. I really like the simplicity of usi
 
 Let's start planning out the objectives for this project:
 
-1. We need some method of generating patterns using typographic characters - this will require some kind of character input and some way to adjust parameters on these characters.
+1.  We need some method of generating patterns using typographic characters - this will require some kind of character input and some way to adjust parameters on these characters.
 
-2. Some of the following variables as parameters for the pattern generator:
+2.  Some of the following variables as parameters for the pattern generator:
 
 Character spacing
 Character orientation
@@ -79,13 +80,13 @@ Character colour
 Character size
 Background colour
 
-3. Some method of creating a repeating pattern from these designs
+3.  Some method of creating a repeating pattern from these designs
 
-4. Some method of downloading the designs in a useful graphics format, preferably svg, although png would also be useful
+4.  Some method of downloading the designs in a useful graphics format, preferably svg, although png would also be useful
 
 For now, I'm looking at the first two objectives. I think it's worth hacking together a working program as a proof of concept just to see whether this approach can work. After this, I'll tackle point 3 and 4, which are concerned with creating a genuinely useful output from the program.
 
-*Building the grid*
+_Building the grid_
 
 So how are we going to start this? First of all, I'm going to define a space for my pattern swatch. I'll create the `gridContainer` div element and set its height and width to `600px`. I'll style it with the following CSS:
 
@@ -116,9 +117,7 @@ My full grid is going to contain 400 cells (20x20), and I'll need to add an elem
 
 This loop will build each element, using `setAttribute()` to add the classname `gridItem` and the id `cell[i]` every time one of these elements is created.We can use `appendChild()` to add text to each of these elements, and again to add each element to the `gridContainer` .
 
-*Adjusting the elements*
-
-
+_Adjusting the elements_
 
 <html>
 
@@ -194,17 +193,14 @@ This loop will build each element, using `setAttribute()` to add the classname `
   </div>
 
  </body>
-
  <script type="text/javascript">
    window.onload = function () {
     for (let i=0; i<9; i++){
     const para = document.createElement("div");
     para.className = "gridItem";
     para.setAttribute("id", "cell"+i);
-
     const node = document.createTextNode("—");
     para.appendChild(node);
-
     const container = document.getElementById("gridContainer");
     container.appendChild(para);  
     }
@@ -213,27 +209,23 @@ This loop will build each element, using `setAttribute()` to add the classname `
    const gridItems = document.getElementsByClassName("gridItem");
 
    function changeText () {
-
            for (const item of gridItems){
     item.style.fontWeight = weight.value;
     item.style.fontSize = size.value +"pt";
     item.style.transform = "rotate(" + angle.value + "deg)";
-
-    }   
-
+    }  
     weightValue.innerHTML = weight.value;
     sizeValue.innerHTML = size.value;
     angleValue.innerHTML = angle.value;
-
-
    };
  </script>
 
 </html>
+
+<html>
   <style>
   html {
     font-family: "arial", sans-serif;
-
   }
   #patternSwatch {
     background: #9fc9aa;
@@ -245,27 +237,23 @@ This loop will build each element, using `setAttribute()` to add the classname `
     display: inline-block;
     border: 5px solid blue;
   }
-
   #outputContainer {
     height: 100px;
     width: 100px;
     border: 5px solid red;
   }
-
   #tiling {
     height: 400px;
     width: 600px;
     border: 5px solid yellow;
 
   }
-
-  #controls {
+  \#controls {
     display: flex;
     flex;
     margin: 0 0 30px 0;
   }
-
-    #wrapper {
+    \#wrapper {
       display: flex;
       flex-direction: row;
       column-gap: 15px;
@@ -273,12 +261,8 @@ This loop will build each element, using `setAttribute()` to add the classname `
   }
   </style>
 
-
   <div id="wrapper">
-
   <div>
-
-
     <div id="patternContainer">
       <svg id="patternSwatch" viewbox="-300 -300 600 600" xmlns="http://www.w3.org/2000/svg">
       </svg>
@@ -308,7 +292,6 @@ This loop will build each element, using `setAttribute()` to add the classname `
 
   <div id="tiling">
   </div>
-
 
   <script>
   const coordinates = [[-150,-135],[0,-135],[150,-135],[-150,15],[0,15],[150,15],[-150,165],[0,165],[150,165]];
@@ -371,4 +354,5 @@ This loop will build each element, using `setAttribute()` to add the classname `
   }
 
   </script>
+
 </html>
