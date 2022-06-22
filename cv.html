@@ -4,7 +4,8 @@
     <title>{{ page.title }}</title>
       <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="./css/cv.css">
+    <script src="./js/cv.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
@@ -184,17 +185,36 @@
       <path fill-rule="evenodd" clip-rule="evenodd" d="M228.582,132.304"/>
       </g>
       </svg>
+
+      <div class="cvSection" id="cvContact">
+          <img id="profilePic" src="../jxbx.github.io/images/justin.jpg" alt="profile picture of Justin Bailey">
+        <p>
+          3 Bowen Court,<br>
+          Highbury Grange<br>
+          London N5 2PE
+        </p>
+
+        <p>
+          bailey.justin@gmail.com
+        </p>
+
+        <p>
+          07906589818
+        </p>
+
+      </div>
+
     </div>
 
 
-  <nav>
+  <!-- <nav>
     <ul>
       <li><a href="https://www.justinbailey.net/blog/index">◀ CODING HOME</a></li>
       <li><a href="#" id="aboutLink" onclick="expand()">ABOUT ▼</a></li>
       <li><a href="https://github.com/jxbx">GITHUB ▶</a></li>
       <li><a href="https://www.hackerrank.com/bailey_justin">HACKERRANK ▶</a></li>
     </ul>
-  </nav>
+  </nav> -->
 
   <script>
     function expand() {
@@ -222,8 +242,35 @@
 
 
   <div class="container">
-    {{ content }}
+
+
+
+  <div class="cvSection">
+    <h2>Technical skills</h2>
+    Web • Javascript (ES5, ES6), CCS3, HTML5, GitHub, Jekyll, Liquid <br>
+    Design • Adobe CS (InDesign, Illustrator, Photoshop, After Effects), Sketchup, Figma
   </div>
+
+  <div class="cvSection">
+    <h2>Work</h2>
+    <ul id="cvWorkList" class = "cvList">
+    </ul>
+  </div>
+
+  <div class="cvSection">
+    <h2>Education</h2>
+    <ul id="cvEducationList" class="cvList">
+    </ul>
+  </div>
+
+</div>
+
+
+
+
+
+
+
 
   <footer>
    <ul>

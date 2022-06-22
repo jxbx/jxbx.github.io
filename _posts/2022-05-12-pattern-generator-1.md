@@ -7,7 +7,7 @@ category: blog
 
 There are lots of pattern generators online; [here's an example](https://doodad.dev/pattern-generator/) of a really nice one, which lets you export your artwork as svg graphics for use in your design work. [Here's something similar](https://haikei.app); this tool generates simple graphic elements.
 
-I've always wanted to have a go at building one of these, but for a long time I wasn't sure how to make a start. Recently, I used [variable fonts](https://web.dev/variable-fonts/) in a project, and this gave me an idea: these variable fonts are designed to offer multiple font styles in a single font file; starting with a base font, characteristics like weight, width and slant can be continuously adjusted using CSS, giving you access to thousands of different typefaces without the need to download a whole bunch of files. Here's an example:
+I've always wanted to have a go at building a pattern generator which can create designs using typographic characters, and having recently used [variable fonts](https://web.dev/variable-fonts/) in a project, I thought it would be really interesting to combine the two. With variable fonts, parameters like character weight can be continuously adjusted using CSS:
 
 <html>
   <style>
@@ -82,7 +82,9 @@ Background colour
 
 3.  Some method of creating a repeating pattern from these designs
 
-4.  Some method of downloading the designs in a useful graphics format, preferably svg, although png would also be useful
+4.  Some method of downloading the designs in a useful graphics format
+
+5. Some method of generating css from the designs so they can be used as background textures in web pages
 
 For now, I'm looking at the first two objectives. I think it's worth hacking together a working program as a proof of concept just to see whether this approach can work. After this, I'll tackle point 3 and 4, which are concerned with creating a genuinely useful output from the program.
 
@@ -119,7 +121,7 @@ This loop will build each element, using `setAttribute()` to add the classname `
 
 _Adjusting the elements_
 
-<html>
+<!-- <html>
 
   <style>
 
@@ -228,7 +230,4 @@ _Adjusting the elements_
    };
  </script>
 
-</html>
-
-
-<iframe src="../assets/litpattern_clip_test.html" frameborder="0"> </iframe>
+</html> -->
