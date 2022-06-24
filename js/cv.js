@@ -7,19 +7,19 @@ const education = [
     course: "Javascript",
     institution: "Codecademy",
     dates: "2021",
-    description: `Course on fundamental programming concepts in Javascript`
+    description: `A course on fundamental programming concepts in Javascript.`
   },
   {
     course: "React",
     institution: "Codecademy",
     dates: "2021",
-    description: `Foundational course in front end programming using the React library for Javascript.`,
+    description: `A foundational course in front end programming using the React library for Javascript.`,
   },
   {
     course: "Responsive Web Design",
     institution: "FreeCodeCamp",
     dates: "2021",
-    description: null,
+    description: `A comprehensive course focusing on using HTML and CSS to build responsive web pages using grid and flexbox layouts, with special emphasis on applied accessibility approaches.`,
   },
   {
     course: "CELTA (certificate in English Language Teaching to Adults)",
@@ -76,7 +76,7 @@ retail and ticketing system using the DigiTickets platform, planned the delivery
     role: "Event planning and delivery coordinator",
     dates: "April - December 2020",
     url: "https://www.sja.org.uk",
-    description: `Based at St John Ambulance's regional operations command centre. I coordinated the daily deployment of volunteer healthcare workers in response to Covid-19, managing the booking of healthcare volunteers onto hospital shifts and ambulance shifts and liaising with commercial clients to organise first aid support for behind closed doors sport events.`
+    description: `A role based at St John Ambulance's regional operations command centre. I coordinated the daily deployment of volunteer healthcare workers in response to Covid-19, managing the booking of healthcare volunteers onto hospital shifts and ambulance shifts and liaising with commercial clients to organise first aid support for behind closed doors sport events.`
   },
   {
     employer: "Museum of the Order of St John",
@@ -96,7 +96,7 @@ retail and ticketing system using the DigiTickets platform, planned the delivery
     role: "Host and guide",
     dates: "2015 - 2017",
     url: "https://www.museumoflondon.org.uk/museum-london",
-    description: `Developed and delivered public engagement content including talks and tours and creative workshops across two sites at one of London's busiest museums.`
+    description: `I developed and delivered public engagement content including talks and tours and creative workshops across two sites at one of London's busiest museums.`
   }
 ]
 
