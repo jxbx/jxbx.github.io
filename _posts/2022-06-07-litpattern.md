@@ -7,4 +7,4 @@ viewwriteup: /#
 viewproject: /litpattern/litpattern.html
 ---
 
-Create wild repeating patterns based on text characters, and export them as svg or css code for use in your design projects.
+Create wild repeating patterns based on text characters, and export them as SVG or CSS code for use in your design projects.
