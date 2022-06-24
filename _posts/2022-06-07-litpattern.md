@@ -3,7 +3,7 @@ layout: post
 title: LitPattern
 category: project
 thumbnail: /blog/assets/litpatternThumb.png
-viewwriteup: /#
+viewwriteup: /blog/index
 viewproject: /litpattern/litpattern.html
 ---
 
