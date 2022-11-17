@@ -81,17 +81,15 @@ const outputJitter = document.getElementById("jitterValue");
 outputJitter.innerHTML = sliderJitter.value;
 state.jitter = sliderJitter.value;
 
-
 sliderJitter.oninput = function() {
   outputJitter.innerHTML = this.value;
   state.jitter = this.value;
-  for (const item of gridItems){
 
+  for (const item of gridItems){
     const randomMultiplier = function() {
       let plusOrMinus = Math.random() > 0.5 ? 1 : -1;
       return 0.5 * Math.random() * plusOrMinus;
     }
-
     item.style.margin = "0 0" + this.value*randomMultiplier() + "px " + this.value*randomMultiplier() + "px";
   }
 }
