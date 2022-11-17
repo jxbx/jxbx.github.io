@@ -1,9 +1,11 @@
 ---
 layout: post
-title: A semi-random pattern generator
+title: A semi-random pattern generator (part 1)
 date: 1990-09-19
 category: blog
 ---
+
+<h2>Introduction</h2>
 
 There are lots of pattern generators online; [here's an example](https://doodad.dev/pattern-generator/) of a really nice one, which lets you export your artwork as svg graphics for use in your design work. [Here's something similar](https://haikei.app); this tool generates simple graphic elements.
 
@@ -67,6 +69,8 @@ How could this work? Well. let's start with a simple character like "—", the c
 
 This is already starting to look quite cool. I really like the simplicity of using typographic characters as graphic elements, particularly simple symbols like +, -, O, and ~ . Even simple manipulations can create striking patterns, and we quickly forget we're looking at type. Wouldn't it be nice to have a character input which allows you to apply these sorts of transformations on any character? What would it look like if we used symbols like A, & or $ in these designs? What other parameters can we build into our pattern generator to give us even more flexibility?
 
+<h2>Planning it out</h2>
+
 Let's start planning out the objectives for this project:
 
 1.  We need some method of generating patterns using typographic characters - this will require some kind of character input and some way to adjust parameters on these characters.
@@ -88,7 +92,11 @@ Background colour
 
 For now, I'm looking at the first two objectives. I think it's worth hacking together a working program as a proof of concept just to see whether this approach can work. After this, I'll tackle point 3 and 4, which are concerned with creating a genuinely useful output from the program.
 
-_Building the grid_
+<h2>First attempt</h2>
+
+You can have a look at my first pattern generator [here](../../../../projects/patternator2). This version has absolutely not been tested for full compatibility across different devices and browsers, but it should run fine on a desktop device with Chrome. 
+
+<h2>Building the grid</h2>
 
 So how are we going to start this? First of all, I'm going to define a space for my pattern swatch. I'll create the `gridContainer` div element and set its height and width to `600px`. I'll style it with the following CSS:
 
@@ -119,7 +127,7 @@ My full grid is going to contain 400 cells (20x20), and I'll need to add an elem
 
 This loop will build each element, using `setAttribute()` to add the classname `gridItem` and the id `cell[i]` every time one of these elements is created.We can use `appendChild()` to add text to each of these elements, and again to add each element to the `gridContainer` .
 
-_Adjusting the elements_
+<h2>Adjusting the elements</h2>
 
 I set `overflow-hidden` on the container, with the idea that the 20x20 grid ought be big enough to fill it when the grid spacing and font size are set really low.
 
