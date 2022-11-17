@@ -226,7 +226,7 @@
 <p class="meta">19 Sep 1990</p>
 
 <div class="post">
-  <h2>Introduction</h2>
+  <p>Need a pattern for a design project you’re working on? Need it quick? <a href="/litpattern.litpattern">LitPattern</a> is a webapp generating repeating patterns using typographic characters. I built LitPattern in JavaScript using some lesser known properties of svg graphics to create repeating pattern swatches which can be downloaded as vector graphics or embedded into a webpage as css styling. This post is the first part of my write-up, covering the project backgrpund and some initial experiments.</p>
 
 <p>There are lots of pattern generators online; <a href="https://doodad.dev/pattern-generator/">here’s an example</a> of a really nice one, which lets you export your artwork as svg graphics for use in your design work. <a href="https://haikei.app">Here’s something similar</a>; this tool generates simple graphic elements.</p>
 
@@ -326,11 +326,13 @@ Background colour</p>
 
 <h2>First attempt</h2>
 
-<p>You can have a look at my first pattern generator <a href="../../../../projects/patternator2">here</a>. This version has absolutely not been tested for full compatibility across different devices and browsers, but it should run fine on a desktop device with Chrome.</p>
+<p>You can have a look at my first pattern generator <a href="/projects/patternator2">here</a>. This version has absolutely not been tested for full compatibility across different devices and browsers, but it should run fine on a desktop device with Chrome. Pretty interesting right? Here are some patterns I made with this tool:</p>
+
+<p><img class="blog-img" src="/blog/assets/05.jpg" /></p>
 
 <h2>Building the grid</h2>
 
-<p>So how are we going to start this? First of all, I’m going to define a space for my pattern swatch. I’ll create the <code class="language-plaintext highlighter-rouge">gridContainer</code> div element and set its height and width to <code class="language-plaintext highlighter-rouge">600px</code>. I’ll style it with the following CSS:</p>
+<p>So do we build this? First of all, I’m going to define a space for my pattern swatch. I’ll create the <code class="language-plaintext highlighter-rouge">gridContainer</code> div element and set its height and width to <code class="language-plaintext highlighter-rouge">600px</code>. I’ll style it with the following CSS:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#gridContainer {
   display: grid;
@@ -387,9 +389,19 @@ Background colour</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let blends = ["normal", "multiply", "hard-light", "soft-light", "difference", "screen", "overlay", "color"];
 </code></pre></div></div>
 
-<p>That’s a lot of options! This makes the pattern generator seriously enjoyable to play with, but it’s also useful for testing which parameters help to make genuinely interesting patterns and which are too gimicky to be of serious use.</p>
+<p>That’s a lot of options! This makes the pattern generator seriously enjoyable to play with, but it’s also useful for testing which parameters help to make genuinely interesting patterns and which are too gimmicky to be of serious use.</p>
 
-<p>I’ve also used this proof of concept as a testing ground for a couple of packages - a custom colour picker with a built in alpha channel, and a “screenshot” tool which saves the pattern swatch as a png image.</p>
+<p>I’ve also used this proof of concept as a testing ground for a couple of libraries - a <a href="https://vanilla-picker.js.org">custom colour picker</a> with a built in alpha channel, and a <a href="https://html2canvas.hertzen.com">“screenshot” tool</a> which saves the pattern swatch as a png image.</p>
+
+<h2>Summing up</h2>
+
+<p>The basic concept of using text characters to create patterns is working really well here, and the idea of using a grid as a basis for each design is proving effective. I’ve got great results from this tool, but human intervention is a must at this stage to select out the small subset of designs that actually look nice and might be useful in a design project. It’s far easier to generate insane results, which are very cool to look at, but essentially useless (except maybe as NFT art?).</p>
+
+<p>However, we still don’t have a way to make a repeating pattern, and we have no way of exporting our design, except as a png tile. Really, we need the design to be available in some useful format for designers, so vector graphics are a must.</p>
+
+<h2>Coming up next</h2>
+
+<p>In part 2, I’ll look at how this same project can be rebuilt using svg graphics instead of css.</p>
 
 </div>
 

@@ -1,6 +1,4 @@
-I"7)<h2>Introduction</h2>
-
-<p>There are lots of pattern generators online; <a href="https://doodad.dev/pattern-generator/">here’s an example</a> of a really nice one, which lets you export your artwork as svg graphics for use in your design work. <a href="https://haikei.app">Here’s something similar</a>; this tool generates simple graphic elements.</p>
+I"�)<p>There are lots of pattern generators online; <a href="https://doodad.dev/pattern-generator/">here’s an example</a> of a really nice one, which lets you export your artwork as svg graphics for use in your design work. <a href="https://haikei.app">Here’s something similar</a>; this tool generates simple graphic elements.</p>
 
 <p>I’ve always wanted to have a go at building a pattern generator which can create designs using typographic characters, and having recently used <a href="https://web.dev/variable-fonts/">variable fonts</a> in a project, I thought it would be really interesting to combine the two. With variable fonts, parameters like character weight can be continuously adjusted using CSS:</p>
 
@@ -98,7 +96,9 @@ Background colour</p>
 
 <h2>First attempt</h2>
 
-<p>You can have a look at my first pattern generator <a href="../projects/patternator2">here</a>. This version has absolutely not been tested for full compatibility across different devices and browsers, but it should run fine on a desktop device with Chrome.</p>
+<p>You can have a look at my first pattern generator <a href="/projects/patternator2">here</a>. This version has absolutely not been tested for full compatibility across different devices and browsers, but it should run fine on a desktop device with Chrome. Pretty interesting right? Here are some patterns I made with this tool:</p>
+
+<p><img class="blog-img" src="/blog/assets/05.jpg" /></p>
 
 <h2>Building the grid</h2>
 

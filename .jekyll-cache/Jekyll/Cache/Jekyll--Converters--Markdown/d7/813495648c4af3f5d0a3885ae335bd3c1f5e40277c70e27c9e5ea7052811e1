@@ -1,4 +1,4 @@
-I"�'<p>There are lots of pattern generators online; <a href="https://doodad.dev/pattern-generator/">here’s an example</a> of a really nice one, which lets you export your artwork as svg graphics for use in your design work. <a href="https://haikei.app">Here’s something similar</a>; this tool generates simple graphic elements.</p>
+I"-<p>There are lots of pattern generators online; <a href="https://doodad.dev/pattern-generator/">here’s an example</a> of a really nice one, which lets you export your artwork as svg graphics for use in your design work. <a href="https://haikei.app">Here’s something similar</a>; this tool generates simple graphic elements.</p>
 
 <p>I’ve always wanted to have a go at building a pattern generator which can create designs using typographic characters, and having recently used <a href="https://web.dev/variable-fonts/">variable fonts</a> in a project, I thought it would be really interesting to combine the two. With variable fonts, parameters like character weight can be continuously adjusted using CSS:</p>
 
@@ -60,6 +60,8 @@
 
 <p>This is already starting to look quite cool. I really like the simplicity of using typographic characters as graphic elements, particularly simple symbols like +, -, O, and ~ . Even simple manipulations can create striking patterns, and we quickly forget we’re looking at type. Wouldn’t it be nice to have a character input which allows you to apply these sorts of transformations on any character? What would it look like if we used symbols like A, &amp; or $ in these designs? What other parameters can we build into our pattern generator to give us even more flexibility?</p>
 
+<h2>Planning it out</h2>
+
 <p>Let’s start planning out the objectives for this project:</p>
 
 <ol>
@@ -92,11 +94,15 @@ Background colour</p>
 
 <p>For now, I’m looking at the first two objectives. I think it’s worth hacking together a working program as a proof of concept just to see whether this approach can work. After this, I’ll tackle point 3 and 4, which are concerned with creating a genuinely useful output from the program.</p>
 
-<hr />
+<h2>First attempt</h2>
 
-<p><em>Building the grid</em></p>
+<p>You can have a look at my first pattern generator <a href="/projects/patternator2">here</a>. This version has absolutely not been tested for full compatibility across different devices and browsers, but it should run fine on a desktop device with Chrome. Pretty interesting right? Here are some patterns I made with this tool:</p>
 
-<p>So how are we going to start this? First of all, I’m going to define a space for my pattern swatch. I’ll create the <code class="language-plaintext highlighter-rouge">gridContainer</code> div element and set its height and width to <code class="language-plaintext highlighter-rouge">600px</code>. I’ll style it with the following CSS:</p>
+<p><img class="blog-img" src="/blog/assets/05.jpg" /></p>
+
+<h2>Building the grid</h2>
+
+<p>So do we build this? First of all, I’m going to define a space for my pattern swatch. I’ll create the <code class="language-plaintext highlighter-rouge">gridContainer</code> div element and set its height and width to <code class="language-plaintext highlighter-rouge">600px</code>. I’ll style it with the following CSS:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#gridContainer {
   display: grid;
@@ -127,7 +133,7 @@ Background colour</p>
 
 <p>This loop will build each element, using <code class="language-plaintext highlighter-rouge">setAttribute()</code> to add the classname <code class="language-plaintext highlighter-rouge">gridItem</code> and the id <code class="language-plaintext highlighter-rouge">cell[i]</code> every time one of these elements is created.We can use <code class="language-plaintext highlighter-rouge">appendChild()</code> to add text to each of these elements, and again to add each element to the <code class="language-plaintext highlighter-rouge">gridContainer</code> .</p>
 
-<p><em>Adjusting the elements</em></p>
+<h2>Adjusting the elements</h2>
 
 <p>I set <code class="language-plaintext highlighter-rouge">overflow-hidden</code> on the container, with the idea that the 20x20 grid ought be big enough to fill it when the grid spacing and font size are set really low.</p>
 
@@ -153,7 +159,13 @@ Background colour</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let blends = ["normal", "multiply", "hard-light", "soft-light", "difference", "screen", "overlay", "color"];
 </code></pre></div></div>
 
-<p>That’s a lot of options! This makes the pattern generator seriously enjoyable to play with, but it’s also useful for testing which parameters help to make genuinely interesting patterns and which are too gimicky to be of serious use.</p>
+<p>That’s a lot of options! This makes the pattern generator seriously enjoyable to play with, but it’s also useful for testing which parameters help to make genuinely interesting patterns and which are too gimmicky to be of serious use.</p>
 
-<p>I’ve also used this proof of concept as a testing ground for a couple of packages - a custom colour picker with a built in alpha channel, and a “screenshot” tool which saves the pattern swatch as a png image.</p>
+<p>I’ve also used this proof of concept as a testing ground for a couple of libraries - a <a href="https://vanilla-picker.js.org">custom colour picker</a> with a built in alpha channel, and a <a href="https://html2canvas.hertzen.com">“screenshot” tool</a> which saves the pattern swatch as a png image.</p>
+
+<h2>Summing up</h2>
+
+<p>The basic concept of using text characters to create patterns is working really well here, and the idea of using a grid as a basis for each design is proving effective. I’ve got great results from this tool, but human intervention is a must at this stage to select out the small subset of designs that actually look nice and might be useful in a design project. It’s far easier to generate insane results, which are very cool to look at, but essentially useless (except maybe as NFT art?).</p>
+
+<p>However, we still don’t have a way to make a repeating pattern, and we have no way of exporting our design, except as a png tile. The package I used to create these png graphics  Really, we need the design to be available in some useful format for designers, a vector</p>
 :ET

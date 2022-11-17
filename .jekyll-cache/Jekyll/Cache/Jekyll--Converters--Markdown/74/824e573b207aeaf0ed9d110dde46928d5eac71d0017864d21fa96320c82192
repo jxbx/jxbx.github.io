@@ -1,4 +1,4 @@
-I"(<h2>Introduction</h2>
+I"�)<h2>Introduction</h2>
 
 <p>There are lots of pattern generators online; <a href="https://doodad.dev/pattern-generator/">here’s an example</a> of a really nice one, which lets you export your artwork as svg graphics for use in your design work. <a href="https://haikei.app">Here’s something similar</a>; this tool generates simple graphic elements.</p>
 
@@ -95,6 +95,12 @@ Background colour</p>
 </ol>
 
 <p>For now, I’m looking at the first two objectives. I think it’s worth hacking together a working program as a proof of concept just to see whether this approach can work. After this, I’ll tackle point 3 and 4, which are concerned with creating a genuinely useful output from the program.</p>
+
+<h2>First attempt</h2>
+
+<p>You can have a look at my first pattern generator <a href="/projects/patternator2">here</a>. This version has absolutely not been tested for full compatibility across different devices and browsers, but it should run fine on a desktop device with Chrome. Pretty interesting right? Here are some patterns I made with this tool:</p>
+
+<p><img class="blog-img" src="/blog/assets/dashpatterns.png" /></p>
 
 <h2>Building the grid</h2>
 

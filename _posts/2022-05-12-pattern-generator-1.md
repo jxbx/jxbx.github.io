@@ -5,7 +5,9 @@ date: 1990-09-19
 category: blog
 ---
 
-<h2>Introduction</h2>
+Need a pattern for a design project you're working on? Need it quick? [LitPattern](/litpattern.litpattern) is a webapp generating repeating patterns using typographic characters. I built LitPattern in JavaScript using some lesser known properties of svg graphics to create repeating pattern swatches which can be downloaded as vector graphics or embedded into a webpage as css styling. This post is the first part of my write-up, covering the project backgrpund and some initial experiments.
+
+
 
 There are lots of pattern generators online; [here's an example](https://doodad.dev/pattern-generator/) of a really nice one, which lets you export your artwork as svg graphics for use in your design work. [Here's something similar](https://haikei.app); this tool generates simple graphic elements.
 
@@ -94,11 +96,13 @@ For now, I'm looking at the first two objectives. I think it's worth hacking tog
 
 <h2>First attempt</h2>
 
-You can have a look at my first pattern generator [here](../../../../projects/patternator2). This version has absolutely not been tested for full compatibility across different devices and browsers, but it should run fine on a desktop device with Chrome. 
+You can have a look at my first pattern generator [here](/projects/patternator2). This version has absolutely not been tested for full compatibility across different devices and browsers, but it should run fine on a desktop device with Chrome. Pretty interesting right? Here are some patterns I made with this tool:
+
+<img class="blog-img" src="/blog/assets/05.jpg">
 
 <h2>Building the grid</h2>
 
-So how are we going to start this? First of all, I'm going to define a space for my pattern swatch. I'll create the `gridContainer` div element and set its height and width to `600px`. I'll style it with the following CSS:
+So do we build this? First of all, I'm going to define a space for my pattern swatch. I'll create the `gridContainer` div element and set its height and width to `600px`. I'll style it with the following CSS:
 
     #gridContainer {
       display: grid;
@@ -151,6 +155,17 @@ Finally, I added a blend mode selector, which uses the `mix-blend-mode` css attr
 
     let blends = ["normal", "multiply", "hard-light", "soft-light", "difference", "screen", "overlay", "color"];
 
-That's a lot of options! This makes the pattern generator seriously enjoyable to play with, but it's also useful for testing which parameters help to make genuinely interesting patterns and which are too gimicky to be of serious use.
+That's a lot of options! This makes the pattern generator seriously enjoyable to play with, but it's also useful for testing which parameters help to make genuinely interesting patterns and which are too gimmicky to be of serious use.
 
-I've also used this proof of concept as a testing ground for a couple of packages - a custom colour picker with a built in alpha channel, and a "screenshot" tool which saves the pattern swatch as a png image.
+I've also used this proof of concept as a testing ground for a couple of libraries - a [custom colour picker](https://vanilla-picker.js.org) with a built in alpha channel, and a ["screenshot" tool](https://html2canvas.hertzen.com) which saves the pattern swatch as a png image.
+
+<h2>Summing up</h2>
+
+The basic concept of using text characters to create patterns is working really well here, and the idea of using a grid as a basis for each design is proving effective. I've got great results from this tool, but human intervention is a must at this stage to select out the small subset of designs that actually look nice and might be useful in a design project. It's far easier to generate insane results, which are very cool to look at, but essentially useless (except maybe as NFT art?).
+
+
+However, we still don't have a way to make a repeating pattern, and we have no way of exporting our design, except as a png tile. Really, we need the design to be available in some useful format for designers, so vector graphics are a must.
+
+<h2>Coming up next</h2>
+
+In part 2, I'll look at how this same project can be rebuilt using svg graphics instead of css.
