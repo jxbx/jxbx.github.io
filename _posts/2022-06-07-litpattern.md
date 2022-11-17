@@ -3,7 +3,7 @@ layout: post
 title: LitPattern
 category: project
 thumbnail: /blog/assets/litpatternThumb.png
-viewwriteup: /blog/index
+viewwriteup: /blog/2022/08/18/pattern-generator-1.html
 viewproject: /litpattern/litpattern.html
 ---
 
