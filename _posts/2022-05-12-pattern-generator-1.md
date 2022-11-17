@@ -5,7 +5,7 @@ date: 2022-08-18
 category: blog
 ---
 
-Need a pattern for a design project you're working on? Need it quick? [LitPattern](/litpattern.litpattern) is a webapp generating repeating patterns using typographic characters. I built LitPattern in JavaScript using some lesser known properties of svg graphics to create repeating pattern swatches which can be downloaded as vector graphics or embedded into a webpage as css styling. This post is the first part of my write-up, covering the project backgrpund and some initial experiments.
+Need a pattern for a design project you're working on? Need it quick? [LitPattern](/litpattern/litpattern) is a webapp generating repeating patterns using typographic characters. I built LitPattern in JavaScript using some lesser known properties of svg graphics to create repeating pattern swatches which can be downloaded as vector graphics or embedded into a webpage as css styling. This post is the first part of my write-up, covering the project backgrpund and some initial experiments.
 
 
 
