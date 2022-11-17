@@ -23,7 +23,7 @@ let state = {
   blend: null
 }
 
-//generating 30x30 character grid;"
+//generating 20x20 character grid;"
 
 function generateCharacters(){
   for (let i=0; i<400; i++){

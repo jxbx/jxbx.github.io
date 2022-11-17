@@ -1,7 +1,7 @@
 ---
 layout: post
 title: A semi-random pattern generator
-date: 1990-05-09
+date: 1990-09-19
 category: blog
 ---
 
@@ -121,113 +121,28 @@ This loop will build each element, using `setAttribute()` to add the classname `
 
 _Adjusting the elements_
 
-<!-- <html>
+I set `overflow-hidden` on the container, with the idea that the 20x20 grid ought be big enough to fill it when the grid spacing and font size are set really low.
 
-  <style>
+For the sake of experimentation (and because it's fun), I built as many variables into the pattern generator as I could think of. It can produce some completely wild designs! Try the prototype here:
 
-    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap');
+I've created several sliders, which adjust css attributes to manipulate the text inside each cell using event listeners. The parameters in this prototype (with the associated css property in brackets) are font size (`font-size`), font weight (`font-weight`), drop shadow (`text-shadow`), rotation (`transform: rotate(...)`), stretching (`transform: stretch(...)`), spacing (`grid-template` - applied to the container rather than the cells), and a special parameter, jitter.
 
-    body {
-      display: flex;
+The jitter function is pretty fun, and adds an adjustable level of randomness to the positioning of the elements in the grid. The `randomMultiplier()` function adjusts the position of each grid item by passing a random number multiplied by the value on the input slider into the `margin` attribute in the stylesheet. The higher the slider value, the bigger the adjustment:
+
+    for (const item of gridItems){
+      const randomMultiplier = function() {
+        let plusOrMinus = Math.random() > 0.5 ? 1 : -1;
+        return 0.5 * Math.random() * plusOrMinus;
+      }
+      item.style.margin = "0 0" + this.value*randomMultiplier() + "px " + this.value*randomMultiplier() + "px";
     }
 
-    .slideContainer {
-      width: 300px;  
-      font-family: 'Raleway';
-      outline: 1px solid black;
-      padding: 20px 0 0 0;
-      margin: 10px 0 0 0;
-    }
+I also built in the option of adjusting the alignment of the individual elements to one of four settings: regular (every element is rotated 0 degrees) alternating (every second element is rotated 90 degrees); random (every element has a random amount of rotation applied); right angles (elements are rotated either 90 degrees or 0 degrees at random).
 
-    .slider {
-      display: block;
-      margin: auto;
-      width: 50%;
-    }
+Finally, I added a blend mode selector, which uses the `mix-blend-mode` css attribute to apply a blend style from a predefined list:
 
-    .value {
-      display: block;
-      margin: auto;
-      width: 100px;
-      padding: 0 0 20px 0;
-    }
+    let blends = ["normal", "multiply", "hard-light", "soft-light", "difference", "screen", "overlay", "color"];
 
-    #gridContainer {
-  display: grid;
-  width: 300px;
-  height: 300px;
-  padding: 20px;
-  justify-content: center;
-  grid-template: repeat(3, 100px) / repeat(3, 100px);
-  overflow: hidden;
-  border: 1px solid black;
-    }
+That's a lot of options! This makes the pattern generator seriously enjoyable to play with, but it's also useful for testing which parameters help to make genuinely interesting patterns and which are too gimicky to be of serious use.
 
-    .gridItem {
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Raleway';
-      font-size: 50pt;
-      font-weight: 500;
-      transform: rotate(0deg);
-
-    }
-
-
-  </style>
-
-<body>
-
-  <div id="gridContainer">    
-  </div>
-
-  <div id="controls">
-
-    <div class="slideContainer">
-      <input type="range" min="100" max="900" value="500" class="slider" id="weight" oninput="changeText()">
-      <p class="value">Value: <span id="weightValue">500</span></p>
-    </div>
-
-    <div class="slideContainer">
-      <input type="range" min="10" max="100" value="50" class="slider" id="size" oninput="changeText()">
-      <p class="value">Value: <span id="sizeValue">50</span></p>
-    </div>
-
-     <div class="slideContainer">
-      <input type="range" min="0" max="359" value="0" class="slider" id="angle" oninput="changeText()">
-      <p class="value">Value: <span id="angleValue">0</span></p>
-    </div>
-
-  </div>
-
- </body>
- <script type="text/javascript">
-   window.onload = function () {
-    for (let i=0; i<9; i++){
-    const para = document.createElement("div");
-    para.className = "gridItem";
-    para.setAttribute("id", "cell"+i);
-    const node = document.createTextNode("—");
-    para.appendChild(node);
-    const container = document.getElementById("gridContainer");
-    container.appendChild(para);  
-    }
-   }
-
-   const gridItems = document.getElementsByClassName("gridItem");
-
-   function changeText () {
-           for (const item of gridItems){
-    item.style.fontWeight = weight.value;
-    item.style.fontSize = size.value +"pt";
-    item.style.transform = "rotate(" + angle.value + "deg)";
-    }  
-    weightValue.innerHTML = weight.value;
-    sizeValue.innerHTML = size.value;
-    angleValue.innerHTML = angle.value;
-   };
- </script>
-
-</html> -->
+I've also used this proof of concept as a testing ground for a couple of packages - a custom colour picker with a built in alpha channel, and a "screenshot" tool which saves the pattern swatch as a png image.
