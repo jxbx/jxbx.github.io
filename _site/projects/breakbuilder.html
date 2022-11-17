@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>BreakBuilder v0.1</title>
+  <link rel="stylesheet" href="../css/breakbuilder.css" />
+  <script src="../js/breakbuilder.js" defer></script>
+</head>
+<body>
+  <h2 id="score">score: 0</h2>
+  <div id="barContainer">
+
+    <div class = "bar" id = "maxBar">
+      <div class = "bar" id="pointsBar"></div>
+      <div class = "bar" id="remainingBar"></div>
+    </div>
+    <div id="pointer">
+      <div id = "untilWin">▲ win in 74 points</div>
+    </div>
+
+
+  </div>
+
+  <div id="info">
+    <p id ="pointsRemaining">points remaining: 147</p>
+    <p id="alert"></p>
+  </div>
+
+  <div class = "ballSelect">
+    <div class="ballIcon" style="background-color: red"></div>
+    <button id="redButton" onclick="potRed()">Red</button>
+    <p id="red">Remaining: 15</p>
+  </div>
+
+  <div class = "ballSelect">
+    <div class="ballIcon" style="background-color: yellow"></div>
+    <button id="yellowButton"onclick="potColour('yellow')">Yellow</button>
+    <p id="yellow">Remaining: 1</p>
+  </div>
+
+  <div class = "ballSelect">
+    <div class="ballIcon" style="background-color: green"></div>
+    <button id="greenButton" onclick="potColour('green')">Green</button>
+    <p id="green">Remaining: 1</p>
+  </div>
+
+  <div class = "ballSelect">
+    <div class="ballIcon" style="background-color: brown"></div>
+    <button id="brownButton" onclick="potColour('brown')">Brown</button>
+    <p id="brown">Remaining: 1</p>
+  </div>
+
+  <div class = "ballSelect">
+    <div class="ballIcon" style="background-color: blue"></div>
+    <button id="blueButton" onclick="potColour('blue')">Blue</button>
+    <p id="blue">Remaining: 1</p>
+  </div>
+
+  <div class = "ballSelect">
+    <div class="ballIcon" style="background-color: pink"></div>
+    <button id="pinkButton" onclick="potColour('pink')">Pink</button>
+    <p id="pink">Remaining: 1</p>
+  </div>
+
+  <div class = "ballSelect">
+    <div class="ballIcon" style="background-color: black"></div>
+    <button id="blackButton" onclick="potColour('black')">Black</button>
+    <p id="black">Remaining: 1</p>
+  </div>
+
+</body>
+</html>

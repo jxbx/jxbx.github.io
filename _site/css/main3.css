@@ -1,0 +1,175 @@
+body {
+  padding: 5rem;
+    margin: auto;
+    max-width: 45rem;
+    background-color: #eb9763;
+    font-family:'Nunito', 'Arial', 'Sans-Serif';
+}
+
+#logo {
+  height: 3rem;
+  margin-bottom: 1rem;
+}
+
+nav ul, footer ul {
+    padding: 0;
+    list-style: none;
+}
+
+nav ul li, footer ul li {
+    display: inline;
+    margin-right: 2rem;
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+ul.posts, ul.projects {
+  padding: 0;
+  font-size: 1rem;
+}
+
+ul.posts li, ul.projects li {
+    list-style: none;
+    border-top: 0.05em solid grey;
+    padding: 1rem 0 1rem 0;
+}
+
+ul.projects li:hover {
+  background-color: #cc8d66;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+ul.selector {
+    list-style: none;
+    padding: 0;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 600;
+}
+
+ul.selector li {
+  margin: 0 0.5rem 0 0;
+  display: inline;
+  list-style: none;
+}
+
+footer, nav {
+    border-top: 0.05rem solid grey;
+    border-bottom: 0.05rem solid grey;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a.projectLink {
+  padding: 0 2rem 0 0;
+  white-space: nowrap;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 600;
+    margin: 0;
+}
+
+p {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.4rem;
+    color: #212121;
+}
+
+
+code {
+  font-size: 1.1em;
+  background-color: #d29a79;
+}
+
+pre {
+  color: white;
+  border-top: 0.05rem dashed white;
+  border-bottom: 0.05rem dashed white;
+  padding: 1rem 0 1rem 0;
+  overflow: auto;
+}
+
+pre code{
+  background-color: transparent;
+}
+
+iframe {
+  border: none;
+  width: 100%;
+}
+
+.blog-img{
+  width: 100%;
+  padding: 1rem 0 0 0 ;
+}
+
+#projectsButton:hover, #postsButton:hover {
+  cursor: pointer;
+}
+
+#postsElement {
+  display: none;
+}
+
+#projectsElement {
+  display: block;
+}
+
+#projectsButton {
+  text-decoration: underline;
+  background-color: #cc8d66;
+  border-radius: 0.3rem;
+}
+
+#postsButton {
+  text-decoration: none;
+  background-color: transparent;
+  border-radius: 0.3rem;
+}
+
+#projectsElement li img {
+  width: 15em;
+  object-fit: cover;
+  margin: 0 1rem 0 0;
+  flex: 0 1 8em;
+  border-right: 0.2em solid white;
+}
+
+ul.projects li {
+  display: flex;
+}
+
+
+@media only screen and (max-width: 600px) {
+  body {
+    width:90%;
+    margin: 1.5rem auto 1em auto;
+    padding: 0;
+    }
+
+  #projectsElement li img {
+    object-fit: cover;
+    margin: 0 0 1rem 0;
+    border: none;
+    width: 100%;
+    height: auto;
+    flex: none;
+    }
+
+  ul.projects li {
+    display: block;
+  }
+
+}

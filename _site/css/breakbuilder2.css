@@ -1,0 +1,145 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+body {
+  font-family: 'Rubik Mono One', sans-serif;
+  background-color: #00cc66;
+  color: #4d4d4d;
+  word-spacing: -0.2rem;
+}
+
+#wrapper {
+
+  height: auto;
+  margin: auto;
+  max-width: 50rem;
+}
+
+#topContent, #buttonGroup {
+
+  background-color: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='24' viewBox='0 0 12 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath d='M2 0h2v12H2V0zm1 20c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM9 8c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm-1 4h2v12H8V12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");;
+  text-align: center;
+  padding: 1rem;
+}
+
+#scoreContainer {
+  text-align: center;
+  padding: 2rem 0 0rem 0 ;
+
+}
+
+#buttonGroup {
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem 0 0 0;
+}
+
+#buttonGroup > button {
+  font-family: 'Rubik Mono One', sans-serif;
+  width: 5rem;
+  height: 5rem;
+  background-color: red;
+  border: 0.2rem solid white;
+  border-radius: 50%;
+  text-align: center;
+  margin: 0 1rem 0 1rem;
+  float: left;
+  display: inline-block;
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: 0.1rem 0.1rem 0.2rem black;
+}
+
+#buttonGroup > button:hover {
+  cursor: pointer;
+}
+
+#buttonGroup > button:active {
+  transform: scale(0.9);
+}
+
+h1 {
+  font-size: 3rem;
+  color: black;
+  margin: 0;
+  word-wrap: break-word;
+  padding: 0 0 1rem 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul.topNav > li, ul.scoreInfo > li {
+  display: inline;
+  padding: 0 2rem 0 0;
+  white-space: nowrap;
+
+}
+
+ul.scoreInfo {
+  margin: 2rem 0 2rem 0;
+}
+
+div.bar {
+  display: flex;
+  transition-property: width;
+  transition-duration: 0.5s;
+}
+
+#maxBar {
+  width: 100%;
+  border: 0.2rem solid white;
+  height: 3.5rem;
+}
+
+#pointsBar {
+  background-color: #ccccff;
+  width: 0%;
+  height: 3.1rem;
+}
+
+#remainingBar {
+  background-color: #ebb44d;
+  width: 100%;
+  height: 3.1rem;
+}
+
+#alert, span.number {
+  color: white;
+}
+
+#pointer {
+  position: relative;
+  left: -0.3rem;
+  margin-left: 0;
+  transition-property: margin-left;
+  transition-duration: 0.5s;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: white;
+}
+
+#aboutContent {
+  white-space: normal;
+  text-align: left;
+  overflow: hidden;
+  display: none;
+  padding: 2rem 0 1rem 0;
+  color: white;
+}

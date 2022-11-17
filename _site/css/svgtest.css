@@ -1,0 +1,33 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap');
+
+
+#bigContainer {
+  height: 600px;
+  width: 600px;
+}
+
+
+section {
+  padding: 20px 0 0 0;
+}
+
+.controlPanel {
+  display: flex;
+  width: 600px;
+  justify-content: space-between;
+}
+
+.controls {
+  display: flex;
+  padding: 10px 0 0 0;
+  width: 600px;
+  justify-content: space-between;
+}
+
+.colourSelectContainer {
+  border: 1px solid black;
+  height: 50px;
+  padding: 0 10px 0 10px;
+  flex-grow: 1;
+}

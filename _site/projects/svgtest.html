@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="../css/svgtest.css" />
+   <script src="../js/svgtest.js" defer></script>
+   <script src="https://unpkg.com/vanilla-picker@2"></script>
+  <title>SVG test</title>
+</head>
+<body>
+  <div id="bigContainer">
+    <svg id="smallContainer" viewbox ="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+    </svg>
+  </div>
+
+<section class="controls">
+  <form>
+    <label for="characterInput">Character input:</label>
+    <input type="text" id ="characterInput" name = "characterInput" value = "O">
+  </form>
+</section>
+
+<section class="controls">
+
+
+    <div class="controlPanel">
+
+      <div class="slideContainer">
+        <p>angle</p>
+        <input type="range" min="0" max="359" value="0" class="slider" id="angle">
+        <p>Value: <span id="angleValue">0</span></p>
+      </div>
+
+      <div class="slideContainer">
+        <p>drop shadow</p>
+        <input type="range" min="0" max="100" value="0" class="slider" id="dropShadow">
+        <p>Value: <span id="dropShadowValue">0</span></p>
+      </div>
+
+      <div class="slideContainer">
+        <p>font size</p>
+        <input type="range" min="50" max="350" value="100" class="slider" id="fontSize">
+        <p>Value: <span id="fontSizeValue">100</span></p>
+      </div>
+
+      <div class="slideContainer">
+        <p>font weight</p>
+        <input type="range" min="100" max="900" value="100" class="slider" id="fontWeight">
+        <p>Value: <span id="fontWeightValue">100</span></p>
+      </div>
+
+      <div class="slideContainer">
+        <p>spacing</p>
+        <input type="range" min="75" max="300" value="100" class="slider" id="spacing">
+        <p>Value: <span id="spacingValue">150</span></p>
+      </div>
+
+  </div>
+
+</section>
+
+<section class="controls">
+
+  <div id="parent0" class="colourSelectContainer">Background colour</div>
+  <div id="parent1"  class="colourSelectContainer">Foreground colour 1</div>
+  <div id="parent2"  class="colourSelectContainer">Foreground colour 2</div>
+
+</section>
+
+<section>
+  <button type="button" id="randomiseColours">Random colours</button>
+  <button type="button" id="randomiseParameters">Random parameters</button>
+  <button type="button" id="randomiseEverything">Random everything!</button>
+  <button type="button" id="shareButton">Share design</button>
+  <button type="button" id="downloadSVG">download SVG</button>
+
+
+</section>
+
+</body>

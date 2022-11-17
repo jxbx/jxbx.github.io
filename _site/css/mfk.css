@@ -1,0 +1,112 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: black;
+  margin: 0;
+}
+
+div.container {
+  display: block;
+
+}
+
+div.navArrows {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0 0.5rem 0;
+}
+
+div.navArrows a, p {
+  color: white;
+  text-decoration: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 2rem;
+  padding: 0.5rem;
+
+}
+
+img.pageContent {
+  position: absolute;
+  width: 100%;
+  border: 0.2rem solid white;
+  visibility: hidden;
+}
+
+div.artwork {
+  position: relative;
+
+}
+
+#counterText {
+  margin: 0;
+}
+
+#introGraphic {
+  padding-left: 1rem;
+}
+
+.tool {
+  fill: white;
+
+}
+
+#title {
+  width: 100%;
+  height: 100vh;
+}
+
+
+@media only screen and (min-width: 600px) {
+
+  div.container {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 30% auto;
+
+    max-width: 60rem;
+    justify-content: center;
+    height: 42rem;
+    position: relative;
+  }
+
+  div.artwork {
+    position: relative;
+    width: 30rem;
+  }
+
+  #title {
+    width: 100%;
+    height: auto;
+  }
+
+  #titleAndNav {
+    height: 15rem;
+  }
+
+
+  div.navArrows a, p {
+    color: white;
+    text-decoration: none;
+    font-family: arial, sans-serif;
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+  div.navArrows {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0.5rem 0 0.5rem 0;
+  }
+
+  body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+}

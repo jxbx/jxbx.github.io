@@ -1,0 +1,207 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  max-width: 35rem;
+  margin: 1rem auto auto auto;
+  background-color: black;
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  color: white;
+}
+
+p {
+  margin: 0;
+}
+
+.graphicbox {
+  color: white;
+  border: 0.1rem solid white;
+  width: auto;
+  margin: 0 0 0.5rem 0;
+  overflow: hidden;
+  line-height: 0.8rem;
+  height: 5rem;
+}
+
+#graphic {
+  position: relative;
+  width: 30rem;
+  overflow-wrap: anywhere;
+  transform: rotate(10deg);
+  left: -2rem;
+}
+
+.header {
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.logo {
+  font-size: 2rem; line-height: 1.8rem;
+  margin: 0 0 0.5rem 0;
+  padding: 0.5rem;
+  border: 0.1rem solid white;
+  width: 200%
+}
+
+#info {
+  color: black;
+  width: 100%;
+
+  overflow: hidden;
+  line-height: 0.8rem;
+  height: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 0.5rem 0 0;
+  background-color: white;
+}
+
+#more {
+  color: white;
+  border: 0.1rem solid white;
+  width: 100%;
+  margin: 0 0 0.5rem 0;
+  overflow-wrap:
+  line-height: 0.8rem;
+  display: none;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 1rem
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 0.5rem;
+  background-color: none;
+  border: 0.1rem solid white;
+  padding: 0.5rem;
+}
+
+.gridheader {
+background-color: black;
+}
+
+#plaintext {
+  flex: auto;
+  min-width: 14rem;
+  height: 4rem;
+}
+
+input[type=text], input[type=number]{
+  appearance: none;
+  background-color: black;
+  border: 0.1rem solid white;
+  padding: 0.5rem;
+  outline: none;
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  color: white
+}
+
+input::placeholder {
+  color: white;
+}
+
+form.selector {
+  border: 0.1rem solid white;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  margin: 0 0.5rem 0 0;
+  flex-wrap: wrap;
+  width: 6rem;
+  height: 4rem;
+}
+
+select {
+  appearance: none;
+   background-color: black;
+  border: 0.1rem solid white;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  outline: none;
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  display: grid;
+  color: white
+}
+
+.output {
+  padding: 0.5rem;
+  margin: 0.5rem 0 0.5rem 0;
+  min-height: 4rem;
+  color: white;
+  border: 0.1rem solid white;
+  display: flex;
+  align-items: center;
+}
+
+
+button {
+  background: none;
+  color: inherit;
+  border: 0.1rem solid white;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+button:active {
+  transform: scale(0.99);
+}
+
+button.clear {
+  width: 5rem;
+}
+
+.topControls{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 0 0.5rem 0;
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
+  margin: 0.5rem 0 0 0;
+}
+
+.topright{
+  display: flex;
+}
+
+.keygen {
+  display: flex;
+  height: 4rem;
+}
+
+#keytext {
+  width: 10rem;
+  margin: 0 0 0 0.5rem;
+}
+
+@media only screen and (max-width: 415px) {
+  form.selector {
+    width: 50%;
+  }
+  button.clear {
+    width: 50%;
+  }
+  .topright{
+    width: 100%;
+  }
+}
+
+a {
+  color: cyan;
+}
+
+a:visited {
+  color: cyan;
+}

@@ -1,0 +1,82 @@
+
+
+body {
+  background-color: #5cd65c;
+  padding: 1rem;
+  overflow: hidden;
+  font-family: arial, sans-serif;
+}
+
+#barContainer {
+  position: relative;
+  top: -1rem;
+  margin-bottom: -1rem;
+  max-width: 40rem;
+}
+
+div.bar {
+  height: 1rem;
+  display: flex;
+}
+
+#pointsBar {
+background-color: pink;
+width: 50%;
+}
+
+#remainingBar {
+  background-color: blue;
+  width: 50%;
+}
+
+#maxBar {
+  border: 0.1rem solid black;
+  max-width: 100%;
+  height: 1rem;
+}
+
+#pointer {
+  position: relative;
+  color: black;
+  width: 100%;
+  left: 0.1rem;
+  margin-left = 0;
+}
+
+#untilWin {
+  position: relative;
+  right: 0.5rem;
+}
+
+#alert {
+  background-color: #c2f0c2;
+}
+
+div.ballSelect {
+  background-color: #cdcdb1;
+  padding: 0 0 0 0.5rem;
+  height: 4rem;
+  margin: 0.2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 1rem;
+  width: 15rem;
+}
+
+button {
+  height: 2rem;
+  width: 4rem;
+}
+
+div.ballIcon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+}
+
+#info {
+  display: flex;
+  column-gap: 1rem;
+
+}
