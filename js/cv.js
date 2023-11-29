@@ -49,6 +49,20 @@ const education = [
 
 const work = [
   {
+    employer: "Cog Design",
+    role: "Digital Project Manager",
+    dates: "Jan 2023 - present",
+    url: "https://cogdesign.com",
+    description: `A client-focused role at a digital agency which exclusively develops websites for arts and heritage organisations. I work with venues like the Foundling Museum, Soho Theatre, London Philharmonic Orchestra, and Nottingham Playhouse. 
+    <br></br> I manage ongoing client relations and help my clients to adapt and upgrade their websites to suit evolving business needs. I map out interface designs and user journeys in collaboration with clients, and work closely with specialist design and web development teams to deliver updates. Key responsibilities include:
+    <ul>
+      <li>Planning and delivering design and branding updates to existing websites for clients like the Foundling Museum, London Philharmonic Orchestra, and Soho Theatre.</li>
+      <li>Designing user purchase pathways based on integration with third party ticketing systems like Spektrix and Tessitura</li>
+      <li>Auditing websites for accessibility through rigourous testing against the WCAG 2.x guidelines, and working closely with developers to deploy changes</li>
+    </ul>`
+      
+  },
+  {
     employer: "Costello Medical",
     role: "Graphic designer",
     dates: "Aug 2021 - May 2022",
@@ -65,7 +79,7 @@ const work = [
   },
   {
     employer: "The Charterhouse",
-    role: "Visitor assistant",
+    role: "Visitor experience assistant",
     dates: "Jun 2021 - Aug 2022",
     url: "https://thecharterhouse.org",
     description: `A part-time role based at a historic venue in Islington. I managed the venue's online
@@ -124,11 +138,12 @@ window.onload = function () {
     const newDetails = document.createElement("p");
     const newDescription = document.createElement("p");
     newDates.setAttribute("class", "cvDate");
+    newDetails.setAttribute("class", "cvDetails");
     newDates.innerText = item.dates;
     newDetails.innerHTML = "<a href=\"" + item.url + "\">" + item.employer + "</a>" + " • " + item.role;
     newDescription.innerHTML = item.description;
-    newItem.appendChild(newDates);
     newItem.appendChild(newDetails);
+    newItem.appendChild(newDates);
     newItem.appendChild(newDescription);
     cvWorkList.appendChild(newItem);
   }

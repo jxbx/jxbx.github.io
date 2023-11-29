@@ -43,7 +43,7 @@ h1 {
 h2 {
   padding: 1rem 0 1rem 0;
   margin: 0;
-  font-weight: 450;
+  font-weight: 600;
   border-bottom: 0.05rem solid grey;
   font-family: "raleway", sans-serif;
   font-size: 1.8rem;
@@ -95,8 +95,13 @@ nav a:hover, footer a:hover {
   width: 100%;
 }
 
-.cvDate {
+.cvDate, .bold {
   font-weight: 700;
+}
+
+.cvDetails {
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
 .cvEntry li {

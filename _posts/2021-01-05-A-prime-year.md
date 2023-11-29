@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Making the Earth wobble
+title: A prime year
 date: 2021-01-05
 category: blog
 ---
