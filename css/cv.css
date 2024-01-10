@@ -104,13 +104,17 @@ nav a:hover, footer a:hover {
   font-size: 1.2rem;
 }
 
+.cvEntry {
+  list-style-type: none;
+}
+
 .cvEntry li {
   list-style-type: disc;
-  margin: 0 0 0 -1.5rem;
+  margin: 0 0 0.5rem 0;
 }
 
 .cvEntry ul {
-  margin: 1rem 0 0 0;
+  margin: 1rem 0 0 -1.5rem;
 }
 
 .cvEntry a {
