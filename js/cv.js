@@ -134,8 +134,9 @@ retail and ticketing system using the DigiTickets platform, planned the delivery
 window.onload = function () {
 
   introSection.innerText = introText;
+  
   for (const item of education){
-    const newItem = document.createElement("li");
+    const newItem = document.createElement("div");
     newItem.setAttribute("class", "cvEntry");
     const newDates = document.createElement("p");
     const newDetails = document.createElement("p");
@@ -151,7 +152,7 @@ window.onload = function () {
   }
 
   for (const item of work){
-    const newItem = document.createElement("li");
+    const newItem = document.createElement("div");
     newItem.setAttribute("class", "cvEntry");
     const newDates = document.createElement("p");
     const newDetails = document.createElement("p");
