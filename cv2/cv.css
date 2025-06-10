@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Tilt+Warp&display=swap');
+
+:root {
+    --orange: #d26f28;
+    --lightGrey: #b1b1b1;
+    --bodyGrey: #2a2a2a;
+  }
+
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+  }
+  
+
+
+@page {
+    size: a4;
+    margin: 0;
+}
+
+@media screen {
+    body{
+        background: black;
+    }
+}
+
+@media print {
+    .sheet {
+        page-break-after: always;
+    }
+}
+
+#page1Header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1lh
+}
+
+#intro {
+    width: 50%;
+}
+
+#logo {
+    width: 20%;
+}
+
+#techContainer {
+    padding: 0.5lh 0 0.5lh 0;
+    border-top: 1pt solid var(--lightGrey);
+    border-bottom: 1pt dotted var(--lightGrey);
+}
+
+.techEntries {
+    font-weight: 400;
+}
+
+.sheet {
+    background: white;
+    width: 210mm;
+    height: 297mm;
+    padding: 18mm;
+    margin-bottom: 10mm;
+    font-family: 'Nunito', 'Arial', 'Sans-Serif';
+    display: flex;
+    flex-direction: column;
+}
+
+.entryHeading {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.5lh;
+}
+
+.cvEntry {
+    padding: 0.5lh 0 0.5lh 0;
+    border-bottom: 1pt dotted var(--lightGrey);
+}
+
+.entries {
+    padding-bottom: 1lh;
+}
+
+.entries .cvEntry:first-of-type{
+    border-top: 1pt solid var(--lightGrey);
+}
+
+.pageCount {
+    display: flex;
+    justify-content: right;
+    position: relative;
+    margin-top: auto;
+}
+
+.cvDate {
+    color: var(--lightGrey);
+}
+
+h1{
+    font-size: 32pt;
+    margin: 0;
+    font-family: 'tilt warp';
+    line-height: 0.85;
+    color: var(--orange);
+}
+
+h2 {
+    font-size: 14pt;
+    color: var(--bodyGrey);
+    font-weight: 700;
+    padding: 0.25lh 0 0.25lh 0;
+    margin: 0
+  }
+  
+h3, .cvDate {
+    margin: 0;
+    font-weight: 700;
+    font-size: 9pt;
+}
+
+.pageCountNumbers {
+    font-weight: 400;
+    font-size: 9pt;
+    line-height: 1.4;
+    margin: 0;
+    color: #2a2a2a;
+    position: relative;
+    top: 1lh;
+}
+  
+p, ul, address {
+    font-weight: 400;
+    font-size: 9pt;
+    line-height: 1.4;
+    margin: 0;
+    color: #2a2a2a;
+    padding-bottom: 0.5lh;
+}
+
+p:last-child, ul:last-child {
+    padding: 0;
+}
+
+ul {
+    margin-left: 1em;
+}
+
+ul > li {
+    list-style-type: disc;
+}
+
+address {
+    font-style: normal;
+}
+
+a {
+    color: var(--orange);
+    text-decoration: underline;
+}
